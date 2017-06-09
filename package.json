@@ -1,0 +1,60 @@
+{
+    "name": "blog",
+    "version": "1.0.0",
+    "description": "blog project",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/geekzhanglei/blogbeta.git"
+    },
+    "author": "zhanglei<1103307205@qq.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/geekzhanglei/blogbeta/issues"
+    },
+    "homepage": "https://github.com/geekzhanglei/blogbeta#readme",
+    "dependencies": {
+        "bootstrap": "^3.3.7",
+        "vue": "^2.3.4",
+        // 跨域用代理
+        "grunt-connect-proxy": "^0.2.0",
+        // 清空文件和文件夹，要求grunt是0.4.x
+        "grunt-contrib-clean": "^1.0.0",
+        // 连接合并文件
+        "grunt-contrib-concat": "^1.0.1",
+        // 本地模拟web服务器
+        "grunt-contrib-connect": "^1.0.2",
+        // 复制文件文件夹
+        "grunt-contrib-copy": "^0.5.0",
+        // css压缩
+        "grunt-contrib-cssmin": "^0.10.0",
+        // js检查
+        "grunt-contrib-jshint": "^1.0.0",
+        //上线代码
+        "grunt-contrib-lefdupload": "^0.0.8",
+        // 自动刷新
+        "grunt-contrib-livereload": "^0.1.2",
+        // css编译为sass
+        "grunt-contrib-sass": "^1.0.0",
+        // js文件压缩
+        "grunt-contrib-uglify": "^2.0.0",
+        // 自动刷新
+        "grunt-contrib-watch": "^1.0.0",
+        // eslint验证文件
+        "grunt-eslint": "^18.1.0",
+        // grunt版lithe
+        "grunt-lithe": "^0.1.7",
+        // 运行grunt任务仅对自上次成功运行后修改过的文件
+        "grunt-newer": "^1.2.0",
+        // lithe
+        "lithe": "~0.3.4",
+        // 使用通配符加载所有任务
+        "load-grunt-tasks": "^3.5.0"
+    },
+    "devDependencies": {
+        "grunt": "^1.0.1"
+    }
+}
