@@ -1,5 +1,5 @@
 /**
- * @fileoverview 打包脚本
+ * @fileoverview 自动化脚本
  */
 module.exports = function(grunt) {
 
@@ -8,14 +8,12 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: pkg,
+        // 本地静态服务
+        connect: require('./gruntConfigs/connect'),
         // 合并lithe项目依赖
         lithe: require('./gruntConfigs/lithe'),
         // 合并非lithe的代码
         concat: require('./gruntConfigs/concat'),
-        // 代码检测
-        eslint: require('./gruntConfigs/eslint'),
-        // 本地静态服务
-        connect: require('./gruntConfigs/connect'),
         // 复制相关文件到dist
         copy: require('./gruntConfigs/copy'),
         // 压缩js代码
@@ -25,8 +23,6 @@ module.exports = function(grunt) {
         // 上传项目代码到线上
         lefdupload: require('./gruntConfigs/lefdupload')
     });
-
-    grunt.registerTask('eslint', ['eslint']);
 
     grunt.registerTask('packjs', [
         // 'eslint',
