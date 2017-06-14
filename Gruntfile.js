@@ -56,6 +56,7 @@ module.exports = function(grunt) {
                 'connect:dist:keepalive'
             ]);
         }
+        // grunt.task.run用于一个任务内部执行其他任务
         grunt.task.run([
             'configureProxies',
             'connect:livereload:keepalive'

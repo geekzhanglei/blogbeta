@@ -27,8 +27,8 @@ module.exports = {
         // 代理服务器
         proxy: {
             // 后端测试机
-            // host: '10.11.145.253',
-            // port: 80
+            host: 'blog.feroad.com',
+            port: 80
         },
         // 路由规则
         rewrite: ''
