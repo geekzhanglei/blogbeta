@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         // 压缩css代码
         cssmin: require('./gruntConfigs/cssmin'),
         // 上传项目代码到线上
-        lefdupload: require('./gruntConfigs/lefdupload')
+        // lefdupload: require('./gruntConfigs/lefdupload')
     });
 
     grunt.registerTask('packjs', [
@@ -58,7 +58,9 @@ module.exports = function(grunt) {
         }
         // grunt.task.run用于一个任务内部执行其他任务
         grunt.task.run([
+            // configureProxies是grunt-contrib-proxy的默认任务
             'configureProxies',
+            // 以下命令使得上述命令保持，不会退出，因此会阻塞其他任务执行
             'connect:livereload:keepalive'
         ]);
     });
