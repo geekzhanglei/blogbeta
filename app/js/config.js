@@ -13,24 +13,6 @@
         },
         router: {},
         basepath: 'http://blog.feroad.com'
-        // 中间件,记录cdn入口地址
-        // middleware: function(id, path) {
-        //     var prefix = 'dist/js/',
-        //         currUrl;
-        //     if (/\.js$/.test(id)) {
-        //         currUrl = router[prefix + id];
-        //     } else {
-        //         currUrl = router[prefix + id + '.js'];
-        //     }
-        //     if (currUrl) {
-        //         path = basepath + '/';
-        //         id = currUrl.replace(path, '');
-        //     }
-        //     return {
-        //         id: id,
-        //         path: path
-        //     }
-        // }
     };
     if (global.define && typeof window) {
         define('config', function() {
