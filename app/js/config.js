@@ -7,12 +7,12 @@
     var mod = {
         // basepath: basepath,
         alias: {
-            'vue': 'lib/vue/vue.min',
-            'jquery': 'lib/jquery/jquery.min',
-            'bootstrap': 'lib/bootstrap/js/bootstrap.min'
+            'vue': 'lib/vue/vue',
+            'jquery': 'lib/jquery/jquery',
+            'bootstrap': 'lib/bootstrap/js/bootstrap'
         },
         router: {},
-        basepath: 'http://blog.feroad.com'
+        basepath: ''
     };
     if (global.define && typeof window) {
         define('config', function() {

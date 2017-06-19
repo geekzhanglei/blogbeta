@@ -1,15 +1,14 @@
 define('comp/common/footer', function(require, exports, module) {
     var Vue = require('vue');
-    var tpl = require('template/common/footer');
+    // var tpl = require('template/common/footer');
 
     var data = {};
 
-    var comp = Vue.extend({
-        template: tpl,
+    var comp = new Vue({
+        el: '#msg',
         data: function() {
             return data;
         }
-
     });
-    return comp;
+    module.exports = comp;
 });

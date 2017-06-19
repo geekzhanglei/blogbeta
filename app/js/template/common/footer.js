@@ -8,7 +8,7 @@ define('template/common/footer', function(require, exports, module) {
     /* beautify ignore:start */
     /* eslint-disable */
     var tpl = [
-
+        '<div>hello</div>'
     ].join('');
     /* beautify ignore:end */
     /* eslint-disable */
