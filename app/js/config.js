@@ -10,9 +10,7 @@
             'vue': 'lib/vue/vue',
             'jquery': 'lib/jquery/jquery',
             'bootstrap': 'lib/bootstrap/js/bootstrap'
-        },
-        router: {},
-        basepath: ''
+        }
     };
     if (global.define && typeof window) {
         define('config', function() {
