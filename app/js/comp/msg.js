@@ -58,6 +58,7 @@ define('comp/msg', function(require, exports, module) {
             return data;
         },
         methods: {
+            // 回复按钮
             displayInput: function(index) {
                 if (this.items[index].isAnswer == "回复") {
                     this.items[index].isAnswer = "取消回复";
@@ -67,6 +68,7 @@ define('comp/msg', function(require, exports, module) {
                     this.items[index].isShowInput = false;
                 }
             },
+            // 查看回复
             displayAnswers: function(index) {
                 if (this.items[index].isUnfoldAnswers == "查看回复") {
                     this.items[index].isUnfoldAnswers = "收起回复";
@@ -76,8 +78,16 @@ define('comp/msg', function(require, exports, module) {
                     this.items[index].isShowAnswers = false;
                 }
             },
+            // 删除留言
+            deleteAnswer: function(index) {
+                // 页面先消失
+                this.items.splice(index, 1);
+                // 再请求删除留言接口
+            },
             init: function() {
                 var i, itemsLen = this.items.length;
+                // 请求查询留言接口
+
                 // 初始化每个评论下会用到的属性
                 for (i = 0; i < itemsLen; i++) {
                     Vue.set(this.items[i], 'isAnswer', '回复');
