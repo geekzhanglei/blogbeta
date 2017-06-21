@@ -1,0 +1,33 @@
+/*body*/
+
+body {
+    margin: 0;
+    padding: 0;
+    color: #808080;
+    color: rgb(80, 80, 80);
+    font-family: "Helvetica Neue", 微软雅黑, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    background-color: #ddd;
+}
+
+
+/*blog-footer*/
+
+.footer {
+    border-top: 3px #f4645e solid;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    margin-top:
+}
+
+.footer p {
+    color: #aaa;
+    background: #151515;
+    border-top: 1px #2a2a2a solid;
+    padding: 20px 0;
+    margin: 0;
+    font-weight: normal;
+}

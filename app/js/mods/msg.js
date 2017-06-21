@@ -2,6 +2,11 @@
 define('mods/msg', function(require, exports, module) {
 
     // require('comp/common/header');
-    // require('comp/msg');
+    require('comp/msg');
     require('comp/common/footer');
+    // 初始化根实例
+    var Vue = require('vue');
+    new Vue({
+        el: '#msg'
+    });
 });

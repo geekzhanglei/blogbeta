@@ -1,8 +1,97 @@
-body {
-    color: rgb(80, 80, 80);
-    font-family: "Helvetica Neue", 微软雅黑, Helvetica, Arial, sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    background-color: #ddd;
+.container {
+    margin-bottom: 70px;
 }
 
+.msg-wrap {
+    background-color: #f8f8f8;
+    margin: 20px 0;
+    box-shadow: 0px 1px 2px #aaa;
+}
+
+.msg-header {
+    border-left: 5px solid #ea6753;
+    color: #2ca6cb;
+    padding: 15px 35px;
+    margin: 0 0 20px 0;
+    text-align: left;
+}
+
+.msg-header h2 {
+    margin-top: 10px;
+}
+
+.msg-cont {
+    margin: 30px 50px;
+}
+
+.msg-input textarea {
+    resize: none;
+}
+
+.msg-input button {
+    margin: 10px 5px;
+    float: right;
+}
+
+.msg-split {
+    margin: 10px 0;
+    border-top: 2px #2ca6cb solid;
+    box-shadow: 0px 1px 2px #2ca6cb;
+}
+
+.msg-comment .comment-header {
+    padding-left: 15px;
+    border-left: 5px solid #ea6753;
+}
+
+.msg-comment .cont-list {
+    margin: 15px 10px;
+}
+
+.msg-comment .cont-list .comments {
+    margin: 1em 0;
+    border-bottom: 1px dashed #b5b5b5;
+}
+
+.comment-wrap .div,
+p {
+    margin: 6px 0;
+}
+
+.comments .uid {
+    font-size: 1.2em;
+    color: #2ca6cb;
+    float: left;
+}
+
+.comments .curTime {
+    float: right;
+    font-size: 1.1em;
+}
+
+.comments .action a {
+    margin: 5px 10px;
+    float: right;
+    text-decoration: none;
+}
+
+.comments .answers {
+    margin: 10px 20px;
+    padding: 10px;
+    border: 1px #aaa dotted;
+}
+
+.comments .write-answer {
+    margin: 10px 20px;
+    padding: 10px;
+    border: 1px #aaa dotted;
+}
+
+.answers .uid,
+.curTime {
+    font-size: 1em;
+}
+
+.answers div {
+    margin: 0;
+}
