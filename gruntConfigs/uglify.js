@@ -1,12 +1,14 @@
 var banner = '/* <%=pkg.name%> | vserion <%=pkg.version%>*/\r\n';
 var projectConfig = require('./config');
-var tempPath = projectConfig.global.tempPath;
+// var tempPath = projectConfig.global.tempPath;
 var buildPath = projectConfig.global.buildPath;
 module.exports = {
     options: {
         mangle: {
+            // require本身不压缩
             except: ['require']
         },
+        // 压缩文件头部内容
         banner: banner
     },
     lithe: {
@@ -17,9 +19,9 @@ module.exports = {
             dest: buildPath + '/js/conf'
         }]
     },
-    config: {
-        files: {
-            [tempPath + '/js/lithe.js']: [tempPath + '/js/lithe.js']
-        }
-    }
+    // config: {
+    //     files: {
+    //         [tempPath + '/js/lithe.js']: [tempPath + '/js/lithe.js']
+    //     }
+    // }
 };

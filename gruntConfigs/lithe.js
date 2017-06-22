@@ -16,7 +16,6 @@ var tpl = {
     files: {}
 };
 tpl.files[buildConfPath] = srcConfPath;
-
 module.exports = {
     tpl: tpl
 }

@@ -17,5 +17,11 @@ module.exports = {
         src: ['./lithe.js'],
         dest: buildPath + '/js/',
         cwd: tempPath + '/js/'
+    },
+    img: {
+        expand: true,
+        src: ['./*.*'],
+        dest: buildPath + '/img/',
+        cwd: srcPath + '/img/'
     }
 };
