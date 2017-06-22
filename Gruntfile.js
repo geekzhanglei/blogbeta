@@ -10,9 +10,9 @@ module.exports = function(grunt) {
         pkg: pkg,
         // 本地静态服务
         connect: require('./gruntConfigs/connect'),
-        // 合并lithe项目依赖
+        // 合并lithe项目依赖（vue.jquery.bootstrap与自己写的js合并到dist目录）
         lithe: require('./gruntConfigs/lithe'),
-        // 合并非lithe的代码
+        // 合并非lithe的代码(lithe.js和lithe的config.js)到.temp临时目录
         concat: require('./gruntConfigs/concat'),
         // 复制相关文件到dist
         copy: require('./gruntConfigs/copy'),
@@ -21,7 +21,6 @@ module.exports = function(grunt) {
         // 压缩css代码
         cssmin: require('./gruntConfigs/cssmin'),
         // 上传项目代码到线上
-        // lefdupload: require('./gruntConfigs/lefdupload')
     });
 
     grunt.registerTask('packjs', [
