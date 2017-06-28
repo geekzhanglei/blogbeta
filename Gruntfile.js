@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         // 将上一步.tmp的文件复制到dist
         'copy:js',
         // 在dist中压缩以上两步中的js
-        'uglify:lithe'
+        // 'uglify:lithe'
     ]);
     grunt.registerTask('packcss', ['cssmin']);
     grunt.registerTask('build', ['clean', 'packcss', 'packjs', 'copy:html', 'copy:img']);

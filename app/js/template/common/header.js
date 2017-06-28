@@ -20,8 +20,8 @@ define('template/common/header', function(require, exports, module) {
             '</div>',
             '<div class="collapse navbar-collapse">',
                 '<ul class="nav navbar-nav navbar-right">',
-                    '<li><a href="">留言板</a></li>',
-                    '<li><a href="">关于</a></li>',
+                    '<li><a href="#">留言板</a></li>',
+                    '<li><a href="#">关于</a></li>',
                 '</ul>',
             '</div>',
         '</nav>'

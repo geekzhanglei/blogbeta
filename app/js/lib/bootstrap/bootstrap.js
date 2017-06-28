@@ -5,7 +5,7 @@ define('lib/bootstrap/bootstrap', function(require, exports, module) {
      * Copyright 2011-2016 Twitter, Inc.
      * Licensed under the MIT license
      */
-
+    var jQuery = require('lib/jquery/jquery');
     if (typeof jQuery === 'undefined') {
         throw new Error('Bootstrap\'s JavaScript requires jQuery')
     }
