@@ -12,13 +12,40 @@ body {
 }
 
 
+/*blog-header*/
+
+.nav-bgcolor {
+    background-image: url(/img/nav.jpg);
+    border: 0px;
+    border-bottom: 2px #aaa solid;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-nav>li>a:hover {
+    color: white;
+}
+
+.navbar-default .navbar-nav>li {
+    padding: 0 30px;
+}
+
+.navbar-default .navbar-nav>li:hover {
+    background-color: #e7e7e7;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #555;
+    /*background-color: #ac3911;*/
+}
+
+
 /*blog-footer*/
 
 .footer {
     border-top: 3px #f4645e solid;
     width: 100%;
-    position: fixed;
-    bottom: 0;
     text-align: center;
 }
 
@@ -26,7 +53,7 @@ body {
     color: #aaa;
     background: #151515;
     border-top: 1px #2a2a2a solid;
-    padding: 20px 0;
+    padding: 15px 0;
     margin: 0;
     font-weight: normal;
 }

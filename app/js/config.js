@@ -9,7 +9,7 @@
         alias: {
             'vue': 'lib/vue/vue',
             'jquery': 'lib/jquery/jquery',
-            'bootstrap': 'lib/bootstrap/js/bootstrap'
+            'bootstrap': 'lib/bootstrap/bootstrap'
         }
     };
     if (global.define && typeof window) {
