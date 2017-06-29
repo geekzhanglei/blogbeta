@@ -8,8 +8,11 @@ define('comp/msg', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/msg');
 
-    var data = {
+    var handlePage = require('comp/util/page-handle');
+    var page_tpl = require('comp/common/page');
+    Vue.component('paging', page_tpl);
 
+    var data = {
         items: [{
             uid: "1",
             nickname: "神话",
@@ -49,7 +52,8 @@ define('comp/msg', function(require, exports, module) {
                 time: "2017年3月6日 22:39",
                 cont: "这是假数据--这是假数据--这是假数据--"
             }]
-        }]
+        }],
+        pagingData: {}
     };
 
     var comp = Vue.component('blog-msg', {
@@ -95,6 +99,10 @@ define('comp/msg', function(require, exports, module) {
                     Vue.set(this.items[i], 'isShowInput', false);
                     Vue.set(this.items[i], 'isShowAnswers', false);
                 }
+                // 初始化分页组件
+                // handlePage({
+
+                // });
             }
         },
         created: function() {

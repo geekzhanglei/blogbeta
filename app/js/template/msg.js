@@ -57,6 +57,9 @@ define('template/msg', function(require, exports, module) {
                         '</div>',
                     '</div>',
                 '</div>',
+                '<div class="M_pages">',
+                    '<paging v-bind:datasource="pagingData"></paging>',
+                '</div>',
             '</div>',
         '</div>'
     ].join('');
