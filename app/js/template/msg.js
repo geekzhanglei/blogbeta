@@ -57,7 +57,7 @@ define('template/msg', function(require, exports, module) {
                         '</div>',
                     '</div>',
                 '</div>',
-                '<div class="M_pages">',
+                '<div class="blog-page">',
                     '<paging v-bind:datasource="pagingData"></paging>',
                 '</div>',
             '</div>',

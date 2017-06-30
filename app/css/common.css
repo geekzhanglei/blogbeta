@@ -60,3 +60,10 @@ body {
     margin: 0;
     font-weight: normal;
 }
+
+
+/*page*/
+
+.blog-page nav {
+    text-align: center;
+}

@@ -1,4 +1,4 @@
-define('comp/util/handle-page', function(require, exports, module) {
+define('comp/util/page-handle', function(require, exports, module) {
     // pageData = {
     //     total:1, //总条数
     //     page_total:12,  //总页数
@@ -32,6 +32,7 @@ define('comp/util/handle-page', function(require, exports, module) {
                 }
             }
         }
+        // pages当前显示了哪些页
         pageData.pages = a;
         return pageData;
     }
