@@ -18,6 +18,8 @@ module.exports = function(grunt) {
         copy: require('./gruntConfigs/copy'),
         // 压缩js代码
         uglify: require('./gruntConfigs/uglify'),
+        // 压缩html
+        htmlmin: require('./gruntConfigs/htmlmin'),
         // 压缩css代码
         cssmin: require('./gruntConfigs/cssmin'),
         //清理文件和目录
@@ -40,7 +42,8 @@ module.exports = function(grunt) {
         'uglify:lithe'
     ]);
     grunt.registerTask('packcss', ['cssmin']);
-    grunt.registerTask('build', ['clean', 'packcss', 'packjs', 'copy:html', 'copy:img']);
+    grunt.registerTask('packhtml', ['htmlmin']);
+    grunt.registerTask('build', ['clean', 'packhtml', 'packcss', 'packjs', 'copy:img']);
     grunt.registerTask('release', function() {
         // release比build多了发布到线上的环节
         // grunt.task.run(['build', 'lefdupload:css', 'lefdupload:js']);

@@ -4,14 +4,14 @@ var srcPath = projectConfig.global.srcPath;
 var buildPath = projectConfig.global.buildPath;
 
 module.exports = {
-    html: {
-        files: [{
-            expand: true,
-            src: ['./**/*.html'],
-            dest: buildPath,
-            cwd: srcPath
-        }]
-    },
+    // html: {
+    //     files: [{
+    //         expand: true,
+    //         src: ['./**/*.html'],
+    //         dest: buildPath,
+    //         cwd: srcPath
+    //     }]
+    // },
     js: {
         expand: true,
         src: ['./lithe.js'],
