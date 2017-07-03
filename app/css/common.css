@@ -1,5 +1,6 @@
 /*body*/
 
+html,
 body {
     margin: 0;
     padding: 0;
@@ -9,6 +10,7 @@ body {
     font-weight: 300;
     letter-spacing: 0.05em;
     background-color: #ddd;
+    height: 100%;
 }
 
 
@@ -31,16 +33,16 @@ body {
     padding: 0 30px;
 }
 
-.navbar-default .navbar-nav>li.msg:active {
-    background: #af5e5e;
-}
-
 .navbar-default .navbar-nav>li:hover {
     background-color: #e7e7e7;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
     color: #555;
+}
+
+.current {
+    background: #af5e5e;
 }
 
 
@@ -59,6 +61,11 @@ body {
     padding: 15px 0;
     margin: 0;
     font-weight: normal;
+}
+
+.solid-footer {
+    position: fixed;
+    bottom: 0;
 }
 
 
