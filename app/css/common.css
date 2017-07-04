@@ -63,7 +63,7 @@ body {
     font-weight: normal;
 }
 
-.solid-footer {
+.fixedfooter {
     position: fixed;
     bottom: 0;
 }

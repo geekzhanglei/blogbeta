@@ -3,14 +3,30 @@ define('comp/common/footer', function(require, exports, module) {
     var tpl = require('template/common/footer');
 
     var data = {
-        isTrue1: false
+        isActive: false
     };
 
     var comp = Vue.component('blog-footer', {
         template: tpl,
         data: function() {
             return data;
+        },
+        methods: {
+            initFooterPostion: function() {
+                var _allHeight = document.documentElement.clientHeight;
+                var _footerHeight = this.$el.offsetTop;
+                if (_allHeight - _footerHeight > 53) {
+                    this.isActive = true;
+                } else {
+                    this.isActive = false;
+                }
+            }
+        },
+        mounted() {
+            // 初始化底部导航条位置
+            this.initFooterPostion();
         }
+
     });
     module.exports = comp;
 });

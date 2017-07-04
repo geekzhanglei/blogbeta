@@ -8,7 +8,7 @@ define('template/common/footer', function(require, exports, module) {
     /* beautify ignore:start */
     /* eslint-disable */
     var tpl = [
-        '<div class="footer" v-bind:class="{solid-footer:isTrue1}">',
+        '<div class="footer" v-bind:class="{fixedfooter:isActive}">',
             '<p>京ICP备16014645号-1</p>',
         '</div>'
     ].join('');
