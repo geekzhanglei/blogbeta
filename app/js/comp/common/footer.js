@@ -22,7 +22,7 @@ define('comp/common/footer', function(require, exports, module) {
                 }
             }
         },
-        mounted() {
+        mounted: function() {
             // 初始化底部导航条位置
             this.initFooterPostion();
         }

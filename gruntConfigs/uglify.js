@@ -18,7 +18,7 @@ module.exports = {
             src: '**/*.js',
             dest: buildPath + '/js/conf'
         }]
-    },
+    }
     // config: {
     //     files: {
     //         [tempPath + '/js/lithe.js']: [tempPath + '/js/lithe.js']

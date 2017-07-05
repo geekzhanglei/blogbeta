@@ -31,7 +31,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('packjs', [
-        // 'eslint',
         // lithe依赖包与js代码
         'lithe:tpl',
         // lithe文件与config配置合并到.tmp
@@ -46,7 +45,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', ['clean', 'packhtml', 'packcss', 'packjs', 'copy:img']);
     grunt.registerTask('release', function() {
         // release比build多了发布到线上的环节
-        // grunt.task.run(['build', 'lefdupload:css', 'lefdupload:js']);
+        // grunt.task.run(['build', 'w:css', 'lefdupload:js']);
     });
     grunt.registerTask('serve', '', function(target) {
         if (target == 'dist') {
