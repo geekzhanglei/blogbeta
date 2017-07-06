@@ -19,6 +19,6 @@ define('conf/blog', function(require, exports, module) {
     // 初始化根实例
     new Vue({
         el: '#blog',
-        router: router
+        router
     });
 });
