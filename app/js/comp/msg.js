@@ -16,51 +16,52 @@ define('comp/msg', function(require, exports, module) {
     Vue.component('paging', page_tpl);
 
     var data = {
-        items: [{
-            uid: "1",
-            nickname: "神话",
-            time: "2017年3月5日 22:22",
-            cont: "这是假数据--这是假数据--这是假数据--",
-            answersNum: '2',
-            answers: [{
-                uid: "1-1",
-                nickname: "神话-1",
-                time: "2017年3月5日 22:26",
-                cont: "这是假数据--这是假数据--这是假数据--"
-            }, {
-                uid: "1-2",
-                nickname: "神话-2",
-                time: "2017年3月5日 22:29",
-                cont: "这是假数据--这是假数据--这是假数据--"
-            }]
-        }, {
-            uid: "2",
-            nickname: "神话1",
-            time: "2017年3月5日 22:23",
-            cont: "这是假数据--这是假数据--这是假数据--",
-            answersNum: '3',
-            answers: [{
-                uid: "1-1",
-                nickname: "神话1-1",
-                time: "2017年3月6日 11:26",
-                cont: "这是假数据--这是假数据--这是假数据--"
-            }, {
-                uid: "1-2",
-                nickname: "神话1-2",
-                time: "2017年3月6日 21:29",
-                cont: "这是假数据--这是假数据--这是假数据--"
-            }, {
-                uid: "1-2",
-                nickname: "神话1-2",
-                time: "2017年3月6日 22:39",
-                cont: "这是假数据--这是假数据--这是假数据--"
-            }]
-        }],
+        list: [],
+        // itemss: [{
+        //     uid: "1",
+        //     nickname: "神话",
+        //     time: "2017年3月5日 22:22",
+        //     cont: "这是假数据--这是假数据--这是假数据--",
+        //     answersNum: '2',
+        //     answers: [{
+        //         uid: "1-1",
+        //         nickname: "神话-1",
+        //         time: "2017年3月5日 22:26",
+        //         cont: "这是假数据--这是假数据--这是假数据--"
+        //     }, {
+        //         uid: "1-2",
+        //         nickname: "神话-2",
+        //         time: "2017年3月5日 22:29",
+        //         cont: "这是假数据--这是假数据--这是假数据--"
+        //     }]
+        // }, {
+        //     uid: "2",
+        //     nickname: "神话1",
+        //     time: "2017年3月5日 22:23",
+        //     cont: "这是假数据--这是假数据--这是假数据--",
+        //     answersNum: '3',
+        //     answers: [{
+        //         uid: "1-1",
+        //         nickname: "神话1-1",
+        //         time: "2017年3月6日 11:26",
+        //         cont: "这是假数据--这是假数据--这是假数据--"
+        //     }, {
+        //         uid: "1-2",
+        //         nickname: "神话1-2",
+        //         time: "2017年3月6日 21:29",
+        //         cont: "这是假数据--这是假数据--这是假数据--"
+        //     }, {
+        //         uid: "1-2",
+        //         nickname: "神话1-2",
+        //         time: "2017年3月6日 22:39",
+        //         cont: "这是假数据--这是假数据--这是假数据--"
+        //     }]
+        // }],
         pagingData: {
             total: 50,
-            pages: [1, 2, 3, 4, 5],
+            pages: [1],
             page: 1,
-            page_total: 5
+            page_total: 1
         }
     };
 
@@ -72,75 +73,75 @@ define('comp/msg', function(require, exports, module) {
         methods: {
             // 回复按钮
             displayInput: function(index) {
-                if (this.items[index].isAnswer == "回复") {
-                    this.items[index].isAnswer = "取消回复";
-                    this.items[index].isShowInput = true;
+                if (this.list[index].isAnswer == "回复") {
+                    this.list[index].isAnswer = "取消回复";
+                    this.list[index].isShowInput = true;
                 } else {
-                    this.items[index].isAnswer = "回复";
-                    this.items[index].isShowInput = false;
+                    this.list[index].isAnswer = "回复";
+                    this.list[index].isShowInput = false;
                 }
             },
             // 查看回复
             displayAnswers: function(index) {
-                if (this.items[index].isUnfoldAnswers == "查看回复") {
-                    this.items[index].isUnfoldAnswers = "收起回复";
-                    this.items[index].isShowAnswers = true;
+                if (this.list[index].isUnfoldAnswers == "查看回复") {
+                    this.list[index].isUnfoldAnswers = "收起回复";
+                    this.list[index].isShowAnswers = true;
                 } else {
-                    this.items[index].isUnfoldAnswers = "查看回复";
-                    this.items[index].isShowAnswers = false;
+                    this.list[index].isUnfoldAnswers = "查看回复";
+                    this.list[index].isShowAnswers = false;
                 }
             },
             // 删除留言
             deleteAnswer: function(index) {
                 // 页面先消失
-                this.items.splice(index, 1);
+                this.list.splice(index, 1);
                 // 再请求删除留言接口
             },
             // 请求留言数据接口
             reqMsgDataApi: function(e) {
-                // var _this = this;
+                var _this = this;
                 $.ajax({
-                    // url: '',
-                    // type: 'GET',
-                    // dataType: 'jsonp',
+                    url: 'http://blog.feroad.com/query',
+                    type: 'GET',
+                    dataType: 'json',
                     // data: {
                     //     page: e,
                     //     pagesize: 10
                     // },
-                    // success: function(res) {
-                    //     // console.log(res.bean.data);
-                    //     var flag = res.flag;
-                    //     if (flag == "200") {
-                    //         _this.list = res.bean.data;
-                    //         _this.pagingData.total = res.bean.total;
-                    //         _this.pagingData.page = res.bean.page;
-                    //         // 初始化页码
-                    //         _this.init();
-                    //     } else {
-                    //         _this.list = [];
-                    //         _this.pagingData.total = 0;
-                    //         _this.pagingData.page = 0;
-                    //         _this.init();
-                    //     }
-                    // }
+                    success: function(res) {
+                        var flag = res.result.status;
+                        if (flag === 1) {
+                            console.log(res.result.data[0]);
+                            _this.list = res.result.data;
+                            _this.pagingData.total = res.result.data.length;
+                            // _this.pagingData.page = res.bean.page;
+                            // 初始化页码
+                            _this.init();
+                        } else {
+                            _this.list = [];
+                            _this.pagingData.total = 0;
+                            _this.pagingData.page = 0;
+                            _this.init();
+                        }
+                    }
                 });
                 this.init();
             },
             // 分页组件
             init: function() {
                 var _this = this;
-                var i, itemsLen = this.items.length;
+                var i, listLen = this.list.length;
                 var page_total,
                     page = _this.pagingData.page;
                 var _temp = parseInt(_this.pagingData.total) / 10;
                 page_total = Math.ceil(_temp);
 
                 // 初始化每个评论下会用到的私有属性
-                for (i = 0; i < itemsLen; i++) {
-                    Vue.set(this.items[i], 'isAnswer', '回复');
-                    Vue.set(this.items[i], 'isUnfoldAnswers', '查看回复');
-                    Vue.set(this.items[i], 'isShowInput', false);
-                    Vue.set(this.items[i], 'isShowAnswers', false);
+                for (i = 0; i < listLen; i++) {
+                    Vue.set(this.list[i], 'isAnswer', '回复');
+                    Vue.set(this.list[i], 'isUnfoldAnswers', '查看回复');
+                    Vue.set(this.list[i], 'isShowInput', false);
+                    Vue.set(this.list[i], 'isShowAnswers', false);
                 }
                 // 获取分页组件数据
                 this.pagingData = handlePage({
