@@ -16,50 +16,18 @@ define('comp/msg', function(require, exports, module) {
     Vue.component('paging', page_tpl);
 
     var data = {
-        //输入空间
+        //输入内容与名字
         inputMsg: '',
         inputName: '',
+        // 留言列表
         list: [],
-        // itemss: [{
-        //     uid: "1",
-        //     nickname: "神话",
-        //     time: "2017年3月5日 22:22",
-        //     cont: "这是假数据--这是假数据--这是假数据--",
-        //     answersNum: '2',
-        //     answers: [{
-        //         uid: "1-1",
-        //         nickname: "神话-1",
-        //         time: "2017年3月5日 22:26",
-        //         cont: "这是假数据--这是假数据--这是假数据--"
-        //     }, {
-        //         uid: "1-2",
-        //         nickname: "神话-2",
-        //         time: "2017年3月5日 22:29",
-        //         cont: "这是假数据--这是假数据--这是假数据--"
-        //     }]
-        // }, {
-        //     uid: "2",
-        //     nickname: "神话1",
-        //     time: "2017年3月5日 22:23",
-        //     cont: "这是假数据--这是假数据--这是假数据--",
-        //     answersNum: '3',
-        //     answers: [{
-        //         uid: "1-1",
-        //         nickname: "神话1-1",
-        //         time: "2017年3月6日 11:26",
-        //         cont: "这是假数据--这是假数据--这是假数据--"
-        //     }, {
-        //         uid: "1-2",
-        //         nickname: "神话1-2",
-        //         time: "2017年3月6日 21:29",
-        //         cont: "这是假数据--这是假数据--这是假数据--"
-        //     }, {
-        //         uid: "1-2",
-        //         nickname: "神话1-2",
-        //         time: "2017年3月6日 22:39",
-        //         cont: "这是假数据--这是假数据--这是假数据--"
-        //     }]
-        // }],
+        // 非法留言提示
+        errTips: '',
+        //模态框关闭参数
+        isActive: '',
+        // 留言用户名默认值
+        phcont: '东方三侠',
+        // 分页组件数据
         pagingData: {
             total: 50,
             pages: [1],
@@ -139,16 +107,37 @@ define('comp/msg', function(require, exports, module) {
             },
             sendComment: function() {
                 var _this = this;
+                this.errTips = "";
+
+                var commentLength = _this.inputMsg.length;
+                var comNameLength = _this.inputName.length;
+                if (commentLength === 0 || commentLength > 400 || comNameLength > 10) {
+                    this.errTips = "总得写点啥吧";
+                    return;
+                }
+                // 默认名字为东方三侠
+                if (this.inputName === "") {
+                    this.inputName = this.phcont;
+                }
                 $.ajax({
                     url: 'http://blog.feroad.com/add',
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        'input': _this.inputMsg,
-                        '': _this.inputName
+                        'content': _this.inputMsg,
+                        'username': _this.inputName
                     },
-                    success: function(res) {}
+                    success: function(res) {
+                        console.log(res.result.data);
+                        // 刷新列表
+                        _this.reqMsgDataApi();
+                    },
+                    error: function(err) {
+                        console.log(err.result.data);
+                    }
                 });
+                // 成功之后关闭模态框
+                this.isActive = 'modal';
             },
             // 分页组件
             init: function() {

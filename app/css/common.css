@@ -74,3 +74,12 @@ body {
 .blog-page nav {
     text-align: center;
 }
+
+
+/*tips*/
+
+.modal .errorTips {
+    float: left;
+    color: red;
+    padding: 8px;
+}
