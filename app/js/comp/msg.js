@@ -178,6 +178,8 @@ define('comp/msg', function(require, exports, module) {
                     },
                     success: function(res) {
                         console.log(res.result.data);
+                        // 清空留言输入框
+                        _this.inputMsg = "";
                         // 刷新列表
                         _this.reqMsgDataApi();
                     },
