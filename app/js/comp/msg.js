@@ -125,7 +125,9 @@ define('comp/msg', function(require, exports, module) {
                         }
                     }
                 });
-                this.init();
+            },
+            showLayer: function() {
+                console.log("应该有弹层，交互");
             },
             // 分页组件
             init: function() {
