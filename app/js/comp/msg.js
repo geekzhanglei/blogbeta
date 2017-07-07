@@ -111,20 +111,28 @@ define('comp/msg', function(require, exports, module) {
                     success: function(res) {
                         var flag = res.result.status;
                         if (flag === 1) {
-                            console.log(res.result.data[0]);
                             _this.list = res.result.data;
                             _this.pagingData.total = res.result.data.length;
                             // _this.pagingData.page = res.bean.page;
-                            // 初始化页码
-                            _this.init();
                         } else {
                             _this.list = [];
                             _this.pagingData.total = 0;
                             _this.pagingData.page = 0;
-                            _this.init();
                         }
+                        _this.init();
                     }
                 });
+            },
+            // 时间戳转换
+            transferTime: function(unixTime) {
+                var date = new Date(unixTime * 1000);
+                var Y = date.getFullYear() + '-';
+                var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+                var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+                var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+                var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+                var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+                return Y + M + D + h + m + s;
             },
             showLayer: function() {
                 console.log("应该有弹层，交互");
