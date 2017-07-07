@@ -27,6 +27,9 @@ define('comp/msg', function(require, exports, module) {
         isActive: '',
         // 留言用户名默认值
         phcont: '东方三侠',
+        // 回复内容与回复名字
+        replyCont: '',
+        replyName: '',
         // 分页组件数据
         pagingData: {
             total: 50,
@@ -63,10 +66,18 @@ define('comp/msg', function(require, exports, module) {
                 }
             },
             // 删除留言
-            deleteAnswer: function(index) {
+            deleteAnswer: function(index, id) {
                 // 页面先消失
                 this.list.splice(index, 1);
                 // 再请求删除留言接口
+                $.ajax({
+                    url: 'http://blog.feroad.com/delete/' + id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(res) {
+                        console.log(res.result.data);
+                    }
+                });
             },
             // 请求留言数据接口
             reqMsgDataApi: function(e) {
@@ -105,6 +116,42 @@ define('comp/msg', function(require, exports, module) {
                 var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
                 return Y + M + D + h + m + s;
             },
+            // 添加回复
+            addReply: function(id, item) {
+                var _this = this;
+                item.replyErr = "";
+                if (_this.replyCont === "") {
+                    item.replyErr = "总得写点啥吧";
+                    return;
+                }
+
+                // 默认名字为东方三侠
+                if (this.replyName === "") {
+                    this.replyName = this.phcont;
+                }
+
+                $.ajax({
+                    url: 'http://blog.feroad.com/reply/add',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'username': _this.replyName,
+                        'content': _this.replyCont,
+                        'comment_id': id
+                    },
+                    success: function(res) {
+                        console.log(res.result.data);
+                        _this.replyName = "";
+                        _this.replyCont = "";
+                        // 刷新列表
+                        _this.reqMsgDataApi();
+                    },
+                    error: function(err) {
+                        console.log(err.result.data);
+                    }
+                });
+            },
+            // 增加留言
             sendComment: function() {
                 var _this = this;
                 this.errTips = "";
@@ -115,10 +162,12 @@ define('comp/msg', function(require, exports, module) {
                     this.errTips = "总得写点啥吧";
                     return;
                 }
+
                 // 默认名字为东方三侠
                 if (this.inputName === "") {
                     this.inputName = this.phcont;
                 }
+
                 $.ajax({
                     url: 'http://blog.feroad.com/add',
                     type: 'POST',
@@ -136,6 +185,7 @@ define('comp/msg', function(require, exports, module) {
                         console.log(err.result.data);
                     }
                 });
+
                 // 成功之后关闭模态框
                 this.isActive = 'modal';
             },
@@ -154,6 +204,7 @@ define('comp/msg', function(require, exports, module) {
                     Vue.set(this.list[i], 'isUnfoldAnswers', '查看回复');
                     Vue.set(this.list[i], 'isShowInput', false);
                     Vue.set(this.list[i], 'isShowAnswers', false);
+                    Vue.set(this.list[i], 'replyErr', "");
                 }
                 // 获取分页组件数据
                 this.pagingData = handlePage({
