@@ -16,6 +16,9 @@ define('comp/msg', function(require, exports, module) {
     Vue.component('paging', page_tpl);
 
     var data = {
+        //输入空间
+        inputMsg: '',
+        inputName: '',
         list: [],
         // itemss: [{
         //     uid: "1",
@@ -134,8 +137,18 @@ define('comp/msg', function(require, exports, module) {
                 var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
                 return Y + M + D + h + m + s;
             },
-            showLayer: function() {
-                console.log("应该有弹层，交互");
+            sendComment: function() {
+                var _this = this;
+                $.ajax({
+                    url: 'http://blog.feroad.com/add',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'input': _this.inputMsg,
+                        '': _this.inputName
+                    },
+                    success: function(res) {}
+                });
             },
             // 分页组件
             init: function() {
