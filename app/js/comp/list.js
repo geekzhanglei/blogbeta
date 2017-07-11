@@ -99,8 +99,12 @@ define('comp/list', function(require, exports, module) {
             }
         },
         created: function() {
+            console.log('list加载');
             // 后期接口放这里，请求一遍接口就完成初始化了
             this.reqArticleDataApi();
+        },
+        mounted: function() {
+
         }
     });
     return comp;

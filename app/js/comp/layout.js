@@ -7,6 +7,7 @@
 define('comp/layout', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/layout');
+    var router = require('mods/router');
 
     var data = {};
 
@@ -14,6 +15,14 @@ define('comp/layout', function(require, exports, module) {
         template: tpl,
         data: function() {
             return data;
+        },
+        created: function() {
+            console.log('布局组件加载');
+            if (router.currentRoute.fullPath === "/") {
+                router.replace({
+                    path: '/list'
+                });
+            }
         }
     });
     return comp;

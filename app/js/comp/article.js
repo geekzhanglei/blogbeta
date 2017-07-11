@@ -55,6 +55,7 @@ define('comp/article', function(require, exports, module) {
             }
         },
         created: function() {
+            console.log('article加载');
             // 后期接口放这里，请求一遍接口就完成初始化了
             // this.reqArticleDataApi();
         }

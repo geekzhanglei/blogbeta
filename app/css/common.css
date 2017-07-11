@@ -41,7 +41,10 @@ body {
     color: #555;
 }
 
-.current {
+
+/*vue-router的router-link导航激活标签*/
+
+.router-link-active {
     background: #af5e5e;
 }
 

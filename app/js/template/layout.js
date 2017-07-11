@@ -10,11 +10,9 @@ define('template/layout', function(require, exports, module) {
     var tpl = [
             '<div>',
                 '<slot name="header"></slot>',
+                '<slot name="list"></slot>',
                 '<slot name="article"></slot>',
-                // '<slot name="list"></slot>',
-                // '<router-link to="/list">点这个</router-link>',
-                '<router-view name="list"></router-view>',
-                // '<blog-articlelist></blog-articlelist>',
+                '<slot name="msg"></slot>',
                 '<slot name="about"></slot>',
                 '<slot name="footer"></slot>',
             '</div>'

@@ -13,7 +13,7 @@ define('template/list', function(require, exports, module) {
                 '<div class="row" v-for="item in items">',
                     '<div class="col-md-12">',
                         '<div class="articlelist">',
-                            '<h4><a href="#" class="article-l">{{item.title}}</a></h4>',
+                            '<h4><router-link :to=\'"/article/"+item.uid\' class="article-l">{{item.title}}</router-link></h4>',
                             '<p>{{item.cont}}</p>',
                             '<p class="time">{{item.time}}</p>',
                         '</div>',
