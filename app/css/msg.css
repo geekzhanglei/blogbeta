@@ -64,6 +64,12 @@ p {
     float: left;
 }
 
+.comments .reply {
+    padding: 0 6px;
+    font-size: 1em;
+    color: #a79292;
+}
+
 .comments .curTime {
     float: right;
     font-size: 1.1em;
