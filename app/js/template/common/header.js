@@ -20,7 +20,7 @@ define('template/common/header', function(require, exports, module) {
             '</div>',
             '<div class="collapse navbar-collapse">',
                 '<ul class="nav navbar-nav navbar-right">',
-                    '<router-link tag="li" to="/list" class="h_article ani-menulist" exact>',
+                    '<router-link tag="li" to="/article" class="h_article ani-menulist">',
                         '<a>文章</a>',
                     '</router-link>',
                     '<router-link tag="li" to="/msg" class="h_msg ani-menulist" exact>',

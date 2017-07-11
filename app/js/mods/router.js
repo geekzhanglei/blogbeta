@@ -14,7 +14,7 @@ define('mods/router', function(require, exports, module) {
         // history模式需要服务端配置来配合
         // mode: 'history',
         routes: [{
-            path: '/list',
+            path: '/article',
             components: {
                 list: {
                     template: '<blog-articlelist></blog-articlelist>'
@@ -59,7 +59,7 @@ define('mods/router', function(require, exports, module) {
             }
         }]
     });
-    // 路由钩子，用来实时监听路由变化
+    // 路由钩子， 用来实时监听路由变化
     // router.beforeEach(function(to, from, next) {
     //     console.log('路由钩子监控：' + to.fullPath);
     //     next();

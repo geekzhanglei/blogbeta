@@ -20,7 +20,7 @@ define('comp/layout', function(require, exports, module) {
             console.log('布局组件加载');
             if (router.currentRoute.fullPath === "/") {
                 router.replace({
-                    path: '/list'
+                    path: '/article'
                 });
             }
         }
