@@ -220,6 +220,7 @@ define('comp/msg', function(require, exports, module) {
             }
         },
         created: function() {
+            console.log('msg加载');
             // 后期接口放这里，请求一遍接口就完成初始化了
             this.reqMsgDataApi();
         }

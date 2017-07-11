@@ -11,14 +11,17 @@
 </head>
 
 <body>
-    <div id="articlelist">
-        <blog-header></blog-header>
-        <blog-articlelist></blog-articlelist>
-        <blog-footer></blog-footer>
-    </div>
+    <blog-layout id="blog">
+        <blog-header slot="header"></blog-header>
+        <router-view name="list" slot="list"></router-view>
+        <router-view name="article" slot="article"></router-view>
+        <router-view name="msg" slot="msg"></router-view>
+        <router-view name="about" slot="about"></router-view>
+        <blog-footer slot="footer"></blog-footer>
+    </blog-layout>
     <script type="text/javascript" src="js/lithe.js" data-config="config.js"></script>
     <script type="text/javascript">
-        window.lithe.use('conf/list');
+        window.lithe.use('conf/index');
     </script>
 </body>
 
