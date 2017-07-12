@@ -74,14 +74,7 @@ define('comp/msg', function(require, exports, module) {
             // 展开回复列表
             displayAnswers: function(item) {
                 if (item.isUnfoldAnswers === "查看回复") {
-                    // 关闭回复列表中展开的回复框
-                    _l = item.reply.length;
-                    if (_l) {
-                        for (_q = 0; _q < _l; _q++) {
-                            item.reply[_q].isShowReplyInput = false;
-                            item.reply[_q].isAnswer = "回复";
-                        }
-                    }
+                    this.closeAnswerList(item);
                     item.isUnfoldAnswers = "收起回复";
                     item.isShowAnswers = true;
                 } else {
@@ -153,7 +146,7 @@ define('comp/msg', function(require, exports, module) {
                 return Y + M + D + h + m + s;
             },
             // 添加回复
-            addReply: function(id, item) {
+            addReply: function(id, item, index) {
                 var _this = this;
                 var data = {};
                 item.replyErr = "";
@@ -165,16 +158,15 @@ define('comp/msg', function(require, exports, module) {
                 if (item.replyName === "") {
                     item.replyName = this.phcont;
                 }
-
                 // 判断是评论的回复还是回复的回复
-                if (item.commentId) {
+                if (index) {
                     data = {
                         'username': item.replyName,
                         'content': item.replyCont,
                         'comment_id': id,
-                        'reply_id': item.rid,
+                        'reply_id': item.reply[index].rid,
                         'reply_type': 2,
-                        'reply_username': item.replyUserName
+                        'reply_username': item.reply[index].replyUserName
                     };
                 } else {
                     data = {

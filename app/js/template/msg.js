@@ -68,7 +68,7 @@ define('template/msg', function(require, exports, module) {
                                             '<div class="replyWrap clearfix">',
                                                 '<span>昵称：</span>',
                                                 '<input type="text" v-model="item.replyName" class="form-control"  maxlength="10" v-bind:placeholder="phcont">',
-                                                '<button type="button" class="btn btn-default" v-on:click="addReply(item.id,item.reply[index])">回复一下</button>',
+                                                '<button type="button" class="btn btn-default" v-on:click="addReply(item.id,item,index)">回复一下</button>',
                                                 '<span class="replyErrTip">{{item.replyErr}}</span>',
                                             '</div>',
                                         '</div>',
