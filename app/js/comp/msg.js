@@ -15,6 +15,9 @@ define('comp/msg', function(require, exports, module) {
     var page_tpl = require('comp/common/page');
     Vue.component('paging', page_tpl);
 
+    // 私有变量
+    var _l, _q;
+
     var data = {
         //输入内容与名字
         inputMsg: '',
@@ -25,11 +28,8 @@ define('comp/msg', function(require, exports, module) {
         errTips: '',
         //模态框关闭参数
         isActive: '',
-        // 留言用户名默认值
-        phcont: '东方三侠',
-        // 回复内容与回复名字
-        replyCont: '',
-        replyName: '',
+        // 留言和回复的默认用户名
+        phcont: '土包子',
         // 分页组件数据
         pagingData: {
             total: 50,
@@ -46,24 +46,60 @@ define('comp/msg', function(require, exports, module) {
         },
         methods: {
             // 回复按钮
-            displayInput: function(index) {
-                if (this.list[index].isAnswer == "回复") {
-                    this.list[index].isAnswer = "取消回复";
-                    this.list[index].isShowInput = true;
+            displayInput: function(item) {
+                if (item.isAnswer === "回复") {
+                    this.closeAnswerList(item);
+                    item.isAnswer = "取消回复";
+                    item.isShowInput = true;
                 } else {
-                    this.list[index].isAnswer = "回复";
-                    this.list[index].isShowInput = false;
+                    item.isAnswer = "回复";
+                    item.isShowInput = false;
                 }
             },
-            // 查看回复
-            displayAnswers: function(index) {
-                if (this.list[index].isUnfoldAnswers == "查看回复") {
-                    this.list[index].isUnfoldAnswers = "收起回复";
-                    this.list[index].isShowAnswers = true;
+            // 回复的回复按钮
+            displayReplyInput: function(item, index) {
+                if (item.reply[index].isShowReplyInput === false) {
+                    // 关闭回复留言框
+                    item.isAnswer = "回复";
+                    item.isShowInput = false;
+                    this.closeAnswerList(item);
+                    // 自身逻辑
+                    item.reply[index].isAnswer = "取消回复";
+                    item.reply[index].isShowReplyInput = true;
                 } else {
-                    this.list[index].isUnfoldAnswers = "查看回复";
-                    this.list[index].isShowAnswers = false;
+                    item.reply[index].isShowReplyInput = false;
+                    item.reply[index].isAnswer = "回复";
                 }
+            },
+            // 展开回复列表
+            displayAnswers: function(item) {
+                if (item.isUnfoldAnswers === "查看回复") {
+                    // 关闭回复列表中展开的回复框
+                    _l = item.reply.length;
+                    if (_l) {
+                        for (_q = 0; _q < _l; _q++) {
+                            item.reply[_q].isShowReplyInput = false;
+                            item.reply[_q].isAnswer = "回复";
+                        }
+                    }
+                    item.isUnfoldAnswers = "收起回复";
+                    item.isShowAnswers = true;
+                } else {
+                    item.isUnfoldAnswers = "查看回复";
+                    item.isShowAnswers = false;
+                }
+            },
+            // 关闭回复列表清空回复数据
+            closeAnswerList: function(item) {
+                _l = item.reply.length;
+                if (_l) {
+                    for (_q = 0; _q < _l; _q++) {
+                        item.reply[_q].isShowReplyInput = false;
+                        item.reply[_q].isAnswer = "回复";
+                    }
+                }
+                item.replyName = "";
+                item.replyCont = "";
             },
             // 删除留言
             deleteAnswer: function(index, id) {
@@ -119,30 +155,45 @@ define('comp/msg', function(require, exports, module) {
             // 添加回复
             addReply: function(id, item) {
                 var _this = this;
+                var data = {};
                 item.replyErr = "";
-                if (_this.replyCont === "") {
+                if (item.replyCont === "") {
                     item.replyErr = "总得写点啥吧";
                     return;
                 }
-
-                // 默认名字为东方三侠
-                if (this.replyName === "") {
-                    this.replyName = this.phcont;
+                // 默认名字
+                if (item.replyName === "") {
+                    item.replyName = this.phcont;
                 }
 
+                // 判断是评论的回复还是回复的回复
+                if (item.commentId) {
+                    data = {
+                        'username': item.replyName,
+                        'content': item.replyCont,
+                        'comment_id': id,
+                        'reply_id': item.rid,
+                        'reply_type': 2,
+                        'reply_username': item.replyUserName
+                    };
+                } else {
+                    data = {
+                        'username': item.replyName,
+                        'content': item.replyCont,
+                        'comment_id': id,
+                        'reply_id': id,
+                        'reply_type': 1
+                    };
+                }
                 $.ajax({
                     url: 'http://blog.feroad.com/reply/add',
                     type: 'POST',
                     dataType: 'json',
-                    data: {
-                        'username': _this.replyName,
-                        'content': _this.replyCont,
-                        'comment_id': id
-                    },
+                    data: data,
                     success: function(res) {
                         console.log(res.result.data);
-                        _this.replyName = "";
-                        _this.replyCont = "";
+                        item.replyName = "";
+                        item.replyCont = "";
                         // 刷新列表
                         _this.reqMsgDataApi();
                     },
@@ -194,7 +245,7 @@ define('comp/msg', function(require, exports, module) {
             // 分页组件
             init: function() {
                 var _this = this;
-                var i, listLen = this.list.length;
+                var i, j, replyLen, listLen = this.list.length;
                 var page_total,
                     page = _this.pagingData.page;
                 var _temp = parseInt(_this.pagingData.total) / 10;
@@ -207,6 +258,16 @@ define('comp/msg', function(require, exports, module) {
                     Vue.set(this.list[i], 'isShowInput', false);
                     Vue.set(this.list[i], 'isShowAnswers', false);
                     Vue.set(this.list[i], 'replyErr', "");
+                    Vue.set(this.list[i], 'replyName', "");
+                    Vue.set(this.list[i], 'replyCont', "");
+                    // 回复用到的私有属性，开启关闭回复框用
+                    replyLen = this.list[i].reply.length;
+                    if (replyLen) {
+                        for (j = 0; j < replyLen; j++) {
+                            Vue.set(this.list[i].reply[j], 'isShowReplyInput', false);
+                            Vue.set(this.list[i].reply[j], 'isAnswer', '回复');
+                        }
+                    }
                 }
                 // 获取分页组件数据
                 this.pagingData = handlePage({
