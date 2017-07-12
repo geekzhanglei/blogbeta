@@ -146,9 +146,8 @@ define('comp/msg', function(require, exports, module) {
                 return Y + M + D + h + m + s;
             },
             // 添加回复
-            addReply: function(id, item, index) {
+            addReply: function(id, item) {
                 var _this = this;
-                var data = {};
                 item.replyErr = "";
                 if (item.replyCont === "") {
                     item.replyErr = "总得写点啥吧";
@@ -158,30 +157,52 @@ define('comp/msg', function(require, exports, module) {
                 if (item.replyName === "") {
                     item.replyName = this.phcont;
                 }
-                // 判断是评论的回复还是回复的回复
-                if (index) {
-                    data = {
-                        'username': item.replyName,
-                        'content': item.replyCont,
-                        'comment_id': id,
-                        'reply_id': item.reply[index].rid,
-                        'reply_type': 2,
-                        'reply_username': item.reply[index].replyUserName
-                    };
-                } else {
-                    data = {
+                $.ajax({
+                    url: 'http://blog.feroad.com/reply/add',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
                         'username': item.replyName,
                         'content': item.replyCont,
                         'comment_id': id,
                         'reply_id': id,
                         'reply_type': 1
-                    };
+                    },
+                    success: function(res) {
+                        console.log(res.result.data);
+                        item.replyName = "";
+                        item.replyCont = "";
+                        // 刷新列表
+                        _this.reqMsgDataApi();
+                    },
+                    error: function(err) {
+                        console.log(err.result.data);
+                    }
+                });
+            },
+            addReplyForReply: function(id, item, replyItem) {
+                var _this = this;
+                item.replyErr = "";
+                if (item.replyCont === "") {
+                    item.replyErr = "总得写点啥吧";
+                    return;
+                }
+                // 默认名字
+                if (item.replyName === "") {
+                    item.replyName = this.phcont;
                 }
                 $.ajax({
                     url: 'http://blog.feroad.com/reply/add',
                     type: 'POST',
                     dataType: 'json',
-                    data: data,
+                    data: {
+                        'username': item.replyName,
+                        'content': item.replyCont,
+                        'comment_id': id,
+                        'reply_id': replyItem.rid,
+                        'reply_type': 2,
+                        'reply_username': replyItem.replyUserName
+                    },
                     success: function(res) {
                         console.log(res.result.data);
                         item.replyName = "";
