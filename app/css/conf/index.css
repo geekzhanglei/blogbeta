@@ -9,4 +9,5 @@
 @import url('../common.css');
 @import url('../article.css');
 @import url('../msg.css');
-@import url('../animation.css')
+@import url('../animation.css');
+@import url('../lib/simplemde.css');

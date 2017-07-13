@@ -20,6 +20,7 @@ define('mods/router', function(require, exports, module) {
                     template: '<blog-articlelist></blog-articlelist>'
                 }
             }
+            // children是嵌套路由的写法，在template中使用router-view
             // children: [{
             //     path: '/wishlist/publish',
             //     components: {
@@ -35,6 +36,14 @@ define('mods/router', function(require, exports, module) {
             //         }
             //     }
             // }]
+        }, {
+            // 写文章
+            path: '/article/add',
+            components: {
+                article: {
+                    template: '<blog-add></blog-add>'
+                }
+            }
         }, {
             // 文章详情
             path: '/article/:id',
