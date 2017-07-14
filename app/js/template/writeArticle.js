@@ -9,7 +9,7 @@ define('template/writeArticle', function(require, exports, module) {
     /* eslint-disable */
     var tpl = [
         '<div id="wArticleWrap" class="container">',
-            '<textarea id="inputArticle" v-model = "inputArticle">测试</textarea>',
+            '<textarea id="inputArticle" v-model="inputArticle">测试</textarea>',
         '</div>'
     ].join('');
     /* beautify ignore:end */

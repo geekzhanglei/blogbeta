@@ -37,7 +37,7 @@ define('mods/router', function(require, exports, module) {
             //     }
             // }]
         }, {
-            // 写文章
+            // 写文章(不应该出现在这里，应该放后台)
             path: '/article/add',
             components: {
                 article: {

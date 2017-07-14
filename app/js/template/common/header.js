@@ -10,7 +10,7 @@ define('template/common/header', function(require, exports, module) {
     var tpl = [
         '<nav class="navbar navbar-default nav-bgcolor">',
             '<div class="navbar-header">',
-                '<a href="/" class="navbar-brand">测试博客</a>',
+                '<a href="/html/login.html" class="navbar-brand">测试博客</a>',
                 '<button class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">',
                     '<span class="sr-only">Toggle navigation</span>',
                     '<span class="icon-bar"></span>',

@@ -15,7 +15,7 @@ define('conf/index', function(require, exports, module) {
     // 关于页(未做呢)
     // require('mods/about');
     // 写文章页
-    require('mods/writeArticle');
+    // require('mods/writeArticle');
     // 这里应该是放置路由的位置
     require('comp/common/footer');
 
