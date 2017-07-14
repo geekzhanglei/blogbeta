@@ -8,8 +8,8 @@ define('template/writeArticle', function(require, exports, module) {
     /* beautify ignore:start */
     /* eslint-disable */
     var tpl = [
-        '<div>',
-            '<textarea>测试中</textarea>',
+        '<div id="wArticleWrap" class="container">',
+            '<textarea id="inputArticle" v-model = "inputArticle">测试</textarea>',
         '</div>'
     ].join('');
     /* beautify ignore:end */

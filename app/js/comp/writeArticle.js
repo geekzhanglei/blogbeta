@@ -7,21 +7,32 @@
 define('comp/writeArticle', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/writeArticle');
+    var simplemde = require('lib/simplemde/simplemde.min');
+    // var x;
 
-    // require('lib/simplemde/simplemde.debug');
-
-    console.log(require('lib/simplemde/simplemde.debug'));
-
-    var data = {};
+    var data = {
+        inputArticle: '',
+        x: ''
+    };
 
     var comp = Vue.component('blog-add', {
         template: tpl,
         data: function() {
             return data;
+        },
+        methods: {
+            loadMde: function() {
+                this.x = new simplemde({
+                    // config位置
+                    element: document.getElementById("inputArticle"),
+                });
+            }
+        },
+        mounted: function() {
+            this.loadMde();
+            var _this = this;
+            console.log(_this.x.value())
         }
     });
-    // var simplemde = new SimpleMDE({
-    //     element: document.getElementById("writeArticle")
-    // });
     return comp;
 });
