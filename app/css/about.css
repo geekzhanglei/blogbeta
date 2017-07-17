@@ -1,0 +1,16 @@
+.aboutBgImg {
+    display: block;
+    background: transparent;
+    border: 1px solid #d0c2c2;
+}
+
+.aboutBgImg:hover {
+    border: 1px solid #8990d8;
+}
+
+.aboutBgImg img {
+    width: 90%;
+    height: 225px;
+    display: block;
+    margin: 0.5em auto;
+}

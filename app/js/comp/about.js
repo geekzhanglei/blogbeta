@@ -4,7 +4,7 @@
  * @date 2017/07/17
  */
 
-define('comp/writeArticle', function(require, exports, module) {
+define('comp/about', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/about');
 
@@ -14,6 +14,9 @@ define('comp/writeArticle', function(require, exports, module) {
         template: tpl,
         data: function() {
             return data;
+        },
+        created: function() {
+            console.log('加载about模块');
         }
     });
     return comp;

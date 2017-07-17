@@ -101,7 +101,7 @@ define('template/msg', function(require, exports, module) {
                     '</div>',
                 '</div>',
             '</div>',
-        '</div>'
+        '</div>',
     ].join('');
     /* beautify ignore:end */
     /* eslint-disable */

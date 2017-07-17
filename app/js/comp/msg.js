@@ -31,7 +31,7 @@ define('comp/msg', function(require, exports, module) {
         // 留言和回复的默认用户名
         phcont: '土包子',
         // 每页条数
-        pagesize: 2,
+        pagesize: 4,
         // 分页组件数据
         pagingData: {
             total: 1,

@@ -16,7 +16,6 @@ define('conf/index', function(require, exports, module) {
     require('mods/about');
     // 写文章页
     // require('mods/writeArticle');
-    // 这里应该是放置路由的位置
     require('comp/common/footer');
 
     // 引入bootstrap插件
