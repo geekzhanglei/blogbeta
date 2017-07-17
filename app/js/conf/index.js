@@ -12,8 +12,8 @@ define('conf/index', function(require, exports, module) {
     require('mods/article');
     // 留言页
     require('mods/msg');
-    // 关于页(未做呢)
-    // require('mods/about');
+    // 关于页
+    require('mods/about');
     // 写文章页
     // require('mods/writeArticle');
     // 这里应该是放置路由的位置

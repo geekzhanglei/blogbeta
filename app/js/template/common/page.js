@@ -24,7 +24,7 @@ define('template/common/page', function(require, exports, module) {
                     '<span>... </span>',
                 '</li>',
                 '<li v-for="i in datasource.pages">',
-                    '<a v-on:click="onClickPage(datasource.clickPageCb, i)" href="javascript:;">{{i}}</a>',
+                    '<a v-on:click="onClickPage(datasource.clickPageCb, i)"  href="javascript:;" v-bind:class="{curPage:datasource.page == i}">{{i}}</a>',
                 '</li>',
                 '<li v-if="datasource.page <= datasource.page_total - 4 && datasource.page_total > 5">',
                     '<span>... </span>',
@@ -34,7 +34,7 @@ define('template/common/page', function(require, exports, module) {
                 '</li>',
 
                 '<li v-bind:class="{disabled : datasource.page === datasource.page_total}">',
-                    '<a href="javascript:;" aria-label="Next">',
+                    '<a href="javascript:;" aria-label="Next" v-on:click="onClickPage(datasource.clickPageCb, parseInt(datasource.page) + 1)">',
                         '<span aria-hidden="true">下一页</span>',
                     '</a>',
                 '</li>',

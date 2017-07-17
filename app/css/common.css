@@ -78,6 +78,10 @@ body {
     text-align: center;
 }
 
+.pagination li a.curPage {
+    background-color: #eee;
+}
+
 
 /*tips*/
 

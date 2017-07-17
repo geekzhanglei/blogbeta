@@ -30,9 +30,11 @@ define('comp/msg', function(require, exports, module) {
         isActive: '',
         // 留言和回复的默认用户名
         phcont: '土包子',
+        // 每页条数
+        pagesize: 2,
         // 分页组件数据
         pagingData: {
-            total: 50,
+            total: 1,
             pages: [1],
             page: 1,
             page_total: 1
@@ -109,22 +111,22 @@ define('comp/msg', function(require, exports, module) {
                 });
             },
             // 请求留言数据接口
-            reqMsgDataApi: function(e) {
+            reqMsgData: function(e) {
                 var _this = this;
                 $.ajax({
-                    url: 'http://blog.feroad.com/query',
+                    url: 'http://blog.feroad.com/page',
                     type: 'GET',
                     dataType: 'json',
-                    // data: {
-                    //     page: e,
-                    //     pagesize: 10
-                    // },
+                    data: {
+                        curpage: e,
+                        perpage: _this.pagesize
+                    },
                     success: function(res) {
                         var flag = res.result.status;
-                        if (flag === 1) {
+                        if (flag) {
                             _this.list = res.result.data;
-                            _this.pagingData.total = res.result.data.length;
-                            // _this.pagingData.page = res.bean.page;
+                            _this.pagingData.total = res.result.rows;
+                            _this.pagingData.page = e;
                         } else {
                             _this.list = [];
                             _this.pagingData.total = 0;
@@ -176,8 +178,6 @@ define('comp/msg', function(require, exports, module) {
                         'reply_type': 1
                     };
                 }
-                console.log(item.reply[index]);
-                console.log(data)
                 $.ajax({
                     url: 'http://blog.feroad.com/reply/add',
                     type: 'POST',
@@ -188,7 +188,7 @@ define('comp/msg', function(require, exports, module) {
                         item.replyName = "";
                         item.replyCont = "";
                         // 刷新列表
-                        _this.reqMsgDataApi();
+                        _this.reqMsgData(_this.pagingData.page);
                     },
                     error: function(err) {
                         console.log(err.result.data);
@@ -225,7 +225,7 @@ define('comp/msg', function(require, exports, module) {
                         // 清空留言输入框
                         _this.inputMsg = "";
                         // 刷新列表
-                        _this.reqMsgDataApi();
+                        _this.reqMsgData(_this.pagingData.page);
                     },
                     error: function(err) {
                         console.log(err.result.data);
@@ -235,13 +235,13 @@ define('comp/msg', function(require, exports, module) {
                 // 成功之后关闭模态框
                 this.isActive = 'modal';
             },
-            // 分页组件
+            // 初始化数据与分页组件
             init: function() {
                 var _this = this;
                 var i, j, replyLen, listLen = this.list.length;
                 var page_total,
                     page = _this.pagingData.page;
-                var _temp = parseInt(_this.pagingData.total) / 10;
+                var _temp = parseInt(_this.pagingData.total) / this.pagesize;
                 page_total = Math.ceil(_temp);
 
                 // 初始化每个评论下会用到的私有属性
@@ -268,15 +268,15 @@ define('comp/msg', function(require, exports, module) {
                     total: _this.pagingData.total,
                     page_total: page_total,
                     clickPageCb: function(targetPage) {
-                        _this.reqMsgDataApi(targetPage);
+                        _this.reqMsgData(targetPage);
                     }
                 });
             }
         },
         created: function() {
             console.log('msg加载');
-            // 后期接口放这里，请求一遍接口就完成初始化了
-            this.reqMsgDataApi();
+            var _this = this;
+            this.reqMsgData(_this.pagingData.page);
         }
     });
     return comp;
