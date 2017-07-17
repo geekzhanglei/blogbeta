@@ -1,9 +1,14 @@
 /*body*/
 
-html,
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
+    /* position: relative;
+    min-height: 100%; */
     color: #808080;
     color: rgb(80, 80, 80);
     font-family: "Helvetica Neue", 微软雅黑, Helvetica, Arial, sans-serif;
@@ -52,6 +57,7 @@ body {
 /*blog-footer*/
 
 .footer {
+    /* margin-top: -53px; */
     border-top: 3px #f4645e solid;
     width: 100%;
     text-align: center;
@@ -64,11 +70,6 @@ body {
     padding: 15px 0;
     margin: 0;
     font-weight: normal;
-}
-
-.fixedfooter {
-    position: fixed;
-    bottom: 0;
 }
 
 
