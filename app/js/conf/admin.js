@@ -14,6 +14,13 @@ define('conf/admin', function(require, exports, module) {
     // 初始化根实例
     new Vue({
         el: '#admin',
+        created: function() {
+            if (router.currentRoute.path === "/") {
+                router.replace({
+                    path: '/login'
+                });
+            }
+        },
         router: router
     });
 });

@@ -42,7 +42,7 @@ define('comp/login', function(require, exports, module) {
                 }
             }
         },
-        created: function() {
+        mounted: function() {
             console.log('加载login模块');
         }
     });
