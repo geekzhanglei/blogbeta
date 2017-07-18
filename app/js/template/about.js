@@ -1,5 +1,5 @@
 /**
- * @fileoverview 留言板模板
+ * @fileoverview 关于模板
  * @author geekzl<1103307205@qq.com>
  * @date 2017/07/17
  */

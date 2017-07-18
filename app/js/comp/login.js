@@ -7,6 +7,8 @@
 define('comp/login', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/login');
+    var $ = require('jquery');
+    var router = require('mods/router');
 
     var data = {
         loginname: '',
@@ -17,6 +19,28 @@ define('comp/login', function(require, exports, module) {
         template: tpl,
         data: function() {
             return data;
+        },
+        methods: {
+            loginConfirm: function() {
+                if (this.loginname && this.loginpwd) {
+                    $.ajax({
+                        url: '',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(res) {
+                            console.log('成功');
+                            router.replace({
+                                path: 'admin'
+                            });
+                        },
+                        error: function() {
+                            console.log('失败');
+                        }
+                    });
+                } else {
+                    return;
+                }
+            }
         },
         created: function() {
             console.log('加载login模块');

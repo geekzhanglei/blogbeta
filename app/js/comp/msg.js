@@ -6,8 +6,10 @@
 
 define('comp/msg', function(require, exports, module) {
     var Vue = require('vue');
-    var $ = require('jquery');
     var tpl = require('template/msg');
+    var $ = require('jquery');
+    var axios = require('lib/ajax/axios');
+    // var qs = require('lib/ajax/qs');
 
     // handlePage计算分页数据传递给pagingData，
     // pagingData给模板template中的子组件数据源datasource
@@ -113,19 +115,17 @@ define('comp/msg', function(require, exports, module) {
             // 请求留言数据接口
             reqMsgData: function(e) {
                 var _this = this;
-                $.ajax({
-                    url: 'http://blog.feroad.com/page',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: {
-                        curpage: e,
-                        perpage: _this.pagesize
-                    },
-                    success: function(res) {
-                        var flag = res.result.status;
+                axios.get('http://blog.feroad.com/page', {
+                        params: {
+                            curpage: e,
+                            perpage: _this.pagesize
+                        }
+                    })
+                    .then(function(res) {
+                        var flag = res.data.result.status;
                         if (flag) {
-                            _this.list = res.result.data;
-                            _this.pagingData.total = res.result.rows;
+                            _this.list = res.data.result.data;
+                            _this.pagingData.total = res.data.result.rows;
                             _this.pagingData.page = e;
                         } else {
                             _this.list = [];
@@ -133,8 +133,10 @@ define('comp/msg', function(require, exports, module) {
                             _this.pagingData.page = 0;
                         }
                         _this.init();
-                    }
-                });
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
             },
             // 时间戳转换
             transferTime: function(unixTime) {
@@ -178,22 +180,32 @@ define('comp/msg', function(require, exports, module) {
                         'reply_type': 1
                     };
                 }
-                $.ajax({
-                    url: 'http://blog.feroad.com/reply/add',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: data,
-                    success: function(res) {
-                        console.log(res.result.data);
-                        item.replyName = "";
-                        item.replyCont = "";
-                        // 刷新列表
-                        _this.reqMsgData(_this.pagingData.page);
-                    },
-                    error: function(err) {
-                        console.log(err.result.data);
-                    }
-                });
+                // axios.post('http://blog.feroad.com/reply/add', qs.stringify(data))
+                //     .then(function(res) {
+                //         item.replyName = "";
+                //         item.replyCont = "";
+                //         // 刷新列表
+                //         _this.reqMsgData(_this.pagingData.page);
+                //     })
+                //     .catch(function(error) {
+                //         console.log(error);
+                //     });
+                // $.ajax({
+                //     url: 'http://blog.feroad.com/reply/add',
+                //     type: 'POST',
+                //     dataType: 'json',
+                //     data: data,
+                //     success: function(res) {
+                //         console.log(res.result.data);
+                //         item.replyName = "";
+                //         item.replyCont = "";
+                //         // 刷新列表
+                //         _this.reqMsgData(_this.pagingData.page);
+                //     },
+                //     error: function(err) {
+                //         console.log(err.result.data);
+                //     }
+                // });
             },
             // 增加留言
             sendComment: function() {
@@ -211,28 +223,19 @@ define('comp/msg', function(require, exports, module) {
                 if (this.inputName === "") {
                     this.inputName = this.phcont;
                 }
-
-                $.ajax({
-                    url: 'http://blog.feroad.com/add',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        'content': _this.inputMsg,
-                        'username': _this.inputName
-                    },
-                    success: function(res) {
-                        console.log(res.result.data);
-                        // 清空留言输入框
-                        _this.inputMsg = "";
-                        // 刷新列表
-                        _this.reqMsgData(_this.pagingData.page);
-                    },
-                    error: function(err) {
-                        console.log(err.result.data);
-                    }
+                // 发起新增留言请求
+                var params = new URLSearchParams();
+                params.append('content', _this.inputMsg);
+                params.append('username', _this.inputName);
+                axios.post('http://blog.feroad.com/add', params).then(function(res) {
+                    // 清空留言输入框
+                    _this.inputMsg = "";
+                    // 刷新列表
+                    _this.reqMsgData(_this.pagingData.page);
+                }).catch(function(err) {
+                    console.log(err);
                 });
-
-                // 成功之后关闭模态框
+                // 确认发表后关闭模态框
                 this.isActive = 'modal';
             },
             // 初始化数据与分页组件

@@ -1,14 +1,11 @@
 define('conf/admin', function(require, exports, module) {
     var Vue = require('vue');
-    // var router = require('mods/router');
-
+    var router = require('mods/router');
 
     // 登录组件
     require('mods/login');
-    // 写文章页
-    // require('mods/writeArticle');
-    // 这里应该是放置路由的位置
-
+    // 管理后台
+    require('mods/admin');
 
     // 引入bootstrap插件
     // require('jquery');
@@ -16,7 +13,7 @@ define('conf/admin', function(require, exports, module) {
 
     // 初始化根实例
     new Vue({
-        el: '#login'
-        // router: router
+        el: '#admin',
+        router: router
     });
 });

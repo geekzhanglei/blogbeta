@@ -14,34 +14,40 @@ define('mods/router', function(require, exports, module) {
         // history模式需要服务端配置来配合
         // mode: 'history',
         routes: [{
-            path: '/article',
+            path: '/login',
             components: {
-                list: {
-                    template: '<blog-articlelist></blog-articlelist>'
+                login: {
+                    template: '<blog-login></blog-login>'
                 }
             }
             // children是嵌套路由的写法，在template中使用router-view
             // children: [{
-            //     path: '/wishlist/publish',
+            //     path: '/login',
             //     components: {
-            //         wishpost: {
-            //             template: '<app-wishpost></app-wishpost>'
+            //         login: {
+            //             template: '<blog-login></blog-login>'
             //         }
             //     }
             // }, {
-            //     path: '/wishlist/detail/:id',
+            //     path: '/admin',
             //     components: {
-            //         wishdetail: {
-            //             template: '<app-wishdetail></app-wishdetail>'
+            //         admin: {
+            //             template: '<app-admin></app-admin>'
             //         }
             //     }
             // }]
         }, {
-            // 写文章(不应该出现在这里，应该放后台)
-            path: '/article/add',
+            path: '/admin',
             components: {
-                article: {
-                    template: '<blog-add></blog-add>'
+                admin: {
+                    template: '<blog-admin></blog-admin>'
+                }
+            }
+        }, {
+            path: '/article',
+            components: {
+                list: {
+                    template: '<blog-articlelist></blog-articlelist>'
                 }
             }
         }, {
