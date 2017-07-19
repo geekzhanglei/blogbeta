@@ -11,7 +11,6 @@
 
 .admin-header .ad-title {
     float: left;
-    width: 250px;
     text-align: center;
 }
 
@@ -20,4 +19,67 @@
     padding-right: 50px;
     font-size: 16px;
     color: #fff;
+    cursor: pointer;
+}
+
+.admin-header .ad-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.admin-header .ad-info span {
+    padding-left: 10px;
+}
+
+.admin-sidebar {
+    color: #bfcbd9;
+    position: absolute;
+    left: 0;
+    top: 70px;
+    bottom: 0;
+    background: #2E363F;
+    padding: 0;
+}
+
+.admin-sidebar li {
+    height: 56px;
+    line-height: 56px;
+    font-size: 14px;
+    padding: 0 20px;
+    cursor: pointer;
+    position: relative;
+    transition: border-color .3s, background-color .3s, color .3s;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.admin-sidebar li:hover {
+    color: #20a0ff;
+    background-color: #48576a;
+}
+
+.ad-sidebar-normal,
+.ad-sidebar-collapse {
+    height: 92%;
+    border-radius: 2px;
+    list-style: none;
+    position: relative;
+    margin: 0;
+    padding-left: 0;
+}
+
+.ad-sidebar-normal span {
+    padding: 0 55px;
+}
+
+.ad-sidebar-footer {
+    height: 8%;
+    border-top: 1px solid #48576a;
+}
+
+.ad-sidebar-footer i {
+    float: right;
+    padding: 7px 8px;
+    font-size: 2em;
 }

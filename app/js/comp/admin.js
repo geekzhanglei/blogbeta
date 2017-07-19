@@ -10,7 +10,9 @@ define('comp/admin', function(require, exports, module) {
     var $ = require('jquery');
     var router = require('mods/router');
 
-    var data = {};
+    var data = {
+        isCollapse: true
+    };
 
     var comp = Vue.component('blog-admin', {
         template: tpl,
