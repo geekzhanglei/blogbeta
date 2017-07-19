@@ -16,20 +16,12 @@ define('comp/list', function(require, exports, module) {
     Vue.component('paging', page_tpl);
 
     var data = {
-        items: [{
-            uid: "1",
-            title: "白领的幻觉",
-            time: "2017年6月4日 22:22",
-            cont: "现在有一个很大的误区就是：办公室的白领们自以为自己的表现优于自己的父母，其实这不过是因为经济结构转型造成的误会而已。现在在公司的格子间里面哼哧哼哧做PPT的那些人，和当年踩着缝纫机的女工们，其实没有本质区别。"
-        }, {
-            uid: "2",
-            title: "富人的由来",
-            time: "2017年6月5日 22:23",
-            cont: "小孩问富翁：叔叔为什么你这么有钱呢？富翁说：我给你讲个故事吧。很小的时候，我注意到楼下的矿泉水卖一块钱，而三站地外的篮球场上，要卖一块五。我拿着一个大书包，从楼下买水带到球场去卖，卖一块二。一个月我挣了十块钱。小孩说：我好像明白了。富翁说：你明白个屁。后来我爸死了，把钱留给我了。",
-        }],
+        // 每页展示多少条
+        pagesize: 2,
+        items: [],
         pagingData: {
-            total: 50,
-            pages: [1, 2, 3, 4, 5],
+            total: 5,
+            pages: [],
             page: 1,
             page_total: 5
         }
@@ -43,33 +35,40 @@ define('comp/list', function(require, exports, module) {
         methods: {
             // 请求文章数据接口
             reqArticleDataApi: function(e) {
-                // var _this = this;
+                var _this = this;
                 $.ajax({
-                    // url: '',
-                    // type: 'GET',
-                    // dataType: 'jsonp',
-                    // data: {
-                    //     page: e,
-                    //     pagesize: 10
-                    // },
-                    // success: function(res) {
-                    //     // console.log(res.bean.data);
-                    //     var flag = res.flag;
-                    //     if (flag == "200") {
-                    //         _this.list = res.bean.data;
-                    //         _this.pagingData.total = res.bean.total;
-                    //         _this.pagingData.page = res.bean.page;
-                    //         // 初始化页码
-                    //         _this.init();
-                    //     } else {
-                    //         _this.list = [];
-                    //         _this.pagingData.total = 0;
-                    //         _this.pagingData.page = 0;
-                    //         _this.init();
-                    //     }
-                    // }
+                    url: 'http://blog.feroad.com/article/getArticleList',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        curpage: e,
+                        perpage: _this.pagesize
+                    },
+                    success: function(res) {
+                        var flag = res.result.status;
+                        if (flag) {
+                            _this.items = res.result.data;
+                            _this.pagingData.total = res.result.rows;
+                            _this.pagingData.page = e;
+                        } else {
+                            _this.items = [];
+                            _this.pagingData.total = 0;
+                            _this.pagingData.page = 0;
+                        }
+                        _this.init();
+                    }
                 });
-                this.init();
+            },
+            // 时间戳转换
+            transferTime: function(unixTime) {
+                var date = new Date(unixTime * 1000);
+                var Y = date.getFullYear() + '-';
+                var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+                var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+                var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+                var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+                var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+                return Y + M + D + h + m + s;
             },
             // 分页组件
             init: function() {
@@ -77,7 +76,7 @@ define('comp/list', function(require, exports, module) {
                 var i, itemsLen = this.items.length;
                 var page_total,
                     page = _this.pagingData.page;
-                var _temp = parseInt(_this.pagingData.total) / 10;
+                var _temp = parseInt(_this.pagingData.total) / _this.pagesize;
                 page_total = Math.ceil(_temp);
 
                 // 初始化每个评论下会用到的私有属性
@@ -93,15 +92,16 @@ define('comp/list', function(require, exports, module) {
                     total: _this.pagingData.total,
                     page_total: page_total,
                     clickPageCb: function(targetPage) {
-                        _this.reqMsgDataApi(targetPage);
+                        _this.reqArticleDataApi(targetPage);
                     }
                 });
             }
         },
         created: function() {
+            var _this = this;
             console.log('list加载');
             // 后期接口放这里，请求一遍接口就完成初始化了
-            this.reqArticleDataApi();
+            this.reqArticleDataApi(_this.pagingData.page);
         }
     });
     return comp;
