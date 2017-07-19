@@ -1,0 +1,23 @@
+.admin-header {
+    /* position: relative; */
+    /* box-sizing: border-box; */
+    width: 100%;
+    height: 70px;
+    font-size: 22px;
+    line-height: 70px;
+    color: #fff;
+    background-color: #242f42;
+}
+
+.admin-header .ad-title {
+    float: left;
+    width: 250px;
+    text-align: center;
+}
+
+.admin-header .ad-info {
+    float: right;
+    padding-right: 50px;
+    font-size: 16px;
+    color: #fff;
+}
