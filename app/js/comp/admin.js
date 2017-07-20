@@ -11,7 +11,8 @@ define('comp/admin', function(require, exports, module) {
     var router = require('mods/router');
 
     var data = {
-        isCollapse: true
+        isCollapse: true,
+        isShowMenu: false
     };
 
     var comp = Vue.component('blog-admin', {
@@ -23,6 +24,24 @@ define('comp/admin', function(require, exports, module) {
             isLogin: function() {
                 //    判断是否已经登录
                 $.ajax();
+            },
+            // 收起展开侧边栏
+            isSidebar: function() {
+                if (this.isCollapse) {
+                    this.isCollapse = false;
+                } else {
+                    this.isCollapse = true;
+                }
+            },
+            // 右上角个人信息菜单显隐
+            isDisplayMenu: function() {
+                var t = this;
+                console.log(t.isShowMenu);
+                if (this.isShowMenu) {
+                    this.isShowMenu = false;
+                } else {
+                    this.isShowMenu = true;
+                }
             }
         },
         created: function() {

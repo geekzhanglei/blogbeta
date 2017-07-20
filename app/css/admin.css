@@ -16,10 +16,48 @@
 
 .admin-header .ad-info {
     float: right;
-    padding-right: 50px;
+    margin-right: 40px;
+    padding-right: 10px;
     font-size: 16px;
     color: #fff;
     cursor: pointer;
+}
+
+.admin-header .ad-info .admsg {
+    float: left;
+    min-width: 110px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: center;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.admsg .divider {
+    height: 1px;
+    margin: 5px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+
+.admsg li {
+    line-height: 40px;
+}
+
+.admsg li:hover {
+    background-color: #bfcbd9;
+}
+
+.admsg a {
+    text-decoration: none;
 }
 
 .admin-header .ad-info img {
@@ -29,7 +67,7 @@
 }
 
 .admin-header .ad-info span {
-    padding-left: 10px;
+    padding-left: 25px;
 }
 
 .admin-sidebar {
@@ -69,8 +107,8 @@
     padding-left: 0;
 }
 
-.ad-sidebar-normal span {
-    padding: 0 55px;
+.ad-sidebar-normal i {
+    padding-right: 40px;
 }
 
 .ad-sidebar-footer {
@@ -80,6 +118,27 @@
 
 .ad-sidebar-footer i {
     float: right;
-    padding: 7px 8px;
+    padding: 7px 13px;
     font-size: 2em;
+}
+
+.admin-content {
+    position: relative;
+    float: right;
+    padding: 40px;
+    /* box-sizing: border-box; */
+    /* overflow-y: scroll; */
+    border: 1px solid red;
+}
+
+.ad-editor-wrap .tips span {
+    font-size: 14px;
+}
+
+.ad-editor-wrap .tips {
+    margin: 15px 0;
+}
+
+.ad-editor-wrap .ad-header {
+    margin-bottom: 15px;
 }
