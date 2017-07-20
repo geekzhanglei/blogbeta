@@ -10,6 +10,9 @@ define('comp/admin', function(require, exports, module) {
     var $ = require('jquery');
     var router = require('mods/router');
 
+    new SimpleMDE({
+        // element: document.getElementById("admin");
+    });
     var data = {
         isCollapse: true,
         isShowMenu: false

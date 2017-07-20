@@ -8,6 +8,8 @@
     <title>测试博客</title>
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
     <link rel="stylesheet" href="../css/conf/admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 </head>
 
 <body>
@@ -15,7 +17,9 @@
         <router-view name="login"></router-view>
         <router-view name="admin"></router-view>
     </div>
-    <script type="text/javascript" src="../js/lithe.js" data-config="config.js"></script>
+    <script type="text/javascript" src="../js/lithe.js" data-config="config.js">
+
+    </script>
     <script type="text/javascript">
         window.lithe.use('conf/admin');
     </script>

@@ -50,6 +50,7 @@ define('template/admin', function(require, exports, module) {
                     '</div>',
                     '<div class="ad-editor"></div>',
                 '</div>',
+                '<textarea id="xxx"></textarea>',
             '</section>',
         '</div>',
     ].join('');
