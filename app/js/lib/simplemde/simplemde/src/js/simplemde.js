@@ -1,3 +1,5 @@
+define('lib/simplemde/simplemde/src/js/simplemde',function(require, exports, module){
+
 /*global require,module*/
 "use strict";
 var CodeMirror = require("codemirror");
@@ -2026,3 +2028,4 @@ SimpleMDE.prototype.toTextArea = function() {
 };
 
 module.exports = SimpleMDE;
+});

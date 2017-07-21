@@ -40,7 +40,7 @@ define('template/admin', function(require, exports, module) {
                     '<span v-on:click="isSidebar()"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>',
                 '</div>',
             '</aside>',
-            '<section class="admin-content col-md-10">',
+            '<section class="admin-content">',
                 '<div class="ad-editor-wrap">',
                     '<div class="tips">',
                         '<span><i class="glyphicon glyphicon-list-alt"></i> 写文章</span>',
@@ -50,7 +50,7 @@ define('template/admin', function(require, exports, module) {
                     '</div>',
                     '<div class="ad-editor"></div>',
                 '</div>',
-                '<textarea id="xxx"></textarea>',
+                '<textarea id="adminText" ref="adminText"></textarea>',
             '</section>',
         '</div>',
     ].join('');

@@ -24,7 +24,8 @@
 }
 
 .admin-header .ad-info .admsg {
-    float: left;
+    position: absolute;
+    z-index: 100;
     min-width: 110px;
     padding: 5px 0;
     margin: 2px 0 0;
@@ -73,11 +74,13 @@
 .admin-sidebar {
     color: #bfcbd9;
     position: absolute;
+    float: left;
     left: 0;
     top: 70px;
     bottom: 0;
     background: #2E363F;
     padding: 0;
+    /* width: 100px; */
 }
 
 .admin-sidebar li {
@@ -125,9 +128,11 @@
 .admin-content {
     position: relative;
     float: right;
-    padding: 40px;
-    /* box-sizing: border-box; */
-    /* overflow-y: scroll; */
+    width: 50%;
+    margin-left: 200px;
+    padding: 25px 40px;
+    box-sizing: border-box;
+    overflow-y: scroll;
     border: 1px solid red;
 }
 

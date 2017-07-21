@@ -9,10 +9,8 @@ define('comp/admin', function(require, exports, module) {
     var tpl = require('template/admin');
     var $ = require('jquery');
     var router = require('mods/router');
-
-    new SimpleMDE({
-        // element: document.getElementById("admin");
-    });
+    var s = require('lib/simplemde/simplemde.min');
+    console.log(s);
     var data = {
         isCollapse: true,
         isShowMenu: false
@@ -47,13 +45,17 @@ define('comp/admin', function(require, exports, module) {
                 }
             }
         },
-        created: function() {
+        mounted: function() {
             var _this = this;
             if (_this.isLogin === "no") {
                 router.replace({
                     path: '/login'
                 });
             }
+            // 插件引入方法
+            new SimpleMDE({
+                element: this.$refs.adminText
+            });
         }
     });
     return comp;
