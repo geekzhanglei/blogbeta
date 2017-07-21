@@ -9,11 +9,14 @@ define('comp/admin', function(require, exports, module) {
     var tpl = require('template/admin');
     var $ = require('jquery');
     var router = require('mods/router');
-    var s = require('lib/simplemde/simplemde.min');
-    console.log(s);
+    var simplemde;
+
     var data = {
         isCollapse: true,
-        isShowMenu: false
+        isShowMenu: false,
+        title: '',
+        username: '管理员',
+        intro: '暂无简介'
     };
 
     var comp = Vue.component('blog-admin', {
@@ -43,6 +46,32 @@ define('comp/admin', function(require, exports, module) {
                 } else {
                     this.isShowMenu = true;
                 }
+            },
+            saveArticle: function() {
+                var _this = this;
+                var isEmpty = this.title && this.intro && simplemde.value();
+                if (!isEmpty) {
+                    console.log('不能留空');
+                    return;
+                }
+                $.ajax({
+                    url: 'http://blog.feroad.com/article/add',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        username: _this.username,
+                        title: _this.title,
+                        introduction: _this.intro,
+                        content: simplemde.markdown(simplemde.value())
+                    },
+                    success: function(res) {
+                        console.log(res.result.data);
+                        // 清空输入
+                    },
+                    error: function() {
+                        console.log('接口请求失败');
+                    }
+                });
             }
         },
         mounted: function() {
@@ -52,8 +81,9 @@ define('comp/admin', function(require, exports, module) {
                     path: '/login'
                 });
             }
+
             // 插件引入方法
-            new SimpleMDE({
+            simplemde = new SimpleMDE({
                 element: this.$refs.adminText
             });
         }

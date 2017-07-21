@@ -12,7 +12,9 @@ define('comp/login', function(require, exports, module) {
 
     var data = {
         loginname: '',
-        loginpwd: ''
+        loginpwd: '',
+        isErr: false,
+        tips: 'tips：随便填，非空即可'
     };
 
     var comp = Vue.component('blog-login', {
@@ -23,21 +25,26 @@ define('comp/login', function(require, exports, module) {
         methods: {
             loginConfirm: function() {
                 if (this.loginname && this.loginpwd) {
-                    $.ajax({
-                        url: '',
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(res) {
-                            console.log('成功');
-                            router.replace({
-                                path: 'admin'
-                            });
-                        },
-                        error: function() {
-                            console.log('失败');
-                        }
+                    this.tips = "tips：随便填，非空即可";
+                    this.isErr = false;
+                    // $.ajax({
+                    //     url: '',
+                    //     type: 'GET',
+                    //     dataType: 'json',
+                    //     success: function(res) {
+                    //         console.log('成功');
+                    router.replace({
+                        path: 'admin'
                     });
+                    //     },
+                    //     error: function() {
+                    //         console.log('失败');
+                    //     }
+                    // });
                 } else {
+                    // 错误信息提示
+                    this.isErr = true;
+                    this.tips = "帐号或密码不能为空";
                     return;
                 }
             }
