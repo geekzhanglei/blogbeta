@@ -24,6 +24,7 @@ define('comp/login', function(require, exports, module) {
         },
         methods: {
             loginConfirm: function() {
+                var _this = this;
                 if (this.loginname && this.loginpwd) {
                     this.tips = "tips：随便填，非空即可";
                     this.isErr = false;
@@ -36,6 +37,8 @@ define('comp/login', function(require, exports, module) {
                     router.replace({
                         path: 'admin'
                     });
+                    _this.loginname = '';
+                    _this.loginpwd = '';
                     //     },
                     //     error: function() {
                     //         console.log('失败');

@@ -19,7 +19,7 @@ define('template/admin', function(require, exports, module) {
                     '<ul class="admsg" v-show="isShowMenu">',
                         '<li><a href="#">设置</a></li>',
                         '<li role="separator" class="divider"></li>',
-                        '<li><a>退出登录</a></li>',
+                        '<li><router-link to="/login" replace>退出登录</router-link></li>',
                     '</ul>',
                 '</div>',
             '</div>',
