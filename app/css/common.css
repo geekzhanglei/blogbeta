@@ -61,6 +61,8 @@ body {
     border-top: 3px #f4645e solid;
     width: 100%;
     text-align: center;
+    position: fixed;
+    bottom: 0;
 }
 
 .footer p {
