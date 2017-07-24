@@ -20,29 +20,21 @@ define('mods/router', function(require, exports, module) {
                     template: '<blog-login></blog-login>'
                 }
             }
-            // children是嵌套路由的写法，在template中使用router-view
-            // children: [{
-            //     path: '/login',
-            //     components: {
-            //         login: {
-            //             template: '<blog-login></blog-login>'
-            //         }
-            //     }
-            // }, {
-            //     path: '/admin',
-            //     components: {
-            //         admin: {
-            //             template: '<app-admin></app-admin>'
-            //         }
-            //     }
-            // }]
         }, {
             path: '/admin',
             components: {
                 admin: {
                     template: '<blog-admin></blog-admin>'
                 }
-            }
+            },
+            children: [{
+                path: '/admin/delete',
+                components: {
+                    delete: {
+                        template: '<blog-delete></blog-delete>'
+                    }
+                }
+            }]
         }, {
             path: '/article',
             components: {

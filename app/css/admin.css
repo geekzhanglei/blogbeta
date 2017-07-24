@@ -26,7 +26,7 @@
     z-index: 100;
     min-width: 110px;
     padding: 5px 0;
-    margin: 2px 0 0;
+    margin: 0;
     font-size: 14px;
     text-align: center;
     list-style: none;
@@ -70,18 +70,16 @@
 }
 
 .admin-sidebar {
-    position: absolute;
     float: left;
+    width: 4%;
+    height: 100%;
     color: #bfcbd9;
-    left: 0;
-    top: 70px;
-    bottom: 0;
     background: #2E363F;
     padding: 0;
 }
 
 .sidebarWidth {
-    width: 220px;
+    width: 16%;
 }
 
 .admin-sidebar li {
@@ -127,17 +125,16 @@
 }
 
 .admin-content {
-    float: right;
-    width: 100%;
+    background: none repeat scroll 0 0 #fbfbfb;
+    float: left;
+    width: 96%;
+    height: 100%;
     padding: 25px 40px;
-    margin-left: -54px;
-    padding-left: 94px;
-    box-sizing: border-box;
+    overflow-y: scroll;
 }
 
 .adminContWidth {
-    margin-left: -220px;
-    padding-left: 260px;
+    width: 84%;
 }
 
 .ad-editor-wrap .tips span {
@@ -152,9 +149,28 @@
     margin-bottom: 15px;
 }
 
+.admin-wrap {
+    position: absolute;
+    bottom: 0;
+    top: 70px;
+    width: 100%;
+}
+
+.wrap-aside {
+    position: relative;
+}
+
 
 /*交互部分 */
 
 .ad-info:hover .admsg {
     display: block;
+}
+
+
+/*编辑器属性  */
+
+.CodeMirror,
+.CodeMirror-scroll {
+    min-height: 245px !important;
 }
