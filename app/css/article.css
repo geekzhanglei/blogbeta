@@ -103,10 +103,23 @@ p.subhead span {
     padding-top: 5px;
 }
 
+.post-return {
+    margin: 15px 0 15px 45px;
+}
 
-/*写文章列表 */
+.post-return-a {
+    text-decoration: none;
+    padding: 8px 10px;
+    color: #2ca6cb;
+    font-size: 16px;
+}
 
-#wArticleWrap {
-    position: relative;
-    top: -20px;
+.post-return-a:link,
+.post-return-a:hover {
+    text-decoration: none;
+}
+
+.post-return-a:hover {
+    background-color: #2ca6cb;
+    color: white;
 }
