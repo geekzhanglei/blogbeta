@@ -13,7 +13,6 @@ define('comp/admin', function(require, exports, module) {
 
     var data = {
         isCollapse: true,
-        isShowMenu: false,
         title: '',
         username: '管理员',
         intro: '暂无简介'
@@ -35,16 +34,6 @@ define('comp/admin', function(require, exports, module) {
                     this.isCollapse = false;
                 } else {
                     this.isCollapse = true;
-                }
-            },
-            // 右上角个人信息菜单显隐
-            isDisplayMenu: function() {
-                var t = this;
-                console.log(t.isShowMenu);
-                if (this.isShowMenu) {
-                    this.isShowMenu = false;
-                } else {
-                    this.isShowMenu = true;
                 }
             },
             saveArticle: function() {
