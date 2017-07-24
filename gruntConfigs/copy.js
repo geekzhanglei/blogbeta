@@ -23,5 +23,11 @@ module.exports = {
         src: ['./*.*'],
         dest: buildPath + '/img/',
         cwd: srcPath + '/img/'
+    },
+    fonts: {
+        expand: true,
+        src: ['./*.*'],
+        dest: buildPath + 'css/fonts/',
+        cwd: srcPath + 'css/fonts/'
     }
 };

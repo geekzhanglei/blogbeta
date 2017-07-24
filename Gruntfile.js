@@ -42,7 +42,7 @@ module.exports = function(grunt) {
     ]);
     grunt.registerTask('packcss', ['cssmin']);
     grunt.registerTask('packhtml', ['htmlmin']);
-    grunt.registerTask('build', ['clean', 'packhtml', 'packcss', 'packjs', 'copy:img']);
+    grunt.registerTask('build', ['clean', 'packhtml', 'packcss', 'packjs', 'copy:img', 'copy:fonts']);
     grunt.registerTask('release', function() {
         // release比build多了发布到线上的环节
         // grunt.task.run(['build', 'w:css', 'lefdupload:js']);
