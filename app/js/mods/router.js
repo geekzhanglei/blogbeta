@@ -34,6 +34,13 @@ define('mods/router', function(require, exports, module) {
                         template: '<blog-delete></blog-delete>'
                     }
                 }
+            }, {
+                path: '/admin/release',
+                components: {
+                    release: {
+                        template: '<blog-release></blog-release>'
+                    }
+                }
             }]
         }, {
             path: '/article',

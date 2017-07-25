@@ -8,23 +8,21 @@ define('template/admin/delete', function(require, exports, module) {
     /* beautify ignore:start */
     /* eslint-disable */
     var tpl = [
-        '<div>',
-            '<div class="admin-wrap">',
-                '<section class="admin-content" v-bind:class="{adminContWidth:isCollapse}">',
-                    '<div class="ad-editor-wrap">',
-                        '<div class="tips">',
-                            '<span><i class="glyphicon glyphicon-list-alt"></i> 写文章</span>',
-                        '</div>',
-                        '<div class="ad-header input-group-lg">',
-                            '<input type="text" class="input-h form-control" v-model="title" autofocus>',
-                        '</div>',
-                        '<div class="ad-editor"></div>',
-                    '</div>',
-                    '<textarea id="adminText" ref="adminText"></textarea>',
-                    '<button class="btn btn-default pull-right" @click="saveArticle()">确认发表</button>',
-                '</section>',
+            '<div class="ad-admin-manage-wrap">',
+                '<div class="tips">',
+                    '<span><i class="glyphicon glyphicon-list-alt"></i> 删除文章</span>',
+                '</div>',
+                                    '<div>',
+                '<ul class="manage-articles clearfix">',
+                    '<li v-for="item in items">',
+                        '<h4 class="adm-title">{{item.title}}</h4>',
+                        '<div class="adm-meta">{{transferTime(item.createTime)}}</div>',
+                        '<div class="adm-cont" v-html="handleIntro(item.introduction)"></div>',
+                        '<div class="adm-footer clearfix"><button class="btn btn-default" v-on:click="deleteArticle(item.id)">删除文章</button></div>',
+                    '</li>',
+                '</ul>',
+                 '</div>',
             '</div>',
-        '</div>',
     ].join('');
     /* beautify ignore:end */
     /* eslint-disable */

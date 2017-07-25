@@ -7,9 +7,9 @@ define('conf/admin', function(require, exports, module) {
     // 管理后台
     require('mods/admin/admin');
     // 发布文章组件
-    // require('mods/admin/release');
+    require('mods/admin/release');
     // 删除文章组件
-    // require('mods/admin/delete');
+    require('mods/admin/delete');
     // 引入bootstrap插件
     // require('jquery');
     // require('bootstrap');

@@ -12,30 +12,17 @@ define('comp/admin/release', function(require, exports, module) {
     var simplemde;
 
     var data = {
-        isCollapse: true,
         title: '',
         username: '管理员',
         intro: ''
     };
 
-    var comp = Vue.component('blog-admin', {
+    var comp = Vue.component('blog-release', {
         template: tpl,
         data: function() {
             return data;
         },
         methods: {
-            isLogin: function() {
-                //    判断是否已经登录
-                $.ajax();
-            },
-            // 收起展开侧边栏
-            isSidebar: function() {
-                if (this.isCollapse) {
-                    this.isCollapse = false;
-                } else {
-                    this.isCollapse = true;
-                }
-            },
             saveArticle: function() {
                 var _this = this;
                 var isEmpty = this.title && simplemde.value();

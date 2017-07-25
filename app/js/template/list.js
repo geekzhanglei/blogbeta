@@ -14,7 +14,7 @@ define('template/list', function(require, exports, module) {
                     '<div class="col-md-12">',
                         '<div class="articlelist">',
                             '<h4><router-link :to=\'"/article/"+item.id\' class="article-l">{{item.title}}</router-link></h4>',
-                            '<p>{{item.introduction}}</p>',
+                            '<p v-html="item.introduction"></p>',
                             '<p class="time">{{transferTime(item.createTime)}}</p>',
                         '</div>',
                     '</div>',
