@@ -27,11 +27,6 @@ define('comp/admin/delete', function(require, exports, module) {
                     url: 'http://blog.feroad.com/article/getArticleList',
                     type: 'GET',
                     dataType: 'json',
-                    data: {
-                        curpage: 1,
-                        // perpage默认不传值，则显示总文章数
-                        perpage: 20
-                    },
                     success: function(res) {
                         var flag = res.result.status;
                         if (flag) {

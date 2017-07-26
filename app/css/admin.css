@@ -25,19 +25,37 @@
     position: absolute;
     z-index: 100;
     min-width: 110px;
-    padding: 5px 0;
-    margin: 0;
     font-size: 14px;
     text-align: center;
-    list-style: none;
-    background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
+}
+
+.admsg ul {
     border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, .15);
+    border-top: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
     border-radius: 4px;
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.admsg .arrow {
+    margin: 0 auto;
+    display: block;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    color: #666;
+    border-top: 5px dashed transparent;
+    border-left: 10px dashed transparent;
+    border-right: 10px dashed transparent;
+    border-bottom: 10px solid #fff;
 }
 
 .admsg .divider {
