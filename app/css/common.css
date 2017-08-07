@@ -5,17 +5,17 @@ html {
 }
 
 body {
+    min-height: 100%;
     margin: 0;
     padding: 0;
-    /* position: relative;
-    min-height: 100%; */
+    padding-bottom: 51px;
+    position: relative;
     color: #808080;
     color: rgb(80, 80, 80);
     font-family: "Helvetica Neue", 微软雅黑, Helvetica, Arial, sans-serif;
     font-weight: 300;
     letter-spacing: 0.05em;
     background-color: #ddd;
-    height: 100%;
 }
 
 
@@ -61,7 +61,7 @@ body {
     border-top: 3px #f4645e solid;
     width: 100%;
     text-align: center;
-    position: fixed;
+    position: absolute;
     bottom: 0;
 }
 
