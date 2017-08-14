@@ -21,7 +21,9 @@
 }
 
 .admin-header .ad-info .admsg {
-    display: none;
+    /* display: none; */
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
     z-index: 100;
     min-width: 110px;
@@ -29,6 +31,11 @@
     text-align: center;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
+    -webkit-transition:all 0.5s ease-in-out;
+    -moz-transition:all 0.5s ease-in-out;
+    -ms-transition:all 0.5s ease-in-out;
+    -o-transition:all 0.5s ease-in-out;
+    transition:all 0.5s ease-in-out;
 }
 
 .admsg ul {
@@ -194,7 +201,9 @@
 /*交互部分 */
 
 .ad-info:hover .admsg {
-    display: block;
+    /* display: block; */
+    opacity:1;
+     visibility: visible;
 }
 
 
@@ -247,6 +256,10 @@
     margin: 0px;
     padding: 10px 5px;
     border-bottom: 1px solid #ddd;
+    /*文本超出一行省略号  */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
 }
 
 .adm-meta {
@@ -255,6 +268,8 @@
 
 .adm-cont {
     margin: 10px 2px;
+    overflow: hidden;
+    height: 6rem;
     /* border-bottom: 1px solid #ddd; */
 }
 
