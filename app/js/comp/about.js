@@ -17,11 +17,11 @@ define('comp/about', function(require, exports, module) {
         },
         created: function() {
             console.log('加载about模块');
-            // if (document.images) {
-            //     console.log('sdfs');
-            //     var img = new Image();
-            //     img.src = "img/aboutbg.gif  ";
-            // }
+            if (document.images) {
+                var img = new Image();
+                img.src = "img/aboutbg.gif";
+                console.log(document.images);
+            }
         }
     });
     return comp;
