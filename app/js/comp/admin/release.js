@@ -32,13 +32,17 @@ define('comp/admin/release', function(require, exports, module) {
                 }
                 // 解析简介字符串部分与内容部分
                 var contStr = simplemde.markdown(simplemde.value());
+                // console.log('全部输入:' + contStr);
                 var temp_div = document.createElement('div');
                 temp_div.innerHTML = contStr;
                 this.intro = temp_div.getElementsByTagName('blockquote')[0].innerHTML;
                 if (this.intro === '') {
                     this.intro = "暂无简介";
                 }
-                contStr = contStr.substring(_this.intro.length);
+                var quoteNode = temp_div.getElementsByTagName('blockquote')[0];
+                temp_div.removeChild(quoteNode);
+                // console.log('输入内容部分:' + temp_div.innerHTML);
+                contStr = temp_div.innerHTML;
 
                 $.ajax({
                     url: 'http://blog.feroad.com/article/add',
@@ -74,7 +78,8 @@ define('comp/admin/release', function(require, exports, module) {
             simplemde = new SimpleMDE({
                 element: this.$refs.adminText,
                 placeholder: '请先输入简介（用引用标签标识）',
-                lineWrapping: true
+                lineWrapping: true,
+                tabSize: 4
             });
         }
     });

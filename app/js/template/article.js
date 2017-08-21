@@ -17,7 +17,7 @@ define('template/article', function(require, exports, module) {
                                 '<h4>{{title}}</h4>',
                             '</div>',
                             '<div class="post-return">',
-                            '<a href="/" class="post-return-a"><<返回文章列表</a>',
+                            '<a href="#/article" class="post-return-a"><<返回文章列表</a>',
                             '</div>',
                             '<div class="post-meta">',
                                 '<p class="subhead"><span>作者：{{username}}</span>&nbsp<span>最后编辑于 {{time}}</span></p>',

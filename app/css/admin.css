@@ -1,7 +1,10 @@
+.editor-toolbar,.CodeMirror {
+    font-size: 1.4rem !important;
+}
 .admin-header {
-    height: 70px;
-    font-size: 22px;
-    line-height: 70px;
+    height: 7rem;
+    font-size: 2.2rem;
+    line-height: 7rem;
     color: #fff;
     background-color: #242f42;
 }
@@ -13,9 +16,9 @@
 
 .admin-header .ad-info {
     float: right;
-    margin-right: 40px;
-    padding-right: 10px;
-    font-size: 16px;
+    margin-right: 4rem;
+    padding-right: 1rem;
+    font-size: 1.6rem;
     color: #fff;
     cursor: pointer;
 }
@@ -26,29 +29,24 @@
     opacity: 0;
     position: absolute;
     z-index: 100;
-    min-width: 110px;
-    font-size: 14px;
+    min-width: 11rem;
+    font-size: 1.4rem;
     text-align: center;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    -webkit-transition:all 0.5s ease-in-out;
-    -moz-transition:all 0.5s ease-in-out;
-    -ms-transition:all 0.5s ease-in-out;
-    -o-transition:all 0.5s ease-in-out;
-    transition:all 0.5s ease-in-out;
 }
 
 .admsg ul {
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, .15);
+    border: 0.1rem solid #ccc;
+    border: 0.1rem solid rgba(0, 0, 0, .15);
     border-top: 0;
     background-color: #fff;
     list-style: none;
-    padding: 5px 0;
+    padding: 0.5rem 0;
     margin: 0;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    border-radius: 0.4rem;
+    -webkit-box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, .175);
+    box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, .175);
 }
 
 .admsg .arrow {
@@ -59,21 +57,21 @@
     line-height: 0;
     font-size: 0;
     color: #666;
-    border-top: 5px dashed transparent;
-    border-left: 10px dashed transparent;
-    border-right: 10px dashed transparent;
-    border-bottom: 10px solid #fff;
+    border-top: 0.5rem dashed transparent;
+    border-left: 1rem dashed transparent;
+    border-right: 1rem dashed transparent;
+    border-bottom: 1rem solid #fff;
 }
 
 .admsg .divider {
-    height: 1px;
-    margin: 5px 0;
+    height: 0.1rem;
+    margin: 0.5rem 0;
     overflow: hidden;
     background-color: #e5e5e5;
 }
 
 .admsg li {
-    line-height: 40px;
+    line-height: 4rem;
 }
 
 .admsg li:hover {
@@ -85,13 +83,13 @@
 }
 
 .admin-header .ad-info img {
-    width: 40px;
-    height: 40px;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
 }
 
 .admin-header .ad-info span {
-    padding-left: 25px;
+    padding-left: 2.5rem;
 }
 
 .admin-sidebar {
@@ -108,9 +106,10 @@
 }
 
 .admin-sidebar li {
-    height: 56px;
-    line-height: 56px;
-    font-size: 14px;
+    overflow: hidden;
+    height: 5.6rem;
+    line-height: 5.6rem;
+    font-size: 1.4rem;
     cursor: pointer;
     position: relative;
     transition: border-color .3s, background-color .3s, color .3s;
@@ -119,7 +118,7 @@
 }
 
 .ad-sidebar-li-a {
-    padding: 0 20px;
+    padding: 0 2rem;
     display: inline-block;
     width: 100%;
     height: 100%;
@@ -133,7 +132,7 @@
 .ad-sidebar-normal,
 .ad-sidebar-collapse {
     height: 92%;
-    border-radius: 2px;
+    border-radius: 0.2rem;
     list-style: none;
     position: relative;
     margin: 0;
@@ -141,7 +140,7 @@
 }
 
 .ad-sidebar-normal i {
-    padding-right: 40px;
+    padding-right: 4rem;
 }
 
 .ad-sidebar-normal a,
@@ -152,13 +151,13 @@
 
 .ad-sidebar-footer {
     height: 8%;
-    border-top: 1px solid #48576a;
+    border-top: 0.1rem solid #48576a;
 }
 
 .ad-sidebar-footer i {
     float: right;
-    padding: 7px 13px;
-    font-size: 2em;
+    padding: 0.7rem 1.3rem;
+    font-size: 2.8rem;
 }
 
 .admin-content {
@@ -166,7 +165,7 @@
     float: left;
     width: 96%;
     height: 100%;
-    padding: 25px 40px;
+    padding: 2.5rem 4rem;
     overflow-y: scroll;
 }
 
@@ -175,21 +174,21 @@
 }
 
 .ad-editor-wrap .tips span {
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 .ad-editor-wrap .tips {
-    margin: 15px 0;
+    margin: 1.5rem 0;
 }
 
 .ad-editor-wrap .ad-header {
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
 }
 
 .admin-wrap {
     position: absolute;
     bottom: 0;
-    top: 70px;
+    top: 7rem;
     width: 100%;
 }
 
@@ -211,7 +210,7 @@
 
 .CodeMirror,
 .CodeMirror-scroll {
-    min-height: 245px !important;
+    min-height: 24.5rem !important;
 }
 
 
@@ -223,29 +222,31 @@
 
 
 /*删除文章组件  */
-
+.ad-admin-manage-wrap {
+    font-size: 1.4rem;
+}
 .ad-admin-manage-wrap .tips {
-    margin: 15px 0;
+    margin: 1.5rem 0;
 }
 
 .manage-articles {
     list-style: none;
     margin-bottom: 0;
-    padding: 5px;
+    padding: 0.5rem;
     font-size: 0;
 }
 
 .manage-articles li {
-    font-size: 14px;
+    font-size: 1.4rem;
     display: inline-block;
     vertical-align: top;
-    margin: 15px;
-    padding: 15px;
+    margin: 1.5rem;
+    padding: 1.5rem;
     float: left;
-    width: 300px;
+    width: 30rem;
     background-color: white;
-    border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(151, 151, 151, 0.58);
+    border-radius: 0.3rem;
+    box-shadow: 0 0.1rem 0.2rem rgba(151, 151, 151, 0.58);
 }
 
 .manage-articles li:hover {
@@ -253,9 +254,9 @@
 }
 
 .adm-title {
-    margin: 0px;
-    padding: 10px 5px;
-    border-bottom: 1px solid #ddd;
+    margin: 0;
+    padding: 1rem 0.5rem;
+    border-bottom: 0.1rem solid #ddd;
     /*文本超出一行省略号  */
     text-overflow: ellipsis;
     overflow: hidden;
@@ -263,18 +264,18 @@
 }
 
 .adm-meta {
-    padding: 10px 5px;
+    padding: 1rem 0.5rem;
 }
 
 .adm-cont {
-    margin: 10px 2px;
+    margin: 1rem 0.2rem;
     overflow: hidden;
     height: 6rem;
-    /* border-bottom: 1px solid #ddd; */
+    /* border-bottom: 0.1rem solid #ddd; */
 }
 
 .adm-footer {
-    margin: 5px 0;
+    margin: 0.5rem 0;
 }
 
 .adm-footer button {

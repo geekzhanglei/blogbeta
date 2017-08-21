@@ -1,20 +1,22 @@
 #login {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
-
+#admin {
+    font-size:62.5%;
+}
 .login-wrap {
     width: 100vw;
     height: 100vh;
-    background-color: #324157;
+    background-color: #335465;
 }
 
 .login-title {
     position: absolute;
     top: 50%;
     width: 100%;
-    margin-top: -230px;
+    margin-top: -23rem;
     text-align: center;
-    font-size: 30px;
+    font-size: 3rem;
     color: #fff;
 }
 
@@ -22,13 +24,14 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 380px;
-    height: 225px;
-    margin: -150px 0 0 -190px;
-    padding: 40px;
-    border-radius: 5px;
+    width: 38rem;
+    height: 22.5rem;
+    margin: -15rem 0 0 -19rem;
+    padding: 4rem;
+    border-radius: 0.5rem;
     background: #fff;
     text-align: center;
+    font-size: 1.4rem;
 }
 
 .login-name {
@@ -38,16 +41,16 @@
     appearance: none;
     background-color: #fff;
     background-image: none;
-    border-radius: 4px;
-    border: 1px solid #bfcbd9;
+    border-radius: 0.4rem;
+    border: 0.1rem solid #bfcbd9;
     box-sizing: border-box;
     color: #1f2d3d;
     display: block;
     font-size: inherit;
-    height: 36px;
+    height: 3.6rem;
     line-height: 1;
     outline: 0;
-    padding: 3px 10px;
+    padding: 0.3rem 1rem;
     transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
     width: 100%;
 }
@@ -59,22 +62,22 @@
     appearance: none;
     background-color: #fff;
     background-image: none;
-    border-radius: 4px;
-    border: 1px solid #bfcbd9;
+    border-radius: 0.4rem;
+    border: 0.1rem solid #bfcbd9;
     box-sizing: border-box;
     color: #1f2d3d;
     display: block;
     font-size: inherit;
-    height: 36px;
+    height: 3.6rem;
     line-height: 1;
     outline: 0;
-    padding: 3px 10px;
+    padding: 0.3rem 1rem;
     transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
     width: 100%;
 }
 
 .login-submit {
-    width: 300px;
+    width: 30rem;
     border-color: #4db3ff;
     color: #fff;
     display: inline-block;
@@ -82,21 +85,21 @@
     white-space: nowrap;
     cursor: pointer;
     background: #fff;
-    border: 1px solid #bfcbd9;
+    border: 0.1rem solid #bfcbd9;
     -webkit-appearance: none;
     text-align: center;
     box-sizing: border-box;
     outline: 0;
     margin: 0;
-    padding: 10px 15px;
-    font-size: 14px;
-    border-radius: 4px;
+    padding: 1rem 1.5rem;
+    font-size: 1.4rem;
+    border-radius: 0.4rem;
     background-color: #20a0ff;
 }
 
 .case-number {
     margin-top: 1rem;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #5d5d5d;
 }
 
