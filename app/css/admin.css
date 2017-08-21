@@ -94,7 +94,8 @@
 
 .admin-sidebar {
     float: left;
-    width: 4%;
+    position: relative;
+    width: 5.4rem;
     height: 100%;
     color: #bfcbd9;
     background: #2E363F;
@@ -131,7 +132,7 @@
 
 .ad-sidebar-normal,
 .ad-sidebar-collapse {
-    height: 92%;
+    height: 100%;
     border-radius: 0.2rem;
     list-style: none;
     position: relative;
@@ -150,27 +151,29 @@
 }
 
 .ad-sidebar-footer {
-    height: 8%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     border-top: 0.1rem solid #48576a;
 }
 
 .ad-sidebar-footer i {
+    position: relative;
+    top: 0px;
     float: right;
     padding: 0.7rem 1.3rem;
     font-size: 2.8rem;
 }
 
 .admin-content {
-    background: none repeat scroll 0 0 #fbfbfb;
-    float: left;
-    width: 96%;
+    background-color: #fbfbfb;
     height: 100%;
     padding: 2.5rem 4rem;
-    overflow-y: scroll;
+    overflow: auto;
 }
 
 .adminContWidth {
-    width: 84%;
+    width: 21.6rem;
 }
 
 .ad-editor-wrap .tips span {
