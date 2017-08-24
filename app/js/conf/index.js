@@ -14,8 +14,7 @@ define('conf/index', function(require, exports, module) {
     require('mods/msg');
     // 关于页
     require('mods/about');
-    // 写文章页
-    // require('mods/writeArticle');
+
     require('comp/common/footer');
 
     // 引入bootstrap插件
