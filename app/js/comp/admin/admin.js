@@ -20,10 +20,6 @@ define('comp/admin/admin', function(require, exports, module) {
             return data;
         },
         methods: {
-            isLogin: function() {
-                //    判断是否已经登录
-                $.ajax();
-            },
             // 收起展开侧边栏
             isSidebar: function() {
                 if (this.isCollapse) {
@@ -31,15 +27,33 @@ define('comp/admin/admin', function(require, exports, module) {
                 } else {
                     this.isCollapse = true;
                 }
+            },
+            loginout: function() {
+                // 通知后台注销
+                $.ajax({
+                    url: 'http://blog.feroad.com/admin/loginout',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        token: window.localStorage.token
+                    },
+                    success: function(res) {
+                        console.log('请求成功')
+                        if (res.stat) {
+                            // 清除本地token
+                            window.localStorage.clear();
+                            router.replace({
+                                path: '/login'
+                            });
+                        }
+                    },
+                    error: function() {
+                        console.log('接口请求失败');
+                    }
+                });
             }
         },
         mounted: function() {
-            var _this = this;
-            if (_this.isLogin === "no") {
-                router.replace({
-                    path: '/login'
-                });
-            }
             // 跳转到文章发布页
             if (router.currentRoute.path === "/admin") {
                 router.replace({

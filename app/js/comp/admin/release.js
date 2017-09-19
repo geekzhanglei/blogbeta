@@ -49,17 +49,22 @@ define('comp/admin/release', function(require, exports, module) {
                     type: 'POST',
                     dataType: 'json',
                     data: {
+                        token: window.localStorage.token,
                         username: _this.username,
                         title: _this.title,
                         introduction: _this.intro,
                         content: contStr
                     },
                     success: function(res) {
-                        console.log(res.result.data);
-                        // 清空输入
-                        _this.title = '';
-                        simplemde.value('');
-
+                        if (res.result.status) {
+                            // 清空输入
+                            _this.title = '';
+                            simplemde.value('');
+                        } else {
+                            router.replace({
+                                'path': '/login'
+                            })
+                        }
                     },
                     error: function() {
                         console.log('接口请求失败');

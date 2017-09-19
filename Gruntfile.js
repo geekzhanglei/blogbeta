@@ -31,11 +31,11 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('packjs', [
-        // lithe依赖包与js代码
+        // 复制任务，conf下的内容复制到dist的conf下，因为define/requier的模块运行时已经自动引用，不需要单独去复制它们
         'lithe:tpl',
-        // lithe文件与config配置合并到.tmp
+        // 复制任务，lithe文件与config配置合并到.tmp
         'concat:config',
-        // 将上一步.tmp的文件复制到dist
+        // 将上一步.tmp的文件中的lithe（concat:config生成）复制到dist
         'copy:js',
         // 在dist中压缩以上两步中的js
         'uglify:lithe'

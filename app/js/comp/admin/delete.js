@@ -57,10 +57,18 @@ define('comp/admin/delete', function(require, exports, module) {
                     url: 'http://blog.feroad.com/article/deleteArticleById/' + id,
                     type: 'GET',
                     dataType: 'json',
+                    data: {
+                        token: window.localStorage.token
+                    },
                     success: function(res) {
-                        console.log(res.result.data);
-                        // 清空输入
-                        _this.reqArticleList();
+                        if (res.result.status) {
+                            // 清空输入
+                            _this.reqArticleList();
+                        } else {
+                            router.replace({
+                                'path': '/login'
+                            })
+                        }
                     },
                     error: function() {
                         console.log('删除出错！文章不存在');

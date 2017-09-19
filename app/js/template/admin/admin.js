@@ -21,7 +21,7 @@ define('template/admin/admin', function(require, exports, module) {
                     '<ul>',
                         '<li><a href="#">设置</a></li>',
                         '<li role="separator" class="divider"></li>',
-                        '<li><router-link to="/login" replace>退出登录</router-link></li>',
+                        '<li><a @click="loginout">退出登录</a></li>',
                     '</ul>',
                     '</div>',
                 '</div>',
