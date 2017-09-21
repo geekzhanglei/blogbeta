@@ -3,7 +3,7 @@ define('conf/admin', function(require, exports, module) {
     var router = require('mods/router');
 
     // 登录组件
-    require('mods/login');
+    require('mods/admin/login');
     // 管理后台
     require('mods/admin/admin');
     // 发布文章组件

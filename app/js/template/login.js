@@ -10,9 +10,9 @@ define('template/login', function(require, exports, module) {
     var tpl = [
         '<div class="login-wrap">',
             '<div class="login-title">博客管理后台</div>',
-            '<div class="login-panel">',
+            '<div class="login-panel" @keyup.13="loginConfirm()">',
                 '<input class="login-name" v-model="loginname" placeholder="username" maxlength="14">',
-                '<input class="login-pwd" v-model="loginpwd" placeholder="password" maxlength="12">',
+                '<input class="login-pwd" v-model="loginpwd" placeholder="password" maxlength="12" type="password">',
                 '<button class="login-submit" v-on:click="loginConfirm()">Login</button>',
                 '<div class="case-number" :class="{errTip:isErr}">{{tips}}</div>',
             '</div>',

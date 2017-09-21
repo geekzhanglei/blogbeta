@@ -10,7 +10,7 @@ define('template/admin/admin', function(require, exports, module) {
     var tpl = [
         '<div>',
             '<div class="admin-header">',
-                '<div class="ad-title col-md-2">博客后台</div>',
+                '<div class="ad-title col-md-2"><a href="http://test.feroad.com">博客后台</a></div>',
                 '<div class="ad-info">',
                     '<div class="display-menu">',
                         '<img class="xxx" src="../img/avatar.png" alt="avatar">',

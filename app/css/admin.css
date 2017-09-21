@@ -13,7 +13,12 @@
     float: left;
     text-align: center;
 }
-
+.admin-header .ad-title a {
+    color:#fff;
+}
+.admin-header .ad-title a:hover {
+    text-decoration: none;
+}
 .admin-header .ad-info {
     float: right;
     margin-right: 4rem;

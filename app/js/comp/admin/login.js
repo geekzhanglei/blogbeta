@@ -4,7 +4,7 @@
  * @date 2017/07/17
  */
 
-define('comp/login', function(require, exports, module) {
+define('comp/admin/login', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/login');
     var $ = require('jquery');
