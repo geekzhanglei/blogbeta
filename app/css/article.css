@@ -123,3 +123,57 @@ p.subhead span {
     background-color: #2ca6cb;
     color: white;
 }
+/* 评论区 */
+
+.comment {
+    margin: 25px 50px;
+}
+.comment .head {
+    margin: 20px 0;
+    border-bottom: 2px solid #d3d3d3;
+}
+.comment .wrap ul {
+    list-style: none;
+    padding-left: 0;
+}
+.comment .wrap li {
+    border-bottom: 1px dashed #d3d3d3;
+}
+.comment .wrap .content {
+    margin:20px 0;
+    text-indent:2em;
+}
+.comment .wrap .title {
+    font-weight: 700;
+}
+.comment .wrap .foot {
+    float:right;
+    font-size: 90%;
+}
+.comment .comments-title {
+    padding:2rem 0 1rem 0;
+    color: #000000;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    border-bottom: 0.1rem solid #d3d3d3;
+}
+.comment textarea {
+    border: 1px solid #d3d3d3;
+    padding: 0.5em;
+    width: 90%;
+}
+.comment input,.comment textarea {
+    font-size: 1.5rem;
+}
+.comment input {
+    border: 1px solid #d3d3d3;
+    margin-top: 0;
+    line-height: 1.2;
+    padding: 0.4em 0.3em;
+}
+#comments-open-footer .submit {
+    width:24%;
+}
+#wait p {
+    background: #fefefe;
+}

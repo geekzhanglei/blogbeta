@@ -11,11 +11,19 @@ define('comp/article', function(require, exports, module) {
     var router = require('mods/router');
 
     var data = {
+        comment: {
+            id: '',
+            nickname: '',
+            email: '',
+            website: '',
+            content: ''
+        },
         title: '这里一片荒芜',
         username: '没作者',
         cont: '没内容',
         time: '时间没了',
-        intro: '介绍丢了'
+        intro: '介绍丢了',
+        comments: []
     };
 
     var comp = Vue.component('blog-article', {
@@ -34,6 +42,7 @@ define('comp/article', function(require, exports, module) {
                     success: function(res) {
                         var flag = res.result.status;
                         if (flag) {
+                            _this.comment.id = res.result.data.id;
                             _this.title = res.result.data.title;
                             _this.username = res.result.data.userName;
                             _this.time = _this.transferTime(res.result.data.createTime);
@@ -51,6 +60,17 @@ define('comp/article', function(require, exports, module) {
                     }
                 });
             },
+            updateComments: function() {
+                var _obj = {
+                    id: this.comment.id,
+                    nickname: this.comment.nickname,
+                    email: this.comment.email,
+                    website: this.comment.website,
+                    content: this.comment.content,
+                    createtiem: this.comment.createtime
+                }
+                this.comments.push(_obj);
+            },
             // 时间戳转换
             transferTime: function(unixTime) {
                 var date = new Date(unixTime * 1000);
@@ -67,6 +87,7 @@ define('comp/article', function(require, exports, module) {
             console.log('article加载');
             var article_id = router.currentRoute.params.id;
             this.reqArticleDataApi(article_id);
+            console.log(global.transferTime)
         }
     });
     return comp;
