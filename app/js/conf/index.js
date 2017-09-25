@@ -1,7 +1,6 @@
 define('conf/index', function(require, exports, module) {
     var Vue = require('vue');
     var router = require('mods/router');
-    var atom = require('comp/util/atom');
 
     require('comp/common/header');
 

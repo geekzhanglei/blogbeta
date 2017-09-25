@@ -1,7 +1,6 @@
 define('conf/admin', function(require, exports, module) {
     var Vue = require('vue');
     var router = require('mods/router');
-    var atom = require('comp/util/atom');
 
     // 登录组件
     require('mods/admin/login');

@@ -9,6 +9,7 @@ define('comp/article', function(require, exports, module) {
     var $ = require('jquery');
     var tpl = require('template/article');
     var router = require('mods/router');
+    var atom = require('comp/util/atom');
 
     var data = {
         comment: {
@@ -36,18 +37,20 @@ define('comp/article', function(require, exports, module) {
             reqArticleDataApi: function(id) {
                 var _this = this;
                 $.ajax({
-                    url: 'http://blog.feroad.com/article/getArticleDetails/' + id,
+                    url: 'http://blog.feroad.com/article/newGetArticleDetails/' + id,
                     type: 'GET',
                     dataType: 'json',
                     success: function(res) {
                         var flag = res.result.status;
+                        var _data = res.result.data;
                         if (flag) {
-                            _this.comment.id = res.result.data.id;
-                            _this.title = res.result.data.title;
-                            _this.username = res.result.data.userName;
-                            _this.time = _this.transferTime(res.result.data.createTime);
-                            _this.cont = res.result.data.content;
-                            _this.intro = res.result.data.introduction;
+                            _this.comment.id = _data.id;
+                            _this.title = _data.title;
+                            _this.username = _data.userName;
+                            _this.time = atom.transfer(_data.updated_at);
+                            _this.cont = _data.content;
+                            _this.intro = _data.introduction;
+                            _this.comments = _data.comments;
                         } else {
                             console.log('接口请求返回错误');
                         }
@@ -61,33 +64,55 @@ define('comp/article', function(require, exports, module) {
                 });
             },
             updateComments: function() {
-                var _obj = {
-                    id: this.comment.id,
-                    nickname: this.comment.nickname,
-                    email: this.comment.email,
-                    website: this.comment.website,
-                    content: this.comment.content,
-                    createtiem: this.comment.createtime
+                var _this = this;
+                var boolFlag = this.comment.content && this.comment.nickname && this.comment.email;
+                if (!boolFlag) {
+                    console.log('必填不能为空');
+                    return;
                 }
-                this.comments.push(_obj);
+                $.ajax({
+                    url: 'http://blog.feroad.com/article/addMark',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        articleId: _this.comment.id,
+                        nickname: _this.comment.nickname,
+                        email: _this.comment.email,
+                        website: _this.comment.website,
+                        content: _this.comment.content
+                    },
+                    success: function(res) {
+                        var flag = res.result.status;
+                        var _data = res.result.data;
+                        if (flag) {
+                            var _obj = {
+                                id: _this.comment.id,
+                                nickname: _this.comment.nickname,
+                                website: _this.comment.website,
+                                content: _this.comment.content,
+                                create_time: Date.parse(new Date()) / 1000
+                            }
+                            _this.comments.push(_obj);
+                            _this.comment = {}
+                        } else {
+                            console.log('后台返回提示：' + _data);
+                        }
+                    },
+                    error: function() {
+                        // 请求地址不存在，则跳转到文章列表
+                        console.log('增加评论失败-请求接口失败')
+                    }
+                });
+
             },
-            // 时间戳转换
-            transferTime: function(unixTime) {
-                var date = new Date(unixTime * 1000);
-                var Y = date.getFullYear() + '-';
-                var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-                var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
-                var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-                var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
-                var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-                return Y + M + D + h + m + s;
-            },
+            transferTime: function(unixtime) {
+                return atom.transfer(unixtime);
+            }
         },
         created: function() {
             console.log('article加载');
             var article_id = router.currentRoute.params.id;
             this.reqArticleDataApi(article_id);
-            console.log(global.transferTime)
         }
     });
     return comp;

@@ -9,6 +9,7 @@ define('comp/admin/delete', function(require, exports, module) {
     var tpl = require('template/admin/delete');
     var $ = require('jquery');
     var router = require('mods/router');
+    var atom = require('comp/util/atom');
 
     var data = {
         items: []
@@ -40,14 +41,7 @@ define('comp/admin/delete', function(require, exports, module) {
             },
             // 时间戳转换
             transferTime: function(unixTime) {
-                var date = new Date(unixTime * 1000);
-                var Y = date.getFullYear() + '-';
-                var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-                var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
-                var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-                var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
-                var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-                return Y + M + D + h + m + s;
+                return atom.transfer(unixTime);
             },
             // 删除文章
             deleteArticle: function(id) {

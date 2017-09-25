@@ -1,8 +1,10 @@
 /*  一些公共方法 */
 define('comp/util/atom', function(require, exports, module) {
-    // 时间戳转换
-    var global;
+    var globalFunc = {
+        transfer: ''
+    };
 
+    // 时间戳转换
     function transferTime(unixTime) {
         var date = new Date(unixTime * 1000);
         var Y = date.getFullYear() + '-';
@@ -14,6 +16,6 @@ define('comp/util/atom', function(require, exports, module) {
         return Y + M + D + h + m + s;
     }
 
-    // global.transferTime = transferTime;
-    module.exports = global;
+    globalFunc.transfer = transferTime;
+    module.exports = globalFunc;
 });

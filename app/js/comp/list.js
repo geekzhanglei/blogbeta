@@ -8,6 +8,7 @@ define('comp/list', function(require, exports, module) {
     var Vue = require('vue');
     var $ = require('jquery');
     var tpl = require('template/list');
+    var atom = require('comp/util/atom');
 
     // handlePage计算分页数据传递给pagingData，
     // pagingData给模板template中的子组件数据源datasource
@@ -61,14 +62,7 @@ define('comp/list', function(require, exports, module) {
             },
             // 时间戳转换
             transferTime: function(unixTime) {
-                var date = new Date(unixTime * 1000);
-                var Y = date.getFullYear() + '-';
-                var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-                var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
-                var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-                var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
-                var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-                return Y + M + D + h + m + s;
+                return atom.transfer(unixTime);
             },
             // 分页组件
             init: function() {
