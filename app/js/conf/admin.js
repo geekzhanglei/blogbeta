@@ -10,6 +10,8 @@ define('conf/admin', function(require, exports, module) {
     require('mods/admin/release');
     // 删除文章组件
     require('mods/admin/delete');
+    // 管理评论组件
+    require('mods/admin/comments');
     // 引入bootstrap插件
     // require('jquery');
     // require('bootstrap');

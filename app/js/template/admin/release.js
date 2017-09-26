@@ -11,7 +11,7 @@ define('template/admin/release', function(require, exports, module) {
         '<div>',
             '<div class="ad-editor-wrap">',
                 '<div class="tips">',
-                    '<span><i class="glyphicon glyphicon-list-alt"></i>  写文章</span>',
+                    '<span><i class="glyphicon glyphicon-edit"></i>  写文章-发表您的文章</span>',
                 '</div>',
                 '<div class="ad-header input-group-lg">',
                     '<input type="text" class="input-h form-control" v-model="title" autofocus>',

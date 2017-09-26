@@ -289,3 +289,27 @@
 .adm-footer button {
     float: right;
 }
+/* 评论管理 */
+.comments-table thead th:first-child {
+    width:7%;
+}
+.comments-table thead th:last-child {
+    width:15%;
+}
+.comments-table thead th:nth-child(4) {
+    width:15%;
+}
+.comments-table thead th:nth-child(3) {
+    width:10%;
+}
+.comments-table tbody tr:first-child {
+    cursor: pointer;
+}
+.comments-table td,th {
+    text-align: center;
+}
+.comments-table tbody tr:nth-child(2) {
+    font-size: 90%;
+    color:#395c9c;
+    background-color:#f2f8fd;
+}

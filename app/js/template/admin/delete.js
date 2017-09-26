@@ -10,7 +10,7 @@ define('template/admin/delete', function(require, exports, module) {
     var tpl = [
             '<div class="ad-admin-manage-wrap">',
                 '<div class="tips">',
-                    '<span><i class="glyphicon glyphicon-list-alt"></i> 删除文章</span>',
+                    '<span><i class="glyphicon glyphicon-trash"></i> 删除文章-删除不需要的文章</span>',
                 '</div>',
                 '<ul class="manage-articles clearfix">',
                     '<li v-for="item in items">',
@@ -20,7 +20,6 @@ define('template/admin/delete', function(require, exports, module) {
                         '<div class="adm-footer clearfix"><button class="btn btn-default" v-on:click="deleteArticle(item.id)">删除文章</button></div>',
                     '</li>',
                 '</ul>',
-                 '</div>',
             '</div>',
     ].join('');
     /* beautify ignore:end */

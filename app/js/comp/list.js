@@ -20,6 +20,7 @@ define('comp/list', function(require, exports, module) {
         // 每页展示多少条
         pagesize: 2,
         items: [],
+        showPages: true,
         pagingData: {
             total: 5,
             pages: [],
@@ -55,8 +56,13 @@ define('comp/list', function(require, exports, module) {
                             _this.items = [];
                             _this.pagingData.total = 0;
                             _this.pagingData.page = 0;
+                            _this.showPages = false;
                         }
                         _this.init();
+                    },
+                    error: function(e) {
+                        console.log("接口请求失败，错误码：" + e.status);
+                        _this.showPages = false;
                     }
                 });
             },

@@ -41,6 +41,13 @@ define('mods/router', function(require, exports, module) {
                         template: '<blog-release></blog-release>'
                     }
                 }
+            }, {
+                path: '/admin/comments',
+                components: {
+                    comments: {
+                        template: '<blog-comments></blog-comments>'
+                    }
+                }
             }]
         }, {
             path: '/article',

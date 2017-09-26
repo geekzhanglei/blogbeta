@@ -20,7 +20,7 @@ define('template/list', function(require, exports, module) {
                     '</div>',
                 '</div>',
             '</div>',
-            '<div class="blog-page">',
+            '<div v-if="showPages" class="blog-page">',
                 '<paging v-bind:datasource="pagingData"></paging>',
             '</div>',
         '</div>'

@@ -23,6 +23,8 @@ define('comp/msg', function(require, exports, module) {
         //输入内容与名字
         inputMsg: '',
         inputName: '',
+        // 显示留言列表
+        showMsgCont: true,
         // 留言列表
         list: [],
         // 非法留言提示
@@ -34,6 +36,7 @@ define('comp/msg', function(require, exports, module) {
         // 每页条数
         pagesize: 4,
         // 分页组件数据
+        showPages: true,
         pagingData: {
             total: 1,
             pages: [1],
@@ -128,12 +131,21 @@ define('comp/msg', function(require, exports, module) {
                             _this.list = res.result.data;
                             _this.pagingData.total = res.result.rows;
                             _this.pagingData.page = e;
+                            _this.showPages = true;
+                            _this.showMsgCont = true;
                         } else {
                             _this.list = [];
                             _this.pagingData.total = 0;
                             _this.pagingData.page = 0;
+                            _this.showPages = false;
+                            _this.showMsgCont = false;
                         }
                         _this.init();
+                    },
+                    error: function(e) {
+                        _this.showMsgCont = false;
+                        _this.showPages = false;
+                        console.log("接口请求失败，错误码：" + e.status);
                     }
                 });
             },
