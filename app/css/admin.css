@@ -305,8 +305,11 @@
 .comments-table tbody tr:first-child {
     cursor: pointer;
 }
-.comments-table td,th {
+.comments-table td,.comments-table th {
     text-align: center;
+}
+.comments-table .table td {
+    vertical-align: middle;
 }
 .comments-table tbody tr:nth-child(2) {
     font-size: 90%;

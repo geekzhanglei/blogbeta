@@ -14,7 +14,7 @@ define('comp/admin/login', function(require, exports, module) {
         loginname: '',
         loginpwd: '',
         isErr: false,
-        tips: ''
+        tips: '内测，仅允许管理员登陆'
     };
 
     var comp = Vue.component('blog-login', {
@@ -26,7 +26,6 @@ define('comp/admin/login', function(require, exports, module) {
             loginConfirm: function() {
                 var _this = this;
                 if (this.loginname && this.loginpwd) {
-                    this.tips = "内测，仅允许管理员登陆";
                     this.isErr = false;
                     $.ajax({
                         url: 'http://blog.feroad.com/admin/login',

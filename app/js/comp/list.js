@@ -20,7 +20,7 @@ define('comp/list', function(require, exports, module) {
         // 每页展示多少条
         pagesize: 2,
         items: [],
-        showPages: true,
+        showPages: false,
         pagingData: {
             total: 5,
             pages: [],
@@ -52,6 +52,9 @@ define('comp/list', function(require, exports, module) {
                             _this.items = res.result.data;
                             _this.pagingData.total = res.result.rows;
                             _this.pagingData.page = e;
+                            if (_this.items[0]) {
+                                _this.showPages = true;
+                            }
                         } else {
                             _this.items = [];
                             _this.pagingData.total = 0;

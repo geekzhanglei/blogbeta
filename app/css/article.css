@@ -177,3 +177,22 @@ p.subhead span {
 #wait p {
     background: #fefefe;
 }
+/* 错误提示 */
+.errorCls  {
+    overflow: hidden;
+    width:90%;
+}
+.errorCls span{
+    font-size: 90%;
+    font-weight: 400;
+    color: red;
+    position: relative;
+    width:100%;
+    display: inline-block;
+    animation: horse 15s ease-in 0s infinite;
+}
+@keyframes horse
+{
+    0%   {left:0;}
+    100% {left:100%;}
+}

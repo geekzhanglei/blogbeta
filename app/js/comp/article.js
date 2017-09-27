@@ -17,7 +17,9 @@ define('comp/article', function(require, exports, module) {
             nickname: '',
             email: '',
             website: '',
-            content: ''
+            content: '',
+            errTip: '',
+            state: false
         },
         title: '这里一片荒芜',
         username: '没作者',
@@ -46,11 +48,15 @@ define('comp/article', function(require, exports, module) {
                         if (flag) {
                             _this.comment.id = _data.id;
                             _this.title = _data.title;
-                            _this.username = _data.userName;
+                            _this.username = _data.username;
                             _this.time = atom.transfer(_data.updated_at);
                             _this.cont = _data.content;
                             _this.intro = _data.introduction;
                             _this.comments = _data.comments;
+                            // 读取cookie填写评论内容
+                            _this.comment.email = _this.getCookie("email");
+                            _this.comment.nickname = _this.getCookie("nickname");
+                            _this.comment.website = _this.getCookie("website");
                         } else {
                             console.log('接口请求返回错误');
                         }
@@ -63,12 +69,15 @@ define('comp/article', function(require, exports, module) {
                     }
                 });
             },
+            // 发表评论
             updateComments: function() {
                 var _this = this;
-                var boolFlag = this.comment.content && this.comment.nickname && this.comment.email;
-                if (!boolFlag) {
-                    console.log('必填不能为空');
+                if (!this.verifyInput(this.comment)) {
+                    console.log("输入合法性校验失败");
                     return;
+                } else {
+                    this.comment.errTip = "";
+                    this.comment.website = "http://" + this.comment.website;
                 }
                 $.ajax({
                     url: 'http://blog.feroad.com/article/addMark',
@@ -105,8 +114,57 @@ define('comp/article', function(require, exports, module) {
                 });
 
             },
+            // 用户输入校验
+            verifyInput: function(cet) {
+                var _reg, res = true;
+                if (cet.content.length === 0 || cet.content.length > 1000) {
+                    res = false;
+                    this.comment.errTip = "评论内容不可为空或过长";
+                    return res;
+                }
+                if (cet.nickname.length <= 0 || cet.nickname.length > 12) {
+                    res = false;
+                    this.comment.errTip = "您的大名不可为空或过长";
+                    return res;
+                }
+                if (cet.email.length && cet.email.length < 30) {
+                    _reg = /^(\w)+(\.(\w)+)*@((\w)+)+((\.\w+)+)$/
+                    res = _reg.test(cet.email);
+                    if (!res) {
+                        this.comment.errTip = "email格式不合法";
+                    }
+                } else {
+                    res = false;
+                    this.comment.errTip = "email不可为空或过长";
+                }
+                if (cet.website) {
+                    reg = /^(\w)+(\.(\w)+)+/g
+                    res = reg.test(cet.website);
+                    this.comment.errTip = "网址格式错误，需直接输入类似www.baidu.com的网址"
+                }
+                return res;
+            },
             transferTime: function(unixtime) {
                 return atom.transfer(unixtime);
+            },
+            saveCookie: function() {
+                this.comment.state = !this.comment.state;
+                if (this.comment.state) {
+                    console.log("进来设置")
+                    document.cookie = "email=" + this.comment.email;
+                    document.cookie = "nickname=" + this.comment.nickname;
+                    document.cookie = "website=" + this.comment.website;
+                }
+            },
+            getCookie: function(name) {
+                var cookies = document.cookie.split(';');
+                var c;
+                for (var i = 0; i < cookies.length; i++) {
+                    c = cookies[i].split('=');
+                    if (c[0].replace(' ', '') == name) {
+                        return c[1];
+                    }
+                }
             }
         },
         created: function() {
