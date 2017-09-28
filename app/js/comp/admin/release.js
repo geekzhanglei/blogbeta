@@ -84,7 +84,12 @@ define('comp/admin/release', function(require, exports, module) {
                 element: this.$refs.adminText,
                 placeholder: '请先输入简介（用引用标签标识）',
                 lineWrapping: true,
-                tabSize: 4
+                tabSize: 4,
+                autosave: {
+                    enabled: true,
+                    uniqueId: "MyUniqueID",
+                    delay: 1000,
+                },
             });
         }
     });

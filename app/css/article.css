@@ -10,7 +10,9 @@
 
 
 /*文章列表*/
-
+.articlelist img {
+    max-width:100%;
+}
 .articlelist h4 {
     padding: 10px 10px 0 20px;
     color: #2ca6cb;
@@ -53,7 +55,9 @@
 .post-title {
     border-left: 5px solid #ea6753;
 }
-
+.post-article img {
+    max-width:100%;
+}
 .post-title h4 {
     color: #2ca6cb;
     padding: 15px 35px;

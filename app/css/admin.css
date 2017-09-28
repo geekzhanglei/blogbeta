@@ -12,6 +12,8 @@
 .admin-header .ad-title {
     float: left;
     text-align: center;
+    width: 16%;
+    min-width: 181px;
 }
 .admin-header .ad-title a {
     color:#fff;
@@ -109,6 +111,7 @@
 
 .sidebarWidth {
     width: 16%;
+    min-width: 181px;
 }
 
 .admin-sidebar li {
