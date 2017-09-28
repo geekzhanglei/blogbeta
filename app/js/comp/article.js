@@ -57,6 +57,7 @@ define('comp/article', function(require, exports, module) {
                             _this.comment.email = _this.getCookie("email");
                             _this.comment.nickname = _this.getCookie("nickname");
                             _this.comment.website = _this.getCookie("website");
+                            console.log("cookie取的值：" + _this.getCookie("email"))
                         } else {
                             console.log('接口请求返回错误');
                         }
@@ -77,7 +78,9 @@ define('comp/article', function(require, exports, module) {
                     return;
                 } else {
                     this.comment.errTip = "";
-                    this.comment.website = "http://" + this.comment.website;
+                    if (this.comment.website) {
+                        this.comment.website = "http://" + this.comment.website;
+                    }
                 }
                 $.ajax({
                     url: 'http://blog.feroad.com/article/addMark',
@@ -102,7 +105,10 @@ define('comp/article', function(require, exports, module) {
                                 create_time: Date.parse(new Date()) / 1000
                             }
                             _this.comments.push(_obj);
-                            _this.comment = {}
+                            _this.comment.email = "";
+                            _this.comment.nickname = "";
+                            _this.comment.website = "";
+                            _this.comment.content = "";
                         } else {
                             console.log('后台返回提示：' + _data);
                         }
@@ -127,7 +133,7 @@ define('comp/article', function(require, exports, module) {
                     this.comment.errTip = "您的大名不可为空或过长";
                     return res;
                 }
-                if (cet.email.length && cet.email.length < 30) {
+                if (cet.email && cet.email.length < 30) {
                     _reg = /^(\w)+(\.(\w)+)*@((\w)+)+((\.\w+)+)$/
                     res = _reg.test(cet.email);
                     if (!res) {
@@ -148,23 +154,54 @@ define('comp/article', function(require, exports, module) {
                 return atom.transfer(unixtime);
             },
             saveCookie: function() {
+                var time, date, UTCtime;
+
+                this.comment.errTip = "";
                 this.comment.state = !this.comment.state;
+
                 if (this.comment.state) {
-                    console.log("进来设置")
-                    document.cookie = "email=" + this.comment.email;
-                    document.cookie = "nickname=" + this.comment.nickname;
-                    document.cookie = "website=" + this.comment.website;
+                    if (!this.verifyInput(this.comment)) {
+                        console.log('输入校验失败，数据不合法');
+                        return;
+                    }
+                    // 设置30天为过期时间
+                    time = 3600 * 24 * 30 * 1000;
+                    date = new Date();
+                    date.setTime(date.getTime() + time);
+                    UTCtime = date.toUTCString();
+
+                    this.setCookie("email", this.comment.email, UTCtime);
+                    this.setCookie("nickname", this.comment.nickname, UTCtime);
+                    this.setCookie("website", this.comment.website, UTCtime);
+                } else {
+                    this.deleteCookie("email", "");
+                    this.deleteCookie("nickname", "");
+                    this.deleteCookie("website", "");
                 }
             },
+            // cookie操作
+            setCookie: function(name, value, expires, path, domain, secure) {
+                document.cookie = name + "=" + encodeURI(value) +
+                    ((expires) ? "; expires=" + expires : "") +
+                    ((path) ? "; path=" + path : "") +
+                    ((domain) ? "; domain=" + domain : "") +
+                    ((secure) ? "; secure=" + secure : "");
+            },
             getCookie: function(name) {
-                var cookies = document.cookie.split(';');
+                var cookies = decodeURI(document.cookie).split(';');
                 var c;
                 for (var i = 0; i < cookies.length; i++) {
                     c = cookies[i].split('=');
                     if (c[0].replace(' ', '') == name) {
                         return c[1];
                     }
+                    // 当undefined时候怎么处理
                 }
+            },
+            deleteCookie: function(name, value) {
+                var date = new Date();
+                date.setTime(date.getTime() - 1000);
+                this.setCookie(name, value, date.toGMTString(), "", "", "");
             }
         },
         created: function() {
