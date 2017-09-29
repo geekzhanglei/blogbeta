@@ -46,10 +46,13 @@ define('comp/admin/delete', function(require, exports, module) {
             // 删除文章
             deleteArticle: function(id) {
                 var _this = this;
-
+                if (!window.localStorage.token) {
+                    alert('游客无权操作');
+                    return;
+                }
                 $.ajax({
                     url: 'http://blog.feroad.com/article/deleteArticleById/' + id,
-                    type: 'GET',
+                    type: 'POST',
                     dataType: 'json',
                     data: {
                         token: window.localStorage.token
@@ -72,7 +75,6 @@ define('comp/admin/delete', function(require, exports, module) {
             // 处理过长的文章简介
             handleIntro: function(inputHTML) {
                 if (typeof inputHTML === "string" && inputHTML.constructor === String) {
-                    console.log(inputHTML.length);
                     if (inputHTML.length > 100) {
                         inputHTML = inputHTML.slice(0, 100);
                         return inputHTML + " ...";

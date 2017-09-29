@@ -42,6 +42,10 @@
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
 }
+.admsg ul li a {
+    width: 100%;
+    display: inline-block;
+}
 
 .admsg ul {
     border: 0.1rem solid #ccc;

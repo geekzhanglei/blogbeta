@@ -29,6 +29,10 @@ define('comp/admin/admin', function(require, exports, module) {
                 }
             },
             loginout: function() {
+                if (!window.localStorage.token) {
+                    alert('游客无权操作');
+                    return;
+                }
                 // 通知后台注销
                 $.ajax({
                     url: 'http://blog.feroad.com/admin/loginout',

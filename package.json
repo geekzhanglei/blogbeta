@@ -23,6 +23,7 @@
     "jquery": "^3.2.1",
     "lithe": "^0.3.6",
     "marked": "^0.3.6",
+    "minimatch": "^3.10.10",
     "qs": "^6.5.0",
     "simplemde": "^1.11.2",
     "vue": "^2.3.4",
@@ -42,6 +43,7 @@
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-lithe": "^0.2.1",
+    "grunt-scp": "^0.1.10",
     "load-grunt-tasks": "^3.5.0"
   }
 }

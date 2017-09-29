@@ -61,6 +61,11 @@ define('comp/admin/login', function(require, exports, module) {
                     return;
                 }
             },
+            visitorLogin: function() {
+                router.replace({
+                    path: "/admin"
+                })
+            },
             init: function() {
                 var _this = this;
                 //判断是否登陆,请求后端验证token

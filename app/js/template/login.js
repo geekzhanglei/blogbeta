@@ -13,7 +13,8 @@ define('template/login', function(require, exports, module) {
             '<div class="login-panel" @keyup.13="loginConfirm()">',
                 '<input class="login-name" v-model="loginname" placeholder="username" maxlength="14">',
                 '<input class="login-pwd" v-model="loginpwd" placeholder="password" maxlength="12" type="password">',
-                '<button class="login-submit" v-on:click="loginConfirm()">Login</button>',
+                '<button class="login-submit one" v-on:click="loginConfirm()">登录</button>',
+                '<button class="login-submit two" v-on:click="visitorLogin()">游客登录</button>',
                 '<div class="case-number" :class="{errTip:isErr}">{{tips}}</div>',
             '</div>',
         '</div>'

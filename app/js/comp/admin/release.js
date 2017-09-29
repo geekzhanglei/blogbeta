@@ -61,9 +61,14 @@ define('comp/admin/release', function(require, exports, module) {
                             _this.title = '';
                             simplemde.value('');
                         } else {
-                            router.replace({
-                                'path': '/login'
-                            })
+                            if (!window.localStorage.token) {
+                                alert('游客无权操作');
+                                return;
+                            } else {
+                                router.replace({
+                                    'path': '/login'
+                                });
+                            }
                         }
                     },
                     error: function() {
@@ -74,11 +79,6 @@ define('comp/admin/release', function(require, exports, module) {
         },
         mounted: function() {
             var _this = this;
-            if (_this.isLogin === "no") {
-                router.replace({
-                    path: '/login'
-                });
-            }
             // 插件引入方法
             simplemde = new SimpleMDE({
                 element: this.$refs.adminText,

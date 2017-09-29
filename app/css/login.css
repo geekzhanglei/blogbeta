@@ -77,7 +77,7 @@
 }
 
 .login-submit {
-    width: 30rem;
+    width: 14rem;
     border-color: #4db3ff;
     color: #fff;
     display: inline-block;
@@ -96,7 +96,12 @@
     border-radius: 0.4rem;
     background-color: #20a0ff;
 }
-
+.login-submit.one {
+    margin-right: 1rem;
+}
+.login-submit.two {
+    margin-left: 1rem;
+}
 .case-number {
     margin-top: 1rem;
     font-size: 1.4rem;
