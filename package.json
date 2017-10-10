@@ -42,6 +42,7 @@
     "grunt-contrib-livereload": "^0.1.2",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-ftp-push": "^1.2.1",
     "grunt-lithe": "^0.2.1",
     "grunt-scp": "^0.1.10",
     "load-grunt-tasks": "^3.5.0"
