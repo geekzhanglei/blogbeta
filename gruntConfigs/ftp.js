@@ -10,8 +10,8 @@ module.exports = {
             dest: "",
             port: 21,
             debug: true,
-            // 没更新buildPath中的文件执行该命令也会上传
-            incrementalUpdates: false
+            // 根据修改时间增量上传，默认true
+            incrementalUpdates: true
         },
         files: [{
             expand: true,

@@ -21,7 +21,7 @@ module.exports = {
     // connect
     connect: {
         // 项目域名,将host绑到本地（127.0.0.1）
-        host: 'www.feroad.com',
+        host: 'test.feroad.com',
         // 前端测试域名
         port: 80,
         // 代理服务器,使用代理需要中间件部分处理
