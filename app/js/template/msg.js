@@ -32,7 +32,6 @@ define('template/msg', function(require, exports, module) {
                                     '</div>',
                                     '<p class="comment">{{item.content}}</p>',
                                     '<div class="action clearfix">',
-                                        '<a href="javascript:;" class="delete-answer" v-on:click="deleteAnswer(index,item.id)">删除</a>',
                                         '<a href="javascript:;" class="answer" v-on:click="displayInput(item)">{{item.isAnswer}}</a>',
                                         '<a href="javascript:;" class="unfold-answer" v-show="item.reply.length === 0 ?false:true" v-on:click="displayAnswers(item)">{{item.isUnfoldAnswers}}({{item.reply.length}})</a>',
                                     '</div>',

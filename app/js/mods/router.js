@@ -48,6 +48,13 @@ define('mods/router', function(require, exports, module) {
                         template: '<blog-comments></blog-comments>'
                     }
                 }
+            }, {
+                path: '/admin/msg',
+                components: {
+                    msg: {
+                        template: '<blog-msg></blog-msg>'
+                    }
+                }
             }]
         }, {
             path: '/article',

@@ -12,6 +12,8 @@ define('conf/admin', function(require, exports, module) {
     require('mods/admin/delete');
     // 管理评论组件
     require('mods/admin/comments');
+    // 留言管理组件
+    require('mods/admin/msg');
     // 引入bootstrap插件
     // require('jquery');
     // require('bootstrap');

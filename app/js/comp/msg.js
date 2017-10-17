@@ -100,20 +100,6 @@ define('comp/msg', function(require, exports, module) {
                 item.replyName = "";
                 item.replyCont = "";
             },
-            // 删除留言
-            deleteAnswer: function(index, id) {
-                // 页面先消失
-                this.list.splice(index, 1);
-                // 再请求删除留言接口
-                $.ajax({
-                    url: 'http://blog.feroad.com/delete/' + id,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(res) {
-                        console.log(res.result.data);
-                    }
-                });
-            },
             // 请求留言数据接口
             reqMsgData: function(e) {
                 var _this = this;
