@@ -23,8 +23,10 @@ define('comp/admin/msg', function(require, exports, module) {
         },
         methods: {
             // 显示隐藏留言回复
-            showCom: function(item, index) {
-                item.showMesg = !item.showMesg;
+            showMsg: function(item, index) {
+                if (item.reply.length) {
+                    item.showMesg = !item.showMesg;
+                }
             },
             // 请求留言数据接口
             reqMsgData: function(e) {
@@ -39,9 +41,11 @@ define('comp/admin/msg', function(require, exports, module) {
                     },
                     success: function(res) {
                         var flag = res.result.status;
-                        console.log(res.result.data);
                         if (flag) {
                             _this.items = res.result.data;
+                            _this.items.forEach(function(item) {
+                                _this.$set(item, "showMesg", false);
+                            })
                         } else {
                             _this.list = [];
                         }
