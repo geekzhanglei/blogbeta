@@ -10,7 +10,7 @@ define('template/admin/msg', function(require, exports, module) {
             var tpl = [
                 '<div class="ad-admin-manage-wrap">',
                     '<div class="tips">',
-                        '<span><i class="glyphicon glyphicon-wrench"></i> 评论管理-删除文章评论</span>',
+                        '<span><i class="glyphicon glyphicon-pencil"></i> 评论管理-删除文章评论</span>',
                     '</div>',
                     '<div class="comments-table table-responsive">',
                         '<table class="table table-hover">',
