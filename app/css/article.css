@@ -154,6 +154,16 @@ p.subhead span {
     float:right;
     font-size: 90%;
 }
+.comment .wrap .foot .expression {
+    margin-right: 20px;
+    font-size: 16px;
+}
+.comment .wrap .foot .expression i:first-child {
+    margin-right:4px;
+}
+.comment .wrap .foot  .visited {
+    color:#da3e3c;
+}
 .comment .comments-title {
     padding:2rem 0 1rem 0;
     color: #000000;

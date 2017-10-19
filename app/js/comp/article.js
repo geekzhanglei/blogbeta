@@ -26,7 +26,9 @@ define('comp/article', function(require, exports, module) {
         cont: '没内容',
         time: '时间没了',
         intro: '介绍丢了',
-        comments: []
+        comments: [],
+        // 私有变量
+        clickFlag: 1
     };
 
     var comp = Vue.component('blog-article', {
@@ -53,6 +55,11 @@ define('comp/article', function(require, exports, module) {
                             _this.cont = _data.content;
                             _this.intro = _data.introduction;
                             _this.comments = _data.comments;
+                            /* 没有后台接口时，本地模拟点赞设计，待后台接口 */
+                            _this.comments.forEach(function(item) {
+                                _this.$set(item, "supFlag", false);
+                                _this.$set(item, "supNum", 0);
+                            })
                             // 读取cookie填写评论内容
                             _this.comment.email = _this.getCookie("email");
                             _this.comment.nickname = _this.getCookie("nickname");
@@ -202,7 +209,26 @@ define('comp/article', function(require, exports, module) {
                 var date = new Date();
                 date.setTime(date.getTime() - 1000);
                 this.setCookie(name, value, date.toGMTString(), "", "", "");
+            },
+            // 点赞
+            support: function(item) {
+                var _this = this;
+                // 展示层
+                item.isVisted = !item.isVisted;
+                item.isVisted ? item.supNum += 1 : item.supNum -= 1;
+                console.log(this.clickFlag)
+                // 请求接口，修改点赞信息
+                if (this.clickFlag) {
+                    this.clickFlag = 0;
+                    // 请求接口
+                    console.log('请求接口');
+                    var tId = setTimeout(function() {
+                        _this.clickFlag = 1;
+                        clearTimeout(tId);
+                    }, 1000);
+                }
             }
+
         },
         created: function() {
             console.log('article加载');
