@@ -74,7 +74,17 @@ p {
     float: right;
     font-size: 1.1em;
 }
-
+.comments .action .expression {
+    float: right;
+    margin:5px 10px;
+}
+.comments .action .expression i:first-child {
+    margin-right:4px;
+    cursor: pointer;
+}
+.comments .action .expression .visited {
+    color:#da3e3c;
+}
 .comments .action a {
     margin: 5px 10px;
     float: right;

@@ -115,6 +115,11 @@ define('comp/msg', function(require, exports, module) {
                         var flag = res.result.status;
                         if (flag) {
                             _this.list = res.result.data;
+                            /* 没有后台接口时，本地模拟点赞设计，待后台接口 */
+                            _this.list.forEach(function(item) {
+                                _this.$set(item, "supFlag", false);
+                                _this.$set(item, "supNum", 0);
+                            })
                             _this.pagingData.total = res.result.rows;
                             _this.pagingData.page = e;
                             _this.showPages = true;
@@ -226,6 +231,24 @@ define('comp/msg', function(require, exports, module) {
 
                 // 成功之后关闭模态框
                 this.isActive = 'modal';
+            },
+            // 点赞
+            support: function(item) {
+                var _this = this;
+                // 展示层
+                item.isVisted = !item.isVisted;
+                item.isVisted ? item.supNum += 1 : item.supNum -= 1;
+                console.log(this.clickFlag)
+                // 请求接口，修改点赞信息
+                if (this.clickFlag) {
+                    this.clickFlag = 0;
+                    // 请求接口
+                    console.log('请求接口');
+                    var tId = setTimeout(function() {
+                        _this.clickFlag = 1;
+                        clearTimeout(tId);
+                    }, 1000);
+                }
             },
             // 初始化数据与分页组件
             init: function() {

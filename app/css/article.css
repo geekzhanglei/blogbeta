@@ -160,6 +160,7 @@ p.subhead span {
 }
 .comment .wrap .foot .expression i:first-child {
     margin-right:4px;
+    cursor: pointer;
 }
 .comment .wrap .foot  .visited {
     color:#da3e3c;

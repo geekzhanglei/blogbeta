@@ -48,7 +48,7 @@ define('template/article', function(require, exports, module) {
                                                     '<p>',
                                                         '<span class="expression">',
                                                             '<i class="glyphicon glyphicon-thumbs-up" :class="{visited:item.isVisted}" @click.stop="support(item)"></i>',
-                                                            '<i>{{item.supNum}}</i>',
+                                                            '<i v-if="item.supNum != 0">{{item.supNum}}</i>',
                                                         '</span>',
                                                         '<span>{{transferTime(item.create_time)}}</span>',
                                                     '</p>',
