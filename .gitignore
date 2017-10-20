@@ -3,3 +3,5 @@ npm-debug.log
 .tmp
 temp.html
 dist
+# .DS_Store为macOS的文件属性记录文件
+.DS_Store

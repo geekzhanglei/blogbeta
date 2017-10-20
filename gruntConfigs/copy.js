@@ -18,6 +18,12 @@ module.exports = {
         dest: buildPath + '/js/',
         cwd: tempPath + '/js/'
     },
+    lib: {
+        expand: true,
+        src: ['./base64.min.js'],
+        dest: buildPath + '/js/lib',
+        cwd: srcPath + '/js/lib'
+    },
     img: {
         expand: true,
         src: ['./*.*'],

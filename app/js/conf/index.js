@@ -5,25 +5,35 @@ define('conf/index', function(require, exports, module) {
     require('comp/common/header');
 
     // 布局组件
-    require('mods/layout');
+    require('comp/layout');
     // 文章摘要列表（默认）
-    require('mods/list');
+    require('comp/list');
     // 文章详情
-    require('mods/article');
+    require('comp/article');
     // 留言页
-    require('mods/msg');
+    require('comp/msg');
     // 关于页
-    require('mods/about');
-
+    require('comp/about');
+    // 公共页脚
     require('comp/common/footer');
 
     // 引入bootstrap插件
-    require('jquery');
+    window.$ = require('jquery');
     require('bootstrap');
 
     // 初始化根实例
     new Vue({
         el: '#blog',
-        router: router
+        router: router,
+        created: function() {
+            console.log("这渣代码是我写的\r\n 你居然还要扒开了看\r\n我表示略尴尬\r\n 非要看源码的话：\r\n\r\n\r\n%cfollow me %c https://github.com/geekzhanglei/blogbeta", "color:red", "color:green");
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState == "hidden") {
+                    document.title = "这里有bug，快看！";
+                } else {
+                    document.title = "欢迎回到博客";
+                }
+            })
+        }
     });
 });

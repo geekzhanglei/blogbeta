@@ -7,11 +7,19 @@
 define('comp/admin/admin', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/admin');
-    var $ = require('jquery');
     var router = require('mods/router');
+    var bus = require('mods/bus');
 
+    bus.$on("info", function(name, img) {
+        data.imgsrc = img;
+        data.nickname = name;
+    });
     var data = {
-        isCollapse: true
+        isCollapse: true,
+        nickname: '管理员',
+        imgDefault: '../img/avatar.png',
+        imgsrc: '',
+        articleAdm: false
     };
 
     var comp = Vue.component('blog-admin', {
@@ -20,6 +28,9 @@ define('comp/admin/admin', function(require, exports, module) {
             return data;
         },
         methods: {
+            toggleAticleAdm: function() {
+                this.articleAdm = !this.articleAdm;
+            },
             // 收起展开侧边栏
             isSidebar: function() {
                 if (this.isCollapse) {
@@ -27,6 +38,31 @@ define('comp/admin/admin', function(require, exports, module) {
                 } else {
                     this.isCollapse = true;
                 }
+            },
+            getInfo: function() {
+                var _this = this,
+                    _info = {
+                        name: this.nickname,
+                        img: this.imgsrc
+                    };
+                $.ajax({
+                    url: 'http://blog.feroad.com/admin/getAdministerInfo',
+                    dataType: 'json',
+                    success: function(res) {
+                        var data = res.result.data;
+                        if (res.result.status == 1) {
+                            _this.nickname = data.nickname;
+                            data.head_img === '' ? _this.imgsrc = _this.imgDefault : _this.imgsrc = data.head_img;
+                            _info.name = data.nickname;
+                            _info.img = data.head_img;
+                            bus.$emit('downloadInfo', _info);
+                        }
+                    },
+                    error: function(res) {
+                        console.log(res);
+                    }
+
+                })
             },
             loginout: function() {
                 if (!window.localStorage.token) {
@@ -45,7 +81,7 @@ define('comp/admin/admin', function(require, exports, module) {
                         console.log('请求成功')
                         if (res.stat) {
                             // 清除本地token
-                            window.localStorage.clear();
+                            window.localStorage.removeItem('token');
                             router.replace({
                                 path: '/login'
                             });
@@ -55,13 +91,17 @@ define('comp/admin/admin', function(require, exports, module) {
                         console.log('接口请求失败');
                     }
                 });
+            },
+            init: function() {
+                this.getInfo();
             }
         },
         mounted: function() {
+            this.init();
             // 跳转到文章发布页
             if (router.currentRoute.path === "/admin") {
                 router.replace({
-                    path: '/admin/release'
+                    path: '/admin/info'
                 });
             }
         }

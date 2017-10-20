@@ -6,7 +6,6 @@
 
 define('comp/list', function(require, exports, module) {
     var Vue = require('vue');
-    var $ = require('jquery');
     var tpl = require('template/list');
     var atom = require('comp/util/atom');
 
@@ -18,7 +17,7 @@ define('comp/list', function(require, exports, module) {
 
     var data = {
         // 每页展示多少条
-        pagesize: 2,
+        pagesize: 5,
         items: [],
         showPages: false,
         pagingData: {
@@ -44,16 +43,21 @@ define('comp/list', function(require, exports, module) {
                     dataType: 'json',
                     data: {
                         curpage: e,
-                        perpage: _this.pagesize
                     },
                     success: function(res) {
                         var flag = res.result.status;
                         if (flag) {
                             _this.items = res.result.data;
-                            _this.pagingData.total = res.result.rows;
-                            _this.pagingData.page = e;
-                            if (_this.items[0]) {
+                            if (res.result.isPagination) {
                                 _this.showPages = true;
+                                _this.pagingData.page = e;
+                                if (_this.items[0]) {
+                                    _this.showPages = true;
+                                }
+                                _this.pagingData.total = res.result.rows;
+                                _this.pagesize = res.result.perpage;
+                            } else {
+                                _this.showPages = false;
                             }
                         } else {
                             _this.items = [];

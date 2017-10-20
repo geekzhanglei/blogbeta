@@ -6,7 +6,6 @@
 
 define('comp/article', function(require, exports, module) {
     var Vue = require('vue');
-    var $ = require('jquery');
     var tpl = require('template/article');
     var router = require('mods/router');
     var atom = require('comp/util/atom');
@@ -48,23 +47,7 @@ define('comp/article', function(require, exports, module) {
                         var flag = res.result.status;
                         var _data = res.result.data;
                         if (flag) {
-                            _this.comment.id = _data.id;
-                            _this.title = _data.title;
-                            _this.username = _data.username;
-                            _this.time = atom.transfer(_data.updated_at);
-                            _this.cont = _data.content;
-                            _this.intro = _data.introduction;
-                            _this.comments = _data.comments;
-                            /* 没有后台接口时，本地模拟点赞设计，待后台接口 */
-                            _this.comments.forEach(function(item) {
-                                _this.$set(item, "supFlag", false);
-                                _this.$set(item, "supNum", 0);
-                            })
-                            // 读取cookie填写评论内容
-                            _this.comment.email = _this.getCookie("email");
-                            _this.comment.nickname = _this.getCookie("nickname");
-                            _this.comment.website = _this.getCookie("website");
-                            console.log("cookie取的值：" + _this.getCookie("email"))
+                            _this.init(_data);
                         } else {
                             console.log('接口请求返回错误');
                         }
@@ -212,23 +195,72 @@ define('comp/article', function(require, exports, module) {
             },
             // 点赞
             support: function(item) {
-                var _this = this;
-                // 展示层
-                item.isVisted = !item.isVisted;
-                item.isVisted ? item.supNum += 1 : item.supNum -= 1;
-                console.log(this.clickFlag)
-                // 请求接口，修改点赞信息
+                var _this = this,
+                    bool = false,
+                    storage = window.localStorage,
+                    category;
+
+                if (item.isVisited) {
+                    item.isVisited = false;
+                    storage.removeItem('comment_id' + item.id);
+                } else {
+                    item.isVisited = true;
+                    storage.setItem('article_id' + item.article_id, item.article_id);
+                    storage.setItem('comment_id' + item.id, item.id);
+                }
+
+                item.agrees = Number(item.agrees)
+                item.isVisited ? item.agrees += 1 : item.agrees -= 1;
+                item.isVisited ? category = 1 : category = 2;
+
+                // 请求接口category1点赞，2取消
                 if (this.clickFlag) {
                     this.clickFlag = 0;
                     // 请求接口
-                    console.log('请求接口');
-                    var tId = setTimeout(function() {
+                    $.ajax({
+                        url: 'http://blog.feroad.com/article/agreeForArticleMarks/' + item.id,
+                        data: {
+                            category: category
+                        },
+                        dataType: 'json',
+                        success: function(res) {
+                            console.log(res.result.data);
+                        }
+                    });
+                    setTimeout(function() {
                         _this.clickFlag = 1;
-                        clearTimeout(tId);
                     }, 1000);
                 }
-            }
+            },
+            init: function(_data) {
+                var _this = this,
+                    comLen = _data.comments.length,
+                    bool;
 
+                this.comment.id = _data.id;
+                this.title = _data.title;
+                this.username = _data.username;
+                this.time = atom.transfer(_data.updated_at);
+                this.cont = _data.content;
+                this.intro = _data.introduction;
+                this.comments = _data.comments;
+                if (this.comments[0]) {
+                    this.comments.forEach(function(item) {
+                        _this.$set(item, "isVisited", false);
+                    });
+                    this.comments.forEach(function(element) {
+                        bool = element.id == window.localStorage['comment_id' + element.id]
+                        bool = bool && (element.article_id == window.localStorage['article_id' + element.article_id]);
+                        if (bool) {
+                            _this.$set(element, 'isVisited', true);
+                        }
+                    }, this);
+                }
+                // 读取cookie填写评论内容
+                this.comment.email = this.getCookie("email");
+                this.comment.nickname = this.getCookie("nickname");
+                this.comment.website = this.getCookie("website");
+            }
         },
         created: function() {
             console.log('article加载');

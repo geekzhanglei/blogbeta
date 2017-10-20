@@ -6,7 +6,6 @@
 
 define('comp/msg', function(require, exports, module) {
     var Vue = require('vue');
-    var $ = require('jquery');
     var tpl = require('template/msg');
 
     var atom = require('comp/util/atom');
@@ -32,9 +31,10 @@ define('comp/msg', function(require, exports, module) {
         //模态框关闭参数
         isActive: '',
         // 留言和回复的默认用户名
-        phcont: '土包子',
-        // 每页条数
-        pagesize: 4,
+        phcont: '默认值',
+        phReplyCont: '默认值',
+        // 每页默认条数
+        pagesize: 3,
         // 分页组件数据
         showPages: true,
         pagingData: {
@@ -42,7 +42,8 @@ define('comp/msg', function(require, exports, module) {
             pages: [1],
             page: 1,
             page_total: 1
-        }
+        },
+        clickFlag: 1
     };
 
     var comp = Vue.component('blog-msg', {
@@ -109,7 +110,6 @@ define('comp/msg', function(require, exports, module) {
                     dataType: 'json',
                     data: {
                         curpage: e,
-                        perpage: _this.pagesize
                     },
                     success: function(res) {
                         var flag = res.result.status;
@@ -117,7 +117,10 @@ define('comp/msg', function(require, exports, module) {
                             _this.list = res.result.data;
                             _this.pagingData.total = res.result.rows;
                             _this.pagingData.page = e;
-                            _this.showPages = true;
+                            _this.showPages = res.result.isPagination;
+                            _this.phcont = res.result.defaultCommentName;
+                            _this.phReplyCont = res.result.defaultReplyName;
+                            _this.pagesize = res.result.perpage;
                             _this.showMsgCont = true;
                         } else {
                             _this.list = [];
@@ -167,7 +170,8 @@ define('comp/msg', function(require, exports, module) {
                         'content': item.replyCont,
                         'comment_id': id,
                         'reply_id': id,
-                        'reply_type': 1
+                        'reply_type': 1,
+                        'reply_username': item.userName
                     };
                 }
                 $.ajax({
@@ -227,10 +231,59 @@ define('comp/msg', function(require, exports, module) {
                 // 成功之后关闭模态框
                 this.isActive = 'modal';
             },
+            // 点赞
+            support: function(item) {
+                var _this = this,
+                    bool = false,
+                    storage = window.localStorage,
+                    id = item.id || item.rId,
+                    category;
+                // 判断点击是评论1还是回复2
+                item.id ? typeid = 1 : typeid = 2;
+                if (item.isVisited) {
+                    item.isVisited = false;
+                    if (item.commentId) {
+                        window.localStorage.removeItem('msgMarkRid' + item.rId);
+                    } else {
+                        window.localStorage.removeItem('msgMarkId' + item.id);
+                    }
+                } else {
+                    item.isVisited = true;
+                    // 根据commentId判断是回复的回复还是评论的回复
+                    if (item.commentId) {
+                        storage.setItem('msgMarkRid' + item.rId, item.rId);
+                    } else {
+                        storage.setItem('msgMarkId' + item.id, item.id);
+                    }
+                }
+                item.agrees = Number(item.agrees);
+                item.isVisited ? item.agrees += 1 : item.agrees -= 1;
+                item.isVisited ? category = 1 : category = 2;
+
+                // 请求接口，修改点赞信息
+                if (this.clickFlag) {
+                    this.clickFlag = 0;
+                    // 请求接口
+                    $.ajax({
+                        url: 'http://blog.feroad.com/agree/' + id,
+                        data: {
+                            type: typeid,
+                            category: category
+                        },
+                        dataType: 'json',
+                        success: function(res) {
+                            console.log(res.result.data);
+                        }
+                    })
+                    var tId = setTimeout(function() {
+                        _this.clickFlag = 1;
+                    }, 1000);
+                }
+            },
             // 初始化数据与分页组件
             init: function() {
                 var _this = this;
-                var i, j, replyLen, listLen = this.list.length;
+                var i, j, replyLen, id, rId, listLen = this.list.length;
                 var page_total,
                     page = _this.pagingData.page;
                 var _temp = parseInt(_this.pagingData.total) / this.pagesize;
@@ -245,12 +298,30 @@ define('comp/msg', function(require, exports, module) {
                     Vue.set(this.list[i], 'replyErr', "");
                     Vue.set(this.list[i], 'replyName', "");
                     Vue.set(this.list[i], 'replyCont', "");
+                    Vue.set(this.list[i], 'isVisited', false);
                     // 回复用到的私有属性，开启关闭回复框用
                     replyLen = this.list[i].reply.length;
                     if (replyLen) {
                         for (j = 0; j < replyLen; j++) {
                             Vue.set(this.list[i].reply[j], 'isShowReplyInput', false);
                             Vue.set(this.list[i].reply[j], 'isAnswer', '回复');
+                            Vue.set(this.list[i].reply[j], 'isVisited', false);
+                        }
+                    }
+                }
+                // 判断当前游客有的点赞记录
+                for (i = 0; i < listLen; i++) {
+                    id = this.list[i].id;
+                    if (id == window.localStorage['msgMarkId' + id]) {
+                        this.list[i].isVisited = true;
+                    }
+                    replyLen = this.list[i].reply.length;
+                    if (replyLen) {
+                        for (j = 0; j < replyLen; j++) {
+                            rId = this.list[i].reply[j].rId;
+                            if (rId == window.localStorage['msgMarkRid' + rId]) {
+                                this.list[i].reply[j].isVisited = true;
+                            }
                         }
                     }
                 }
@@ -265,7 +336,7 @@ define('comp/msg', function(require, exports, module) {
                 });
             }
         },
-        created: function() {
+        mounted: function() {
             console.log('msg加载');
             var _this = this;
             this.reqMsgData(_this.pagingData.page);
