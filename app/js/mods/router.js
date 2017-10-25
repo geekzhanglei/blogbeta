@@ -55,6 +55,13 @@ define('mods/router', function(require, exports, module) {
                         template: '<blog-msg></blog-msg>'
                     }
                 }
+            }, {
+                path: '/admin/info',
+                components: {
+                    info: {
+                        template: '<blog-info></blog-info>'
+                    }
+                }
             }]
         }, {
             path: '/article',

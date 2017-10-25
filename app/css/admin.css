@@ -323,3 +323,226 @@
     color:#395c9c;
     background-color:#f2f8fd;
 }
+/* 个人信息组件 */
+.wrap-info {
+    width:100%;
+    margin:60px auto;
+}
+.info-sidebar {
+    width:25%;
+    float:left;
+    border-right: 1px solid #e6e8ea;
+    text-align: right;
+    line-height: 40px;
+}
+.info-sidebar ul {
+    margin-bottom: 0;
+}
+.info-main {
+    float:left;
+    width: 400px;
+    margin-left: 120px;
+}
+.wrap-info .info-sidebar li {
+    padding-right: 30px;
+}
+.wrap-info .info-sidebar li:hover {
+    border-right: 2px solid #00b38a;
+    padding-right: 28px;
+    color: #00b38a;
+    cursor: pointer;
+}
+.wrap-info .base-info {
+    margin:30px auto;
+}
+.wrap-info .info-headinfo {
+    position: relative;
+}
+.wrap-info .info-avatar {
+    text-align: center;
+}
+.wrap-info .info-img {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+.wrap-info .edit-info .info-img:hover:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5) url(./../img/camera.png) center center no-repeat;
+    background-size: 41px 30px;
+    cursor: pointer;
+}
+.wrap-info .info-avatar img {
+    width:100px;
+    height:100px;
+    border-radius: 50%;
+}
+.wrap-info .edit-link {
+    text-align: left;
+    position: absolute;
+    left: 50%;
+    top: 2px;
+    margin-left: 70px;
+    padding-left: 20px;
+    line-height: 18px;
+    color: #00b38a;
+    font-size: 16px;
+    background: url(./../img/edit.png) no-repeat left center;
+    background-size:16px 16px;
+    cursor: pointer;
+}
+.wrap-info .info-nickname {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+    color: #333;
+}
+.wrap-info .edit-info .edit-username {
+    margin-bottom: 20px;
+    position: relative;
+}
+.wrap-info .edit-username input[type=text] {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 44px;
+    margin-top: 0;
+    padding: 12px 0;
+    font-size: 14px;
+    color: #555;
+    outline: none;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #ededed;
+    transition: border .2s ease-in 0s;
+}
+.wrap-info .edit-username input[type=text]:focus {
+    color: #333;
+    border-color: #00b38a;
+}
+.wrap-info .edit-username .err {
+    position: absolute;
+    right: 13px;
+    bottom: 13px;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 14px;
+    color: #fd5f39;
+    background-color: #fff;
+    box-shadow: 0 0 2px 2px #fff;
+}
+.wrap-info .edit-confirm {
+    height: 46px;
+    line-height: 46px;
+}
+.wrap-info .edit-confirm a {
+    width: 49%;
+    display: inline-block;
+    box-sizing: border-box;
+    min-width: 66px;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    border: 0;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #00b38a;
+}
+
+
+.wrap-info .modify-pswd dt{
+    font-size: 16px;
+    font-weight: 400;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #D9D9D9;
+}
+.modify-pswd dd {
+    margin-top: 20px;
+}
+.modify-pswd dd input[type=password] {
+    height: 45px;
+    width: 100%;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom-width: 1px;
+    font-size: 16px;
+    padding:6px 10px;
+    margin: 0;
+    transition: border .2s ease-in 0s;
+}
+.modify-pswd dd input[type=password]:focus {
+    outline: none;
+    border-bottom: 1px solid #00b38a;
+}
+.modify-pswd .info-err {
+    display: block;
+    margin: 5px 0 10px;
+    font-size: 12px;
+    color: #fd5f39;
+    text-align: left;
+    background: url(../img/err.png) 0 center no-repeat;
+    background-size: 14px;
+    padding-left: 20px;
+    line-height: 22px;
+}
+.modify-pswd input[type=submit] {
+    text-align: center;
+    width: 100%;
+    height: 46px;
+    margin: 0;
+    background-color: #00b38a;
+    color: #fff;
+    font-size: 16px;
+    border: 2px solid #00b38a;
+    border-radius: 3px
+}
+.modify-pswd input[type=submit]:focus {
+    outline:none;
+    background: #168e71;
+    border-color: #168e71;
+}
+.modify-pswd input[type=submit]:hover {
+    background-color: rgb(32, 175, 166);
+    border-color:rgb(32, 175, 166);
+}
+.updatePw {
+    color: #555;
+    font-weight: 300;
+    text-align: center;
+}
+.updatePw h3 {
+    font-size: 22px;
+    margin: 0 0 20px;
+}
+.updatePw h4 {
+    font-size: 16px;
+    margin: 0 0 10px;
+}
+.updatePw .modifyPw-btn {
+    font-size: 16px;
+    background: #00b38a;
+    padding: 0 25px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    height: 37px;
+    color: #fff;
+    border: 0;
+    line-height: 37px;
+    transition: background .2s ease-in 0s;
+}

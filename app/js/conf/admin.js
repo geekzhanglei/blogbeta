@@ -3,17 +3,19 @@ define('conf/admin', function(require, exports, module) {
     var router = require('mods/router');
 
     // 登录组件
-    require('mods/admin/login');
+    require('comp/admin/login');
     // 管理后台
-    require('mods/admin/admin');
+    require('comp/admin/admin');
     // 发布文章组件
-    require('mods/admin/release');
+    require('comp/admin/release');
     // 删除文章组件
-    require('mods/admin/delete');
+    require('comp/admin/delete');
     // 管理评论组件
-    require('mods/admin/comments');
+    require('comp/admin/comments');
     // 留言管理组件
-    require('mods/admin/msg');
+    require('comp/admin/msg');
+    // 留言管理组件
+    require('comp/admin/info');
     // 引入bootstrap插件
     // require('jquery');
     // require('bootstrap');

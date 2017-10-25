@@ -5,15 +5,15 @@ define('conf/index', function(require, exports, module) {
     require('comp/common/header');
 
     // 布局组件
-    require('mods/layout');
+    require('comp/layout');
     // 文章摘要列表（默认）
-    require('mods/list');
+    require('comp/list');
     // 文章详情
-    require('mods/article');
+    require('comp/article');
     // 留言页
-    require('mods/msg');
+    require('comp/msg');
     // 关于页
-    require('mods/about');
+    require('comp/about');
 
     require('comp/common/footer');
 
