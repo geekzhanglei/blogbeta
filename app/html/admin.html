@@ -20,10 +20,19 @@
         <router-view name="admin"></router-view>
     </div>
     <script type="text/javascript" src="../js/lithe.js" data-config="config.js">
-
     </script>
     <script type="text/javascript">
         window.lithe.use('conf/admin');
+    </script>
+    <script type="text/javascript">
+        // 百度统计
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?acfa9a8165e41de73001c7146ff5ff4d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
     </script>
 </body>
 
