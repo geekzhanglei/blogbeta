@@ -9,9 +9,16 @@ define('comp/admin/admin', function(require, exports, module) {
     var tpl = require('template/admin/admin');
     var $ = require('jquery');
     var router = require('mods/router');
+    var bus = require('mods/bus');
 
+    bus.$on("info", function(name, img) {
+        data.imgsrc = img;
+        data.nickname = name;
+    });
     var data = {
-        isCollapse: true
+        isCollapse: true,
+        nickname: '管理员',
+        imgsrc: '../img/avatar.png'
     };
 
     var comp = Vue.component('blog-admin', {

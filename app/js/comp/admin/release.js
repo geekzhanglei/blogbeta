@@ -90,6 +90,7 @@ define('comp/admin/release', function(require, exports, module) {
                     uniqueId: "MyUniqueID",
                     delay: 1000,
                 },
+                tabsize: 4
             });
         }
     });
