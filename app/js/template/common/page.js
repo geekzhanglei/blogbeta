@@ -9,7 +9,7 @@ define('template/common/page', function(require, exports, module) {
     /* beautify ignore:start */
     /* eslint-disable */
     var tpl = [
-        '<nav aria-label="Page navigation">',
+        '<nav class="page-comp" aria-label="Page navigation">',
             '<ul class="pagination">',
                 '<li v-bind:class="{disabled : datasource.page === 1}">',
                     '<a href="javascript:;" v-if="datasource.page > 1" v-on:click="onClickPage(datasource.clickPageCb, parseInt(datasource.page) - 1)" aria-label="Previous">',

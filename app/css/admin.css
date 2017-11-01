@@ -557,3 +557,7 @@
     line-height: 37px;
     transition: background .2s ease-in 0s;
 }
+/* page comp */
+.page-comp {
+    text-align: center;
+}

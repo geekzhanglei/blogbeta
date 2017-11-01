@@ -52,7 +52,7 @@ define('comp/admin/admin', function(require, exports, module) {
                         console.log('请求成功')
                         if (res.stat) {
                             // 清除本地token
-                            window.localStorage.clear();
+                            window.localStorage.removeItem('token');
                             router.replace({
                                 path: '/login'
                             });

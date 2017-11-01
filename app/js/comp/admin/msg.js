@@ -11,9 +11,22 @@ define('comp/admin/msg', function(require, exports, module) {
     var router = require('mods/router');
     var atom = require('comp/util/atom');
 
+    // handlePage计算分页数据传递给pagingData，
+    // pagingData给模板template中的子组件数据源datasource
+    var handlePage = require('comp/util/page-handle');
+    var page_tpl = require('comp/common/page');
+    Vue.component('paging', page_tpl);
+
     var data = {
         items: [],
-        pagesize: 100
+        // 分页数据
+        pagesize: 5,
+        pagingData: {
+            total: 5,
+            pages: [],
+            page: 1,
+            page_total: 5
+        }
     };
 
     var comp = Vue.component('blog-msg', {
@@ -46,6 +59,8 @@ define('comp/admin/msg', function(require, exports, module) {
                             _this.items.forEach(function(item) {
                                 _this.$set(item, "showMesg", false);
                             })
+                            // 分页初始化
+                            _this.initPage(res.result);
                         } else {
                             _this.list = [];
                         }
@@ -73,8 +88,24 @@ define('comp/admin/msg', function(require, exports, module) {
             transferTime: function(unixTime) {
                 return atom.transfer(unixTime);
             },
+            initPage: function(data) {
+                var _this = this;
+                // 分页组件赋值
+                this.pagingData.total = data.rows;
+                var _temp = parseInt(this.pagingData.total) / this.pagesize;
+                var page_total = Math.ceil(_temp);
+                // 获取分页组件数据
+                this.pagingData = handlePage({
+                    page: 1,
+                    total: data.rows,
+                    page_total: page_total,
+                    clickPageCb: function(targetPage) {
+                        _this.reqMsgData(targetPage);
+                    }
+                });
+            },
             init: function() {
-                this.reqMsgData(1);
+                this.reqMsgData();
             }
         },
         mounted: function() {

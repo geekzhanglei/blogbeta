@@ -82,7 +82,7 @@ p {
     margin-right:4px;
     cursor: pointer;
 }
-.comments .action .expression .visited {
+.comments .action .expression .visited,.comments .action .ansVisited{
     color:#da3e3c;
 }
 .comments .action a {

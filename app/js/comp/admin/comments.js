@@ -11,8 +11,22 @@ define('comp/admin/comments', function(require, exports, module) {
     var router = require('mods/router');
     var atom = require('comp/util/atom');
 
+    // handlePage计算分页数据传递给pagingData，
+    // pagingData给模板template中的子组件数据源datasource
+    var handlePage = require('comp/util/page-handle');
+    var page_tpl = require('comp/common/page');
+    Vue.component('paging', page_tpl);
+
     var data = {
-        items: []
+        items: [],
+        // 分页数据
+        pagesize: 4,
+        pagingData: {
+            total: 5,
+            pages: [],
+            page: 1,
+            page_total: 5
+        }
     };
 
     var comp = Vue.component('blog-comments', {
@@ -23,7 +37,9 @@ define('comp/admin/comments', function(require, exports, module) {
         methods: {
             // 显示隐藏文章评论
             showCom: function(item, index) {
-                item.showComments = !item.showComments;
+                if (item.markNum) {
+                    item.showComments = !item.showComments;
+                }
             },
             deleteCet: function(item, cetId) {
                 if (!window.localStorage.token) {
@@ -51,24 +67,25 @@ define('comp/admin/comments', function(require, exports, module) {
                     }
                 })
             },
-            requestArticle: function() {
+            requestArticle: function(e) {
                 var _this = this;
                 $.ajax({
                     url: "http://blog.feroad.com/article/getArticleListWithMark",
                     type: "POST",
                     dataType: "json",
                     data: {
-                        curpage: 1,
-                        perpage: 10,
+                        curpage: e,
+                        perpage: _this.pagesize,
                         token: window.localStorage.token
                     },
                     success: function(res) {
-                        console.log(res);
                         if (res.result.status) {
                             _this.items = res.result.data;
                             _this.items.forEach(function(item) {
                                 _this.$set(item, "showComments", false);
                             })
+                            // 分页初始化
+                            _this.initPage(res.result);
                         } else {
                             console.log('请求接口错误');
                         }
@@ -81,8 +98,24 @@ define('comp/admin/comments', function(require, exports, module) {
             transferTime: function(unix) {
                 return atom.transfer(unix);
             },
+            initPage: function(data) {
+                var _this = this;
+                // 分页组件赋值
+                this.pagingData.total = data.rows;
+                var _temp = parseInt(this.pagingData.total) / this.pagesize;
+                var page_total = Math.ceil(_temp);
+                // 获取分页组件数据
+                this.pagingData = handlePage({
+                    page: 1,
+                    total: data.rows,
+                    page_total: page_total,
+                    clickPageCb: function(targetPage) {
+                        _this.requestArticle(targetPage);
+                    }
+                });
+            },
             init: function() {
-                this.requestArticle();
+                this.requestArticle(1);
             }
         },
         mounted: function() {
