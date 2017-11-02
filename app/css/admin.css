@@ -1,3 +1,12 @@
+/* 通用 */
+.admin-content {
+    position: relative;
+    background-color: #fbfbfb;
+    height: 100%;
+    padding: 2.5rem 4rem;
+    overflow: auto;
+}
+/* 编辑文章 */
 .editor-toolbar,.CodeMirror {
     font-size: 1.4rem !important;
 }
@@ -178,13 +187,6 @@
     float: right;
     padding: 0.7rem 1.3rem;
     font-size: 2.8rem;
-}
-
-.admin-content {
-    background-color: #fbfbfb;
-    height: 100%;
-    padding: 2.5rem 4rem;
-    overflow: auto;
 }
 
 .adminContWidth {
@@ -570,4 +572,11 @@
 }
 .form-inline .form-group select {
     width:30%;
+}
+/* 常用选项组件 */
+.admin-options {
+    padding:0.5rem 0;
+}
+.admin-options-wrap form {
+    margin:1.5rem 0;
 }

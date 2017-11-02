@@ -14,8 +14,10 @@ define('conf/admin', function(require, exports, module) {
     require('comp/admin/comments');
     // 留言管理组件
     require('comp/admin/msg');
-    // 留言管理组件
+    // 个人信息组件
     require('comp/admin/info');
+    // 常用选项组件
+    require('comp/admin/option');
     // 引入bootstrap插件
     // require('jquery');
     // require('bootstrap');
