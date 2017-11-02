@@ -561,3 +561,13 @@
 .page-comp {
     text-align: center;
 }
+/* 留言管理组件 */
+.form-inline label {
+    display: inline-block;
+    width:30%;
+    line-height: 34px;
+    text-align: center;
+}
+.form-inline .form-group select {
+    width:30%;
+}

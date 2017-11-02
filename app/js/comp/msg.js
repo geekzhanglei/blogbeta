@@ -240,7 +240,6 @@ define('comp/msg', function(require, exports, module) {
                     storage = window.localStorage;
                 if (item.isVisited) {
                     item.isVisited = false;
-                    item.supNum -= 1;
                     if (item.commentId) {
                         window.localStorage.removeItem('msgMarkRid' + item.rId);
                     } else {
@@ -249,7 +248,6 @@ define('comp/msg', function(require, exports, module) {
                     // 请求接口
                 } else {
                     item.isVisited = true;
-                    item.supNum += 1;
                     if (item.commentId) {
                         bool = window.localStorage['msgMarkRid' + item.rId] == item.rId;
                     } else {
@@ -267,6 +265,7 @@ define('comp/msg', function(require, exports, module) {
                         storage.setItem('msgMarkId' + item.id, item.id);
                     }
                 }
+                item.isVisted ? item.supNum += 1 : item.supNum -= 1;
                 // 请求接口，修改点赞信息
                 if (this.clickFlag) {
                     this.clickFlag = 0;

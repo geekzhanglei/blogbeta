@@ -19,7 +19,10 @@ define('comp/admin/comments', function(require, exports, module) {
 
     var data = {
         items: [],
+        selectedPage: '1',
+        flag: 1,
         // 分页数据
+        showPages: true,
         pagesize: 4,
         pagingData: {
             total: 5,
@@ -113,6 +116,32 @@ define('comp/admin/comments', function(require, exports, module) {
                         _this.requestArticle(targetPage);
                     }
                 });
+            },
+            changeStatus: function() {
+                if (this.selectedPage == 1) {
+                    this.pagesize = 5;
+                    this.showPages = true;
+                } else {
+                    this.pagesize = 9999;
+                    this.showPages = false;
+                }
+                this.requestArticle(1);
+            },
+            changePageNum: function(e) {
+                var _this = this;
+                this.pagesize = e.target.value;
+                if (!this.pagesize) {
+                    return;
+                }
+                if (this.flag) {
+                    console.log('输出')
+                    this.flag = 0;
+                    setTimeout(function() {
+                        _this.flag = 1;
+                        console.log('延迟半秒')
+                    }, 500);
+                    this.requestArticle(1);
+                }
             },
             init: function() {
                 this.requestArticle(1);
