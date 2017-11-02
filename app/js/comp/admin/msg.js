@@ -75,6 +75,10 @@ define('comp/admin/msg', function(require, exports, module) {
             },
             // 删除留言
             deleteAnswer: function(index, id) {
+                if (!window.localStorage.token) {
+                    alert('游客无权操作');
+                    return;
+                }
                 // 页面先消失
                 this.items.splice(index, 1);
                 // 再请求删除留言接口
