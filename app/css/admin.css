@@ -6,6 +6,9 @@
     padding: 2.5rem 4rem;
     overflow: auto;
 }
+form {
+    margin:1.5rem 0;
+}
 /* 编辑文章 */
 .editor-toolbar,.CodeMirror {
     font-size: 1.4rem !important;
@@ -302,6 +305,25 @@
     float: right;
 }
 /* 评论管理 */
+.comments-table thead th {
+    cursor: pointer;
+}
+.comments-table thead th:last-child {
+    cursor: auto;
+}
+.com-table thead th:last-child {
+    cursor: pointer;
+}
+.comments-table thead .info th:hover {
+    background-color:#c9e1ec;
+    border-radius:5px;
+}
+.comments-table thead .info th:last-child:hover {
+    background-color:#d9edf7;
+}
+.com-table thead .info th:last-child:hover {
+    background-color:#c9e1ec;
+}
 .comments-table thead th:first-child {
     width:7%;
 }
@@ -577,6 +599,4 @@
 .admin-options {
     padding:0.5rem 0;
 }
-.admin-options-wrap form {
-    margin:1.5rem 0;
-}
+

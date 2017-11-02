@@ -29,7 +29,8 @@ define('comp/admin/msg', function(require, exports, module) {
             pages: [],
             page: 1,
             page_total: 5
-        }
+        },
+        bool: false
     };
 
     var comp = Vue.component('blog-msg', {
@@ -136,6 +137,28 @@ define('comp/admin/msg', function(require, exports, module) {
                     }, 500);
                     this.reqMsgData(1);
                 }
+            },
+            // 排序
+            sort: function(e) {
+                console.log(e);
+                console.log(e.target)
+                if (!e.target.id) {
+                    return;
+                }
+                this.bool = !this.bool;
+                this.sortByKey(this.items, e.target.id, this.bool);
+            },
+            sortByKey: function(array, key, bool) {
+                return array.sort(function(a, b) {
+                    var x = a[key];
+                    var y = b[key];
+                    // NaN唯一不和自身严格相等
+                    if (Number(x) === Number(x)) {
+                        x = Number(x);
+                        y = Number(y);
+                    }
+                    return bool ? x > y : x < y;
+                });
             },
             init: function() {
                 this.reqMsgData(1);

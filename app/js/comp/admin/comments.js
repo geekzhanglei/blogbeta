@@ -21,6 +21,7 @@ define('comp/admin/comments', function(require, exports, module) {
         items: [],
         selectedPage: '1',
         flag: 1,
+        bool: false,
         // 分页数据
         showPages: true,
         pagesize: 4,
@@ -142,6 +143,28 @@ define('comp/admin/comments', function(require, exports, module) {
                     }, 500);
                     this.requestArticle(1);
                 }
+            },
+            // 排序
+            sort: function(e) {
+                console.log(e);
+                console.log(e.target)
+                if (!e.target.id) {
+                    return;
+                }
+                this.bool = !this.bool;
+                this.sortByKey(this.items, e.target.id, this.bool);
+            },
+            sortByKey: function(array, key, bool) {
+                return array.sort(function(a, b) {
+                    var x = a[key];
+                    var y = b[key];
+                    // NaN唯一不和自身严格相等
+                    if (Number(x) === Number(x)) {
+                        x = Number(x);
+                        y = Number(y);
+                    }
+                    return bool ? x > y : x < y;
+                });
             },
             init: function() {
                 this.requestArticle(1);
