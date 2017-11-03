@@ -134,7 +134,7 @@ form {
 }
 
 .admin-sidebar li {
-    overflow: hidden;
+    /* overflow: hidden; */
     height: 5.6rem;
     line-height: 5.6rem;
     font-size: 1.4rem;
@@ -242,7 +242,10 @@ form {
 .router-link-active {
     background-color: #3c444f;
 }
-
+.admin-sidebar .admin-sidebar-inner-li {
+    line-height: 4rem;
+    height: 4rem;
+}
 
 /*删除文章组件  */
 .ad-admin-manage-wrap {
