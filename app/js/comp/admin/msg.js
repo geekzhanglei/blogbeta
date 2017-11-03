@@ -19,6 +19,7 @@ define('comp/admin/msg', function(require, exports, module) {
 
     var data = {
         items: [],
+        list: [],
         selectedPage: '1',
         pagesize: 5,
         flag: 1,
@@ -59,10 +60,14 @@ define('comp/admin/msg', function(require, exports, module) {
                     success: function(res) {
                         var flag = res.result.status;
                         if (flag) {
-                            _this.items = res.result.data;
-                            _this.items.forEach(function(item) {
+                            _this.list = res.result.data;
+                            _this.list.forEach(function(item) {
                                 _this.$set(item, "showMesg", false);
                             })
+                            console.log(_this.list)
+                            // 转换数据中所有unix时间戳
+                            _this.transferTime(_this.list);
+                            _this.items = _this.list;
                             // 分页初始化
                             _this.initPage(res.result);
                         } else {
@@ -91,10 +96,6 @@ define('comp/admin/msg', function(require, exports, module) {
                         console.log(res.result.data);
                     }
                 });
-            },
-            // 时间戳转换
-            transferTime: function(unixTime) {
-                return atom.transfer(unixTime);
             },
             initPage: function(data) {
                 var _this = this;
@@ -138,6 +139,19 @@ define('comp/admin/msg', function(require, exports, module) {
                     this.reqMsgData(1);
                 }
             },
+            transferTime: function(obj) {
+                var _this = this;
+                obj.forEach(function(e, i, arr) {
+                    for (i in e) {
+                        if (i == "createTime") {
+                            e[i] = atom.transfer(e[i]);
+                        }
+                        if (i == "reply") {
+                            _this.transferTime(e[i]);
+                        }
+                    }
+                }, this);
+            },
             // 排序
             sort: function(e) {
                 console.log(e);
@@ -159,6 +173,49 @@ define('comp/admin/msg', function(require, exports, module) {
                     }
                     return bool ? x > y : x < y;
                 });
+            },
+            search: function(e) {
+                var searchBool, inValue = e.target.value,
+                    _this = this;
+                var tempObj = this.list;
+                this.items = tempObj.filter(function(currentValue, index, arr) {
+                    return _this.traversalObj(currentValue, inValue);
+                });
+            },
+            traversalObj: function(curValue, inValue) {
+                var i, j, k, tostr, _this = this;
+                for (i in curValue) {
+                    if (curValue.hasOwnProperty(i)) {
+                        switch (i) {
+                            case "reply":
+                                for (j in curValue[i]) {
+                                    for (k in curValue[i][j]) {
+                                        switch (k) {
+                                            case "replyType":
+                                                break;
+                                            default:
+                                                tostr = curValue[i][j][k].toString();
+                                                if (tostr.indexOf(inValue) != -1) {
+                                                    console.log(tostr)
+                                                    return true;
+                                                }
+                                                break;
+                                        }
+                                    }
+                                }
+                                break;
+                            case "showMesg":
+                                break;
+                            default:
+                                tostr = curValue[i].toString();
+                                if (tostr.indexOf(inValue) != -1) {
+                                    return true;
+                                }
+                                break;
+                        }
+                    }
+                }
+
             },
             init: function() {
                 this.reqMsgData(1);

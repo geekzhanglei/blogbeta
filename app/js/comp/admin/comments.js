@@ -18,7 +18,11 @@ define('comp/admin/comments', function(require, exports, module) {
     Vue.component('paging', page_tpl);
 
     var data = {
+        // 展示层
         items: [],
+        // 中间数据层
+        list: [],
+        // 交互
         selectedPage: '1',
         flag: 1,
         bool: false,
@@ -84,10 +88,13 @@ define('comp/admin/comments', function(require, exports, module) {
                     },
                     success: function(res) {
                         if (res.result.status) {
-                            _this.items = res.result.data;
-                            _this.items.forEach(function(item) {
+                            _this.list = res.result.data;
+                            _this.list.forEach(function(item) {
                                 _this.$set(item, "showComments", false);
                             })
+                            // 转换数据中所有unix时间戳
+                            _this.transferTime(_this.list);
+                            _this.items = _this.list;
                             // 分页初始化
                             _this.initPage(res.result);
                         } else {
@@ -99,8 +106,21 @@ define('comp/admin/comments', function(require, exports, module) {
                     }
                 })
             },
-            transferTime: function(unix) {
-                return atom.transfer(unix);
+            transferTime: function(obj) {
+                var _this = this;
+                obj.forEach(function(e, i, arr) {
+                    for (i in e) {
+                        if (i == "created_at") {
+                            e[i] = atom.transfer(e[i]);
+                        }
+                        if (i == "create_time") {
+                            e[i] = atom.transfer(e[i]);
+                        }
+                        if (i == "marks") {
+                            _this.transferTime(e[i]);
+                        }
+                    }
+                }, this);
             },
             initPage: function(data) {
                 var _this = this;
@@ -165,6 +185,51 @@ define('comp/admin/comments', function(require, exports, module) {
                     }
                     return bool ? x > y : x < y;
                 });
+            },
+            search: function(e) {
+                var searchBool, inValue = e.target.value,
+                    _this = this;
+                var tempObj = this.list;
+                this.items = tempObj.filter(function(currentValue, index, arr) {
+                    return _this.traversalObj(currentValue, inValue);
+                });
+            },
+            traversalObj: function(curValue, inValue) {
+                var i, j, k, tostr, _this = this;
+                for (i in curValue) {
+                    if (curValue.hasOwnProperty(i)) {
+                        switch (i) {
+                            case "marks":
+                                for (j in curValue[i]) {
+                                    for (k in curValue[i][j]) {
+                                        switch (k) {
+                                            case "website":
+                                            case "status":
+                                            case "email":
+                                                break;
+                                            default:
+                                                tostr = curValue[i][j][k].toString();
+                                                if (tostr.indexOf(inValue) != -1) {
+                                                    console.log(tostr)
+                                                    return true;
+                                                }
+                                                break;
+                                        }
+                                    }
+                                }
+                                break;
+                            case "showComments":
+                                break;
+                            default:
+                                tostr = curValue[i].toString();
+                                if (tostr.indexOf(inValue) != -1) {
+                                    return true;
+                                }
+                                break;
+                        }
+                    }
+                }
+
             },
             init: function() {
                 this.requestArticle(1);
