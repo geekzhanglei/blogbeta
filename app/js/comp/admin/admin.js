@@ -18,7 +18,8 @@ define('comp/admin/admin', function(require, exports, module) {
     var data = {
         isCollapse: true,
         nickname: '管理员',
-        imgsrc: '../img/avatar.png'
+        imgsrc: '../img/avatar.png',
+        articleAdm: false
     };
 
     var comp = Vue.component('blog-admin', {
@@ -27,6 +28,9 @@ define('comp/admin/admin', function(require, exports, module) {
             return data;
         },
         methods: {
+            toggleAticleAdm: function() {
+                this.articleAdm = !this.articleAdm;
+            },
             // 收起展开侧边栏
             isSidebar: function() {
                 if (this.isCollapse) {
@@ -68,7 +72,7 @@ define('comp/admin/admin', function(require, exports, module) {
             // 跳转到文章发布页
             if (router.currentRoute.path === "/admin") {
                 router.replace({
-                    path: '/admin/release'
+                    path: '/admin/info'
                 });
             }
         }

@@ -64,7 +64,6 @@ define('comp/admin/msg', function(require, exports, module) {
                             _this.list.forEach(function(item) {
                                 _this.$set(item, "showMesg", false);
                             })
-                            console.log(_this.list)
                             // 转换数据中所有unix时间戳
                             _this.transferTime(_this.list);
                             _this.items = _this.list;

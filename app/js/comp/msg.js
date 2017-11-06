@@ -42,7 +42,8 @@ define('comp/msg', function(require, exports, module) {
             pages: [1],
             page: 1,
             page_total: 1
-        }
+        },
+        clickFlag: 1
     };
 
     var comp = Vue.component('blog-msg', {
@@ -115,12 +116,6 @@ define('comp/msg', function(require, exports, module) {
                         var flag = res.result.status;
                         if (flag) {
                             _this.list = res.result.data;
-                            /* 没有后台接口时，本地模拟点赞设计，待后台接口 */
-                            _this.list.forEach(function(item) {
-                                _this.$set(item, "supFlag", false);
-                                _this.$set(item, "supNum", 0);
-                            })
-                            // 回复的赞接口暂时不模拟
                             _this.pagingData.total = res.result.rows;
                             _this.pagingData.page = e;
                             _this.showPages = true;
@@ -237,7 +232,11 @@ define('comp/msg', function(require, exports, module) {
             support: function(item) {
                 var _this = this,
                     bool = false,
-                    storage = window.localStorage;
+                    storage = window.localStorage,
+                    id = item.id || item.rId,
+                    category;
+                // 判断点击是评论1还是回复2
+                item.id ? typeid = 1 : typeid = 2;
                 if (item.isVisited) {
                     item.isVisited = false;
                     if (item.commentId) {
@@ -245,19 +244,18 @@ define('comp/msg', function(require, exports, module) {
                     } else {
                         window.localStorage.removeItem('msgMarkId' + item.id);
                     }
-                    // 请求接口
                 } else {
                     item.isVisited = true;
-                    if (item.commentId) {
-                        bool = window.localStorage['msgMarkRid' + item.rId] == item.rId;
-                    } else {
-                        bool = item.id && (window.localStorage['msgMarkId' + item.id] == item.id);
-                    }
-                    // 每个游客只能点击一次，localstorage实现
-                    if (bool) {
-                        console.log("不允许重复点赞");
-                        return;
-                    }
+                    // if (item.commentId) {
+                    //     bool = window.localStorage['msgMarkRid' + item.rId] == item.rId;
+                    // } else {
+                    //     bool = item.id && (window.localStorage['msgMarkId' + item.id] == item.id);
+                    // }
+                    // // 每个游客只能点击一次，localstorage实现
+                    // if (bool) {
+                    //     console.log("不允许重复点赞");
+                    //     return;
+                    // }
                     // 根据commentId判断是回复的回复还是评论的回复
                     if (item.commentId) {
                         storage.setItem('msgMarkRid' + item.rId, item.rId);
@@ -265,13 +263,26 @@ define('comp/msg', function(require, exports, module) {
                         storage.setItem('msgMarkId' + item.id, item.id);
                     }
                 }
-                item.isVisted ? item.supNum += 1 : item.supNum -= 1;
+                item.agrees = Number(item.agrees);
+                item.isVisited ? item.agrees += 1 : item.agrees -= 1;
+                item.isVisited ? category = 1 : category = 2;
+
                 // 请求接口，修改点赞信息
                 if (this.clickFlag) {
                     this.clickFlag = 0;
                     // 请求接口
-                    console.log('请求接口' + item.supNum);
-
+                    console.log('赞数为：' + item.agrees);
+                    $.ajax({
+                        url: 'http://blog.feroad.com/agree/' + id,
+                        data: {
+                            type: typeid,
+                            category: category
+                        },
+                        dataType: 'json',
+                        success: function(res) {
+                            console.log(res.result.data);
+                        }
+                    })
                     var tId = setTimeout(function() {
                         _this.clickFlag = 1;
                     }, 1000);

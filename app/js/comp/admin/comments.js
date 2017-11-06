@@ -155,7 +155,6 @@ define('comp/admin/comments', function(require, exports, module) {
                     return;
                 }
                 if (this.flag) {
-                    console.log('输出')
                     this.flag = 0;
                     setTimeout(function() {
                         _this.flag = 1;
@@ -166,8 +165,6 @@ define('comp/admin/comments', function(require, exports, module) {
             },
             // 排序
             sort: function(e) {
-                console.log(e);
-                console.log(e.target)
                 if (!e.target.id) {
                     return;
                 }
