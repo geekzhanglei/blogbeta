@@ -198,28 +198,36 @@ define('comp/article', function(require, exports, module) {
             support: function(item) {
                 var _this = this,
                     bool = false,
-                    storage = window.localStorage;
+                    storage = window.localStorage,
+                    category;
 
                 if (item.isVisited) {
                     item.isVisited = false;
-                    storage.removeItem('article_id');
-                    storage.removeItem('comment_id');
+                    storage.removeItem('comment_id' + item.id);
                 } else {
                     item.isVisited = true;
-                    bool = (item.article_id == storage.article_id) && (item.id == storage.comment_id);
-                    if (bool) {
-                        return;
-                    }
-                    storage.setItem('article_id', item.article_id);
-                    storage.setItem('comment_id', item.id);
+                    storage.setItem('article_id' + item.article_id, item.article_id);
+                    storage.setItem('comment_id' + item.id, item.id);
                 }
-                item.isVisited ? item.supNum += 1 : item.supNum -= 1;
 
-                // 请求接口，修改点赞信息
+                item.agrees = Number(item.agrees)
+                item.isVisited ? item.agrees += 1 : item.agrees -= 1;
+                item.isVisited ? category = 1 : category = 2;
+
+                // 请求接口category1点赞，2取消
                 if (this.clickFlag) {
                     this.clickFlag = 0;
                     // 请求接口
-                    console.log('请求接口');
+                    $.ajax({
+                        url: 'http://blog.feroad.com/article/agreeForArticleMarks/' + item.id,
+                        data: {
+                            category: category
+                        },
+                        dataType: 'json',
+                        success: function(res) {
+                            console.log(res.result.data);
+                        }
+                    });
                     setTimeout(function() {
                         _this.clickFlag = 1;
                     }, 1000);
@@ -227,7 +235,8 @@ define('comp/article', function(require, exports, module) {
             },
             init: function(_data) {
                 var _this = this,
-                    comLen = _data.comments.length;
+                    comLen = _data.comments.length,
+                    bool;
 
                 this.comment.id = _data.id;
                 this.title = _data.title;
@@ -237,14 +246,13 @@ define('comp/article', function(require, exports, module) {
                 this.intro = _data.introduction;
                 this.comments = _data.comments;
 
-                /* 没有后台接口时，本地模拟点赞设计，待后台接口 */
                 this.comments.forEach(function(item) {
-                    _this.$set(item, "supFlag", false);
-                    _this.$set(item, "supNum", 0);
                     _this.$set(item, "isVisited", false);
                 });
                 this.comments.forEach(function(element) {
-                    if (element.id == window.localStorage.comment_id) {
+                    bool = element.id == window.localStorage['comment_id' + element.id]
+                    bool = bool && (element.article_id == window.localStorage['article_id' + element.article_id]);
+                    if (bool) {
                         _this.$set(element, 'isVisited', true);
                     }
                 }, this);

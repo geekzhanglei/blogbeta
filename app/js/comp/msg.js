@@ -168,7 +168,8 @@ define('comp/msg', function(require, exports, module) {
                         'content': item.replyCont,
                         'comment_id': id,
                         'reply_id': id,
-                        'reply_type': 1
+                        'reply_type': 1,
+                        'reply_username': item.userName
                     };
                 }
                 $.ajax({
@@ -246,16 +247,6 @@ define('comp/msg', function(require, exports, module) {
                     }
                 } else {
                     item.isVisited = true;
-                    // if (item.commentId) {
-                    //     bool = window.localStorage['msgMarkRid' + item.rId] == item.rId;
-                    // } else {
-                    //     bool = item.id && (window.localStorage['msgMarkId' + item.id] == item.id);
-                    // }
-                    // // 每个游客只能点击一次，localstorage实现
-                    // if (bool) {
-                    //     console.log("不允许重复点赞");
-                    //     return;
-                    // }
                     // 根据commentId判断是回复的回复还是评论的回复
                     if (item.commentId) {
                         storage.setItem('msgMarkRid' + item.rId, item.rId);
@@ -271,7 +262,6 @@ define('comp/msg', function(require, exports, module) {
                 if (this.clickFlag) {
                     this.clickFlag = 0;
                     // 请求接口
-                    console.log('赞数为：' + item.agrees);
                     $.ajax({
                         url: 'http://blog.feroad.com/agree/' + id,
                         data: {
@@ -332,8 +322,6 @@ define('comp/msg', function(require, exports, module) {
                             }
                         }
                     }
-
-                    // Vue.set(this.list[i].id)
                 }
                 // 获取分页组件数据
                 this.pagingData = handlePage({
