@@ -81,15 +81,23 @@ define('comp/admin/info', function(require, exports, module) {
                     this.nickname = this.inputName;
                     // 请求头像接口
                     // xhr2标准实现的FormData接口通过ajax上传二进制文件信息
-                    var formdata = new FormData(this.file);
+                    var formdata = new FormData();
                     var ajax = new XMLHttpRequest();
+                    formdata.append('headImg', this.file);
                     formdata.append('nickname', this.nickname);
-                    ajax.open('POST', 'url', true);
+                    formdata.append('token', window.localStorage.token);
+
+                    ajax.open('POST', 'http://blog.feroad.com/admin/modityAdministerInfo', true);
                     ajax.send(formdata);
-                    if (ajax.status == 200) {
-                        // 预览放在这里
-                    } else {
-                        console.log(ajax.responseText);
+                    ajax.onreadystatechange = function(res) {
+                        if (ajax.readyState == 4) {
+                            if (ajax.status == 200) {
+                                // 预览放在这里
+                                console.log(JSON.parse(ajax.responseText).result.data);
+                            } else {
+                                console.log(JSON.parse(ajax.responseText).result.data);
+                            }
+                        }
                     }
                     // 更新个人信息到页眉右上角
                     bus.$emit('info', this.nickname, this.imgsrc);
@@ -185,7 +193,13 @@ define('comp/admin/info', function(require, exports, module) {
                 });
             }
         },
-        created: function() {}
+        created: function() {
+            var _this = this;
+            bus.$on("downloadInfo", function(res) {
+                _this.nickname = res.name;
+                _this.imgsrc = res.img;
+            })
+        }
     });
     return comp;
 });

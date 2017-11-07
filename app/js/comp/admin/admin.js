@@ -39,6 +39,32 @@ define('comp/admin/admin', function(require, exports, module) {
                     this.isCollapse = true;
                 }
             },
+            getInfo: function() {
+                var _this = this,
+                    _info = {
+                        name: this.nickname,
+                        img: this.imgsrc
+                    };
+                $.ajax({
+                    url: 'http://blog.feroad.com/admin/getAdministerInfo',
+                    dataType: 'json',
+                    success: function(res) {
+                        var data = res.result.data;
+                        if (res.result.status == 1) {
+                            _this.nickname = data.nickname;
+                            _this.imgsrc = data.head_img;
+                            _info.name = data.nickname;
+                            _info.img = data.head_img;
+                            bus.$emit('downloadInfo', _info);
+                        }
+                        console.log(res);
+                    },
+                    error: function(res) {
+                        console.log(res);
+                    }
+
+                })
+            },
             loginout: function() {
                 if (!window.localStorage.token) {
                     alert('游客无权操作');
@@ -66,9 +92,13 @@ define('comp/admin/admin', function(require, exports, module) {
                         console.log('接口请求失败');
                     }
                 });
+            },
+            init: function() {
+                this.getInfo();
             }
         },
         mounted: function() {
+            this.init();
             // 跳转到文章发布页
             if (router.currentRoute.path === "/admin") {
                 router.replace({

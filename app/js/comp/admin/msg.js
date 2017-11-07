@@ -90,6 +90,9 @@ define('comp/admin/msg', function(require, exports, module) {
                 $.ajax({
                     url: 'http://blog.feroad.com/delete/' + id,
                     type: 'GET',
+                    data: {
+                        token: window.localStorage.token
+                    },
                     dataType: 'json',
                     success: function(res) {
                         console.log(res.result.data);
