@@ -86,7 +86,7 @@ define('comp/admin/info', function(require, exports, module) {
                     formdata.append('headImg', this.file);
                     formdata.append('nickname', this.nickname);
                     formdata.append('token', window.localStorage.token);
-
+                    console.log(formdata.get('headImg'))
                     ajax.open('POST', 'http://blog.feroad.com/admin/modityAdministerInfo', true);
                     ajax.send(formdata);
                     ajax.onreadystatechange = function(res) {
