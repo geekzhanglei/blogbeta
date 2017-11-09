@@ -48,7 +48,7 @@ define('comp/admin/info', function(require, exports, module) {
             },
             countdownJump: function() {
                 console.log(typeof this.countdown);
-
+                console.log('测试')
                 if (!this.countdown) {
                     this.countdown = 5;
                     this.loginout();
@@ -143,15 +143,40 @@ define('comp/admin/info', function(require, exports, module) {
                 }
             },
             savePswd: function() {
+                var _this = this;
                 var bool = this.errTip.one && this.errTip.two && this.errTip.three;
                 if (!bool) {
-                    // 发送原密码和新密码，原密码是否正确，不正确给提示
-                    if (true) {
-                        this.showModifyPwOK = true;
-                        this.countStart(this.countdown);
-                    } else {
-                        this.errTip.pswdErr = true;
+                    if (_this.oldPswd == _this.newPswd) {
+                        alert('新密码不能与旧密码相同')
                     }
+                    // 发送原密码和新密码，原密码是否正确，不正确给提示
+                    $.ajax({
+                        url: 'http://blog.feroad.com/admin/modifyPassword',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: {
+                            token: window.localStorage.token,
+                            password: Base64.encode(_this.oldPswd),
+                            newpassword: Base64.encode(_this.newPswd)
+                        },
+                        success: function(res) {
+                            if (res.result.status == 2) {
+                                _this.errTip.pswdErr = true;
+
+                                console.log(res.result.data)
+                            } else if (res.result.status == 1) {
+                                console.log(res.result.data)
+                                _this.oldPswd = "";
+                                _this.newPswd = "";
+                                _this.confirmPswd = "";
+                                _this.showModifyPwOK = true;
+                                _this.countStart(_this.countdown);
+                            } else {
+                                _this.errTip.pswdErr = true;
+                                console.log(res.result.data)
+                            }
+                        }
+                    })
                 }
             },
             countStart: function(n) {
@@ -160,7 +185,10 @@ define('comp/admin/info', function(require, exports, module) {
                 for (var i = 1; i <= n; i++) {
                     timeId = setTimeout(function() {
                         _this.countdown -= 1;
-                        console.log(this.countdown);
+                        console.log(_this.countdown);
+                        if (_this.countdown == 0) {
+                            _this.loginout();
+                        }
                     }, 1000 * i);
                 }
             },
@@ -195,6 +223,8 @@ define('comp/admin/info', function(require, exports, module) {
         },
         created: function() {
             var _this = this;
+            _this.showModifyPwOK = false;
+            _this.visitedNum = 1;
             bus.$on("downloadInfo", function(res) {
                 _this.nickname = res.name;
                 _this.imgsrc = res.img;

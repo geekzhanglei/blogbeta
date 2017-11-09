@@ -108,19 +108,21 @@ define('comp/admin/comments', function(require, exports, module) {
             },
             transferTime: function(obj) {
                 var _this = this;
-                obj.forEach(function(e, i, arr) {
-                    for (i in e) {
-                        if (i == "created_at") {
-                            e[i] = atom.transfer(e[i]);
+                for (var i = 0; i < obj.length; i++) {
+                    for (var j in obj[i]) {
+                        if (j == "created_at") {
+                            obj[i][j] = atom.transfer(obj[i][j]);
                         }
-                        if (i == "create_time") {
-                            e[i] = atom.transfer(e[i]);
+                        if (j == "create_time") {
+                            obj[i][j] = atom.transfer(obj[i][j]);
                         }
-                        if (i == "marks") {
-                            _this.transferTime(e[i]);
+                        if (j == "marks") {
+                            if (obj[i][j]) {
+                                _this.transferTime(obj[i][j]);
+                            }
                         }
                     }
-                }, this);
+                }
             },
             initPage: function(data) {
                 var _this = this;

@@ -50,7 +50,7 @@ define('comp/admin/release', function(require, exports, module) {
                     dataType: 'json',
                     data: {
                         token: window.localStorage.token,
-                        username: _this.username,
+                        // username: _this.username,
                         title: _this.title,
                         introduction: _this.intro,
                         content: contStr
