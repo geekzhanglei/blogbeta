@@ -121,6 +121,7 @@ define('comp/admin/comments', function(require, exports, module) {
                                 _this.transferTime(obj[i][j]);
                             }
                         }
+
                     }
                 }
             },
