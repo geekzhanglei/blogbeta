@@ -602,4 +602,14 @@ form {
 .admin-options {
     padding:0.5rem 0;
 }
-
+.admin-options .save-config-err {
+    color: #fd5f39;
+    margin-left:5rem;
+    background: url(../img/err.png) 0 center no-repeat;
+    background-size: 1.4rem;
+    padding-left: 2rem;
+}
+.admin-options .save-config-ok {
+    color:rgb(39, 187, 25);
+    margin-left:5rem;
+}

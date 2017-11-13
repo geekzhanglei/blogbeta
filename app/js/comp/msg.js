@@ -32,9 +32,10 @@ define('comp/msg', function(require, exports, module) {
         //模态框关闭参数
         isActive: '',
         // 留言和回复的默认用户名
-        phcont: '土包子',
-        // 每页条数
-        pagesize: 4,
+        phcont: '默认值',
+        phReplyCont: '默认值',
+        // 每页默认条数
+        pagesize: 3,
         // 分页组件数据
         showPages: true,
         pagingData: {
@@ -110,7 +111,6 @@ define('comp/msg', function(require, exports, module) {
                     dataType: 'json',
                     data: {
                         curpage: e,
-                        perpage: _this.pagesize
                     },
                     success: function(res) {
                         var flag = res.result.status;
@@ -118,7 +118,10 @@ define('comp/msg', function(require, exports, module) {
                             _this.list = res.result.data;
                             _this.pagingData.total = res.result.rows;
                             _this.pagingData.page = e;
-                            _this.showPages = true;
+                            _this.showPages = res.result.isPagination;
+                            _this.phcont = res.result.defaultCommentName;
+                            _this.phReplyCont = res.result.defaultReplyName;
+                            _this.pagesize = res.result.perpage;
                             _this.showMsgCont = true;
                         } else {
                             _this.list = [];

@@ -45,7 +45,7 @@ define('template/msg', function(require, exports, module) {
                                         '<textarea class="form-control" rows="3" maxlength="200" v-model="item.replyCont"></textarea>',
                                         '<div class="replyWrap clearfix">',
                                             '<span>昵称：</span>',
-                                            '<input type="text" v-model="item.replyName" class="form-control"  maxlength="10" v-bind:placeholder="phcont">',
+                                            '<input type="text" v-model="item.replyName" class="form-control"  maxlength="10" v-bind:placeholder="phReplyCont">',
                                             '<button type="button" class="btn btn-default" v-on:click="addReply(item.id,item)">回复一下</button>',
                                             '<span class="replyErrTip">{{item.replyErr}}</span>',
                                         '</div>',

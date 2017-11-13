@@ -12,7 +12,7 @@ define('template/about', function(require, exports, module) {
             '<a class="aboutBgImg" href="javascript:;"><img src="img/aboutbg.gif"></img></a>',
             '<h2 id="intro">项目概述</h2>',
             '<p>这是一个为学习前后端技术而搭建的测试博客</p>',
-            '<p>当前技术栈：vue+jquery+bootstrap+php+mysql</p>',
+            '<p>当前技术栈：lithe(NodeJS/CommonJS规范)+vue+jquery+bootstrap+php+mysql</p>',
             '<p>前端：geekzl <a href="https://github.com/geekzhanglei/blogbeta">前端源码</a></p>',
             '<p>后端：大民哥</p>',
             '<p>联系方式:</p>',
