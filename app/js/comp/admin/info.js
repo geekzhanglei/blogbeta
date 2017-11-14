@@ -7,7 +7,6 @@
 define('comp/admin/info', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/info');
-    var $ = require('jquery');
     var router = require('mods/router');
     var atom = require('comp/util/atom');
     var bus = require('mods/bus');

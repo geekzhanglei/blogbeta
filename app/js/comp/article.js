@@ -6,7 +6,6 @@
 
 define('comp/article', function(require, exports, module) {
     var Vue = require('vue');
-    var $ = require('jquery');
     var tpl = require('template/article');
     var router = require('mods/router');
     var atom = require('comp/util/atom');
@@ -245,17 +244,18 @@ define('comp/article', function(require, exports, module) {
                 this.cont = _data.content;
                 this.intro = _data.introduction;
                 this.comments = _data.comments;
-
-                this.comments.forEach(function(item) {
-                    _this.$set(item, "isVisited", false);
-                });
-                this.comments.forEach(function(element) {
-                    bool = element.id == window.localStorage['comment_id' + element.id]
-                    bool = bool && (element.article_id == window.localStorage['article_id' + element.article_id]);
-                    if (bool) {
-                        _this.$set(element, 'isVisited', true);
-                    }
-                }, this);
+                if (this.comments[0]) {
+                    this.comments.forEach(function(item) {
+                        _this.$set(item, "isVisited", false);
+                    });
+                    this.comments.forEach(function(element) {
+                        bool = element.id == window.localStorage['comment_id' + element.id]
+                        bool = bool && (element.article_id == window.localStorage['article_id' + element.article_id]);
+                        if (bool) {
+                            _this.$set(element, 'isVisited', true);
+                        }
+                    }, this);
+                }
                 // 读取cookie填写评论内容
                 this.comment.email = this.getCookie("email");
                 this.comment.nickname = this.getCookie("nickname");

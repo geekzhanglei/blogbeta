@@ -19,8 +19,8 @@ define('conf/admin', function(require, exports, module) {
     // 常用选项组件
     require('comp/admin/option');
     // 引入bootstrap插件
-    // require('jquery');
-    // require('bootstrap');
+    window.$ = require('jquery');
+    require('bootstrap');
 
     // 初始化根实例
     new Vue({

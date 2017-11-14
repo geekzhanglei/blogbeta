@@ -7,7 +7,6 @@
 define('comp/admin/option', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/option');
-    var $ = require('jquery');
     var router = require('mods/router');
     var data = {
         selectedArtPage: 1,

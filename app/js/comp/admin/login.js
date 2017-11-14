@@ -7,7 +7,6 @@
 define('comp/admin/login', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/login');
-    var $ = require('jquery');
     var router = require('mods/router');
 
     var data = {

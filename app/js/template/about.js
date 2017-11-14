@@ -11,7 +11,7 @@ define('template/about', function(require, exports, module) {
         '<div class="container">',
             '<a class="aboutBgImg" href="javascript:;"><img src="img/aboutbg.gif"></img></a>',
             '<h2 id="intro">项目概述</h2>',
-            '<p>这是一个为学习前后端技术而搭建的测试博客</p>',
+            '<p>这是一个为学习和实践前后端技术而搭建的测试博客</p>',
             '<p>当前技术栈：lithe(NodeJS/CommonJS规范)+vue+jquery+bootstrap+php+mysql</p>',
             '<p>前端：geekzl <a href="https://github.com/geekzhanglei/blogbeta">前端源码</a></p>',
             '<p>后端：大民哥</p>',
@@ -20,7 +20,7 @@ define('template/about', function(require, exports, module) {
                 '<li>qq: <code>1103307205</code></li>',
                 '<li>电子邮箱: <code>1103307205@qq.com</code></li>',
             '</ul>',
-            '<strong>部分风格样式参考自互联网，侵删</strong>',
+            '<strong>部分风格样式参考自互联网，侵改</strong>',
         '</div>'
     ].join('');
     /* beautify ignore:end */

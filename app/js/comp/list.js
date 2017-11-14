@@ -6,7 +6,6 @@
 
 define('comp/list', function(require, exports, module) {
     var Vue = require('vue');
-    var $ = require('jquery');
     var tpl = require('template/list');
     var atom = require('comp/util/atom');
 

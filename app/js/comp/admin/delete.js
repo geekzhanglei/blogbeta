@@ -7,11 +7,11 @@
 define('comp/admin/delete', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/delete');
-    var $ = require('jquery');
     var router = require('mods/router');
     var atom = require('comp/util/atom');
 
     var data = {
+        deleteId: -1,
         items: []
     };
 
@@ -43,15 +43,25 @@ define('comp/admin/delete', function(require, exports, module) {
             transferTime: function(unixTime) {
                 return atom.transfer(unixTime);
             },
+            triggerModal: function(id) {
+                this.deleteId = id;
+                console.log('test id' + this.deleteId)
+            },
             // 删除文章
-            deleteArticle: function(id) {
+            deleteArticle: function() {
                 var _this = this;
                 if (!window.localStorage.token) {
                     alert('游客无权操作');
                     return;
                 }
+                // 模态框关闭方法，借jquery
+                $('#confirmTip').modal('hide');
+                if (this.id == -1) {
+                    console.log('删除终止，非法id');
+                    return;
+                }
                 $.ajax({
-                    url: 'http://blog.feroad.com/article/deleteArticleById/' + id,
+                    url: 'http://blog.feroad.com/article/deleteArticleById/' + _this.deleteId,
                     type: 'POST',
                     dataType: 'json',
                     data: {

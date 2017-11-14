@@ -18,7 +18,7 @@ define('conf/index', function(require, exports, module) {
     require('comp/common/footer');
 
     // 引入bootstrap插件
-    require('jquery');
+    window.$ = require('jquery');
     require('bootstrap');
 
     // 初始化根实例

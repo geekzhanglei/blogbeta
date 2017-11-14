@@ -7,7 +7,6 @@
 define('comp/admin/comments', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/comments');
-    var $ = require('jquery');
     var router = require('mods/router');
     var atom = require('comp/util/atom');
 

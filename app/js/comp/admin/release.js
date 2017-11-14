@@ -7,7 +7,6 @@
 define('comp/admin/release', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/release');
-    var $ = require('jquery');
     var router = require('mods/router');
     var simplemde;
 

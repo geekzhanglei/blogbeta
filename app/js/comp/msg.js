@@ -6,7 +6,6 @@
 
 define('comp/msg', function(require, exports, module) {
     var Vue = require('vue');
-    var $ = require('jquery');
     var tpl = require('template/msg');
 
     var atom = require('comp/util/atom');
