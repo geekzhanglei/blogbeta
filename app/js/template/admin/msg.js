@@ -13,7 +13,7 @@ define('template/admin/msg', function(require, exports, module) {
                         '<span><i class="glyphicon glyphicon-pencil"></i> 评论管理-删除文章评论</span>',
                     '</div>',
                     '<div class="tips">',
-                        '<span><i class="glyphicon glyphicon-th-large"></i> 选项</span>',
+                        '<span><i class="glyphicon glyphicon-th-large"></i> 列表展示选项</span>',
                     '</div>',
                     '<form class="form-inline clearfix">',
                         '<div class="form-group col-sm-6">',

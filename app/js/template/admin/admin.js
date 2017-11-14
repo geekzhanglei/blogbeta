@@ -13,7 +13,7 @@ define('template/admin/admin', function(require, exports, module) {
                 '<div class="ad-title"><a href="http://test.feroad.com">博客后台</a></div>',
                 '<div class="ad-info">',
                     '<div class="display-menu">',
-                        '<img :src="imgsrc" alt="avatar">',
+                        '<img :src="imgsrc" @error="avatarErrEvent">',
                         '<span class="avatarName">{{nickname}}</span>',
                     '</div>',
                     '<div class="admsg">',

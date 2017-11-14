@@ -93,6 +93,10 @@ define('comp/admin/admin', function(require, exports, module) {
                     }
                 });
             },
+            avatarErrEvent: function(e) {
+                console.log("图片加载失败处理")
+                e.target.src = this.imgsrc;
+            },
             init: function() {
                 this.getInfo();
             }

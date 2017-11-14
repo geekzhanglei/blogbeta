@@ -28,7 +28,7 @@ define('comp/admin/comments', function(require, exports, module) {
         bool: false,
         // 分页数据
         showPages: true,
-        pagesize: 4,
+        pagesize: 5,
         pagingData: {
             total: 5,
             pages: [],
