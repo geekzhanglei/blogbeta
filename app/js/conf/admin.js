@@ -31,6 +31,14 @@ define('conf/admin', function(require, exports, module) {
                     path: '/login'
                 });
             }
+            // 离开、返回当前页title提示
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState == "hidden") {
+                    document.title = "404 not found";
+                } else {
+                    document.title = "欢迎回到管理后台";
+                }
+            })
         },
         router: router
     });

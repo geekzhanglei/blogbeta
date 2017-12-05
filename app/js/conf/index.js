@@ -24,6 +24,15 @@ define('conf/index', function(require, exports, module) {
     // 初始化根实例
     new Vue({
         el: '#blog',
-        router: router
+        router: router,
+        created: function() {
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState == "hidden") {
+                    document.title = "这里有bug，快看！";
+                } else {
+                    document.title = "欢迎回到博客";
+                }
+            })
+        }
     });
 });

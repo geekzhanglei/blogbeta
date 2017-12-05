@@ -22,7 +22,7 @@ define('template/admin/delete', function(require, exports, module) {
                     '</li>',
                 '</ul>',
                 // modal
-                '<div id="confirmTip" class="modal fade" tabindex="-1" role="dialog" ref="deleteModal">',
+                '<div id="confirmTip" class="modal fade" tabindex="-1" role="dialog">',
                     '<div class="modal-dialog modal-sm" role="document">',
                         '<div class="modal-content">',
                             '<div class="modal-header">',
