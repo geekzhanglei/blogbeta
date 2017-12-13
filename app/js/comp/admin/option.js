@@ -62,7 +62,7 @@ define('comp/admin/option', function(require, exports, module) {
                 var _this = this;
                 // 更新文章接口数据
                 $.ajax({
-                    url: 'http://blog.feroad.com/admin/setDefaultArticlePages',
+                    url: 'http://blogapi.feroad.com/admin/setDefaultArticlePages',
                     data: {
                         token: window.localStorage.token,
                         type: _this.selectedArtPage,
@@ -98,7 +98,7 @@ define('comp/admin/option', function(require, exports, module) {
                 }
                 // 更新留言板接口数据
                 $.ajax({
-                    url: 'http://blog.feroad.com/admin/setDefaultCommentInfos',
+                    url: 'http://blogapi.feroad.com/admin/setDefaultCommentInfos',
                     type: 'POST',
                     dataType: 'json',
                     data: {

@@ -40,7 +40,7 @@ define('comp/article', function(require, exports, module) {
             reqArticleDataApi: function(id) {
                 var _this = this;
                 $.ajax({
-                    url: 'http://blog.feroad.com/article/newGetArticleDetails/' + id,
+                    url: 'http://blogapi.feroad.com/article/newGetArticleDetails/' + id,
                     type: 'GET',
                     dataType: 'json',
                     success: function(res) {
@@ -73,7 +73,7 @@ define('comp/article', function(require, exports, module) {
                     }
                 }
                 $.ajax({
-                    url: 'http://blog.feroad.com/article/addMark',
+                    url: 'http://blogapi.feroad.com/article/addMark',
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -218,7 +218,7 @@ define('comp/article', function(require, exports, module) {
                     this.clickFlag = 0;
                     // 请求接口
                     $.ajax({
-                        url: 'http://blog.feroad.com/article/agreeForArticleMarks/' + item.id,
+                        url: 'http://blogapi.feroad.com/article/agreeForArticleMarks/' + item.id,
                         data: {
                             category: category
                         },

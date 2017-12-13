@@ -25,7 +25,7 @@ define('comp/admin/delete', function(require, exports, module) {
             reqArticleList: function(e) {
                 var _this = this;
                 // $.ajax({
-                //     url: 'http://blog.feroad.com/article/getArticleList',
+                //     url: 'http://blogapi.feroad.com/article/getArticleList',
                 //     type: 'GET',
                 //     dataType: 'json',
                 //     success: function(res) {
@@ -38,7 +38,7 @@ define('comp/admin/delete', function(require, exports, module) {
                 //         }
                 //     }
                 // });
-                fetch('http://blog.feroad.com/article/getArticleList')
+                fetch('http://blogapi.feroad.com/article/getArticleList')
                     .then(function(response) {
                         return response.json();
                     })
@@ -76,7 +76,7 @@ define('comp/admin/delete', function(require, exports, module) {
                     return;
                 }
                 $.ajax({
-                    url: 'http://blog.feroad.com/article/deleteArticleById/' + _this.deleteId,
+                    url: 'http://blogapi.feroad.com/article/deleteArticleById/' + _this.deleteId,
                     type: 'POST',
                     dataType: 'json',
                     data: {

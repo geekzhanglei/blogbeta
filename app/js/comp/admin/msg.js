@@ -9,6 +9,7 @@ define('comp/admin/msg', function(require, exports, module) {
     var tpl = require('template/admin/msg');
     var router = require('mods/router');
     var atom = require('comp/util/atom');
+    var axios = require('axios');
 
     // handlePage计算分页数据传递给pagingData，
     // pagingData给模板template中的子组件数据源datasource
@@ -48,34 +49,62 @@ define('comp/admin/msg', function(require, exports, module) {
             // 请求留言数据接口
             reqMsgData: function(e) {
                 var _this = this;
-                $.ajax({
-                    url: 'http://blog.feroad.com/pageForAdmin',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: {
+                axios.get('http://blogapi.feroad.com/pageForAdmin', {
+                    params: {
                         curpage: e,
                         perpage: _this.pagesize
                     },
-                    success: function(res) {
-                        var flag = res.result.status;
-                        if (flag) {
-                            _this.list = res.result.data;
-                            _this.list.forEach(function(item) {
-                                _this.$set(item, "showMesg", false);
-                            })
-                            // 转换数据中所有unix时间戳
-                            _this.transferTime(_this.list);
-                            _this.items = _this.list;
-                            // 分页初始化
-                            _this.initPage(res.result);
-                        } else {
-                            _this.list = [];
-                        }
-                    },
-                    error: function(e) {
-                        console.log("接口请求失败，错误码：" + e.status);
+                    responseType: 'json'
+                }).then(function(res) {
+                    console.log(res)
+                    var flag = res.data.result.status;
+                    if (flag) {
+                        _this.list = res.data.result.data;
+                        _this.list.forEach(function(item) {
+                            _this.$set(item, "showMesg", false);
+                        })
+                        // 转换数据中所有unix时间戳
+                        _this.transferTime(_this.list);
+                        _this.items = _this.list;
+                        // 分页初始化
+                        _this.initPage(res.data.result);
+                    } else {
+                        _this.list = [];
                     }
-                });
+                }).catch(function(e) {
+                    console.log('接口请求失败，错误码：' + e)
+                })
+                // $.ajax({
+                //     url: 'http://blogapi.feroad.com/pageForAdmin',
+                //     type: 'GET',
+                //     dataType: 'json',
+                // data: {
+                //         curpage: e,
+                //         perpage: _this.pagesize
+                //     },
+                //     success: function(res) {
+                //         // console.log(Axios)
+                //         console.log(axios)
+
+                //         var flag = res.result.status;
+                //         if (flag) {
+                //             _this.list = res.result.data;
+                //             _this.list.forEach(function(item) {
+                //                 _this.$set(item, "showMesg", false);
+                //             })
+                //             // 转换数据中所有unix时间戳
+                //             _this.transferTime(_this.list);
+                //             _this.items = _this.list;
+                //             // 分页初始化
+                //             _this.initPage(res.result);
+                //         } else {
+                //             _this.list = [];
+                //         }
+                //     },
+                //     error: function(e) {
+                //         console.log("接口请求失败，错误码：" + e.status);
+                //     }
+                // });
             },
             // 删除留言
             deleteAnswer: function(index, id) {
@@ -87,7 +116,7 @@ define('comp/admin/msg', function(require, exports, module) {
                 this.items.splice(index, 1);
                 // 再请求删除留言接口
                 $.ajax({
-                    url: 'http://blog.feroad.com/delete/' + id,
+                    url: 'http://blogapi.feroad.com/delete/' + id,
                     type: 'GET',
                     data: {
                         token: window.localStorage.token

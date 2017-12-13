@@ -13,7 +13,7 @@ define('template/list', function(require, exports, module) {
                 '<div class="row" v-for="item in items">',
                     '<div class="col-md-12">',
                         '<div class="articlelist">',
-                            '<h4><router-link :to=\'"/article/"+item.id\' class="article-l">{{item.title}}</router-link></h4>',
+                            '<h4><router-link :to="{name:\'articleid\',params:{id: item.id}}" class="article-l">{{item.title}}</router-link></h4>',
                             '<p v-html="item.introduction"></p>',
                             '<p class="time">{{transferTime(item.createTime)}}</p>',
                         '</div>',

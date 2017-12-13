@@ -27,7 +27,7 @@ module.exports = {
         // 代理服务器,使用代理需要中间件部分处理
         // proxy: {
         //     // 后端测试机
-        //     host: 'blog.feroad.com',
+        //     host: 'blogapi.feroad.com',
         //     port: 80
         // },
         // 路由规则

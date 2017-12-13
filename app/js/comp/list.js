@@ -38,7 +38,7 @@ define('comp/list', function(require, exports, module) {
             reqArticleDataApi: function(e) {
                 var _this = this;
                 $.ajax({
-                    url: 'http://blog.feroad.com/article/getArticleList',
+                    url: 'http://blogapi.feroad.com/article/getArticleList',
                     type: 'GET',
                     dataType: 'json',
                     data: {

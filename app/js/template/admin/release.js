@@ -9,14 +9,14 @@ define('template/admin/release', function(require, exports, module) {
     /* eslint-disable */
     var tpl = [
         '<div>',
-            '<div class="ad-editor-wrap">',
+            '<div class="admin-editor-wrap">',
                 '<div class="tips">',
                     '<span><i class="glyphicon glyphicon-edit"></i>  写文章-发表您的文章</span>',
                 '</div>',
-                '<div class="ad-header input-group-lg">',
+                '<div class="input-header input-group-lg">',
                     '<input type="text" class="input-h form-control" v-model="title" autofocus>',
                 '</div>',
-                '<div class="ad-editor"></div>',
+                '<div class="admin-editor"></div>',
             '</div>',
             '<textarea id="adminText" ref="adminText"></textarea>',
             '<button class="btn btn-default pull-right" @click="saveArticle()">确认发表</button>',

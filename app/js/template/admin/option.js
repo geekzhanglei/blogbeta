@@ -8,7 +8,7 @@ define('template/admin/option', function(require, exports, module) {
     /* beautify ignore:start */
     /* eslint-disable */
     var tpl = [
-        '<div class="ad-admin-manage-wrap admin-options-wrap">',
+        '<div class="admin-admin-manage-wrap admin-options-wrap">',
             '<div class="tips">',
                 '<span><i class="glyphicon glyphicon-th"></i> 常用选项-博客基本选项设置</span>',
             '</div>',

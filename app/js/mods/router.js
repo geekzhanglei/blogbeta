@@ -15,6 +15,7 @@ define('mods/router', function(require, exports, module) {
         // mode: 'history',
         routes: [{
             path: '/login',
+            name: 'login',
             components: {
                 login: {
                     template: '<blog-login></blog-login>'
@@ -22,6 +23,7 @@ define('mods/router', function(require, exports, module) {
             }
         }, {
             path: '/admin',
+            name: 'admin',
             components: {
                 admin: {
                     template: '<blog-admin></blog-admin>'
@@ -29,6 +31,7 @@ define('mods/router', function(require, exports, module) {
             },
             children: [{
                 path: '/admin/delete',
+                name: 'delete',
                 components: {
                     delete: {
                         template: '<blog-delete></blog-delete>'
@@ -36,6 +39,7 @@ define('mods/router', function(require, exports, module) {
                 }
             }, {
                 path: '/admin/release',
+                name: 'release',
                 components: {
                     release: {
                         template: '<blog-release></blog-release>'
@@ -43,6 +47,7 @@ define('mods/router', function(require, exports, module) {
                 }
             }, {
                 path: '/admin/comments',
+                name: 'comments',
                 components: {
                     comments: {
                         template: '<blog-comments></blog-comments>'
@@ -50,6 +55,7 @@ define('mods/router', function(require, exports, module) {
                 }
             }, {
                 path: '/admin/msg',
+                name: 'adminmsg',
                 components: {
                     msg: {
                         template: '<blog-msg></blog-msg>'
@@ -57,6 +63,7 @@ define('mods/router', function(require, exports, module) {
                 }
             }, {
                 path: '/admin/info',
+                name: 'info',
                 components: {
                     info: {
                         template: '<blog-info></blog-info>'
@@ -64,6 +71,7 @@ define('mods/router', function(require, exports, module) {
                 }
             }, {
                 path: '/admin/option',
+                name: 'option',
                 components: {
                     option: {
                         template: '<blog-option></blog-option>'
@@ -72,6 +80,7 @@ define('mods/router', function(require, exports, module) {
             }]
         }, {
             path: '/article',
+            name: 'article',
             components: {
                 list: {
                     template: '<blog-articlelist></blog-articlelist>'
@@ -80,6 +89,7 @@ define('mods/router', function(require, exports, module) {
         }, {
             // 文章详情
             path: '/article/:id',
+            name: 'articleid',
             components: {
                 article: {
                     template: '<blog-article></blog-article>'
@@ -87,6 +97,7 @@ define('mods/router', function(require, exports, module) {
             }
         }, {
             path: '/about',
+            name: 'about',
             components: {
                 about: {
                     template: '<blog-about></blog-about>'
@@ -94,6 +105,7 @@ define('mods/router', function(require, exports, module) {
             }
         }, {
             path: '/msg',
+            name: 'msg',
             components: {
                 msg: {
                     template: '<blog-msg></blog-msg>'

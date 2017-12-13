@@ -27,7 +27,7 @@ define('comp/admin/login', function(require, exports, module) {
                 if (this.loginname && this.loginpwd) {
                     this.isErr = false;
                     $.ajax({
-                        url: 'http://blog.feroad.com/admin/login',
+                        url: 'http://blogapi.feroad.com/admin/login',
                         type: 'POST',
                         dataType: 'json',
                         data: {
@@ -70,7 +70,7 @@ define('comp/admin/login', function(require, exports, module) {
                 //判断是否登陆,请求后端验证token
                 if (window.localStorage.token) {
                     $.ajax({
-                        url: 'http://blog.feroad.com/admin/isLogin',
+                        url: 'http://blogapi.feroad.com/admin/isLogin',
                         type: 'GET',
                         dataType: 'json',
                         data: {

@@ -86,7 +86,7 @@ define('comp/admin/info', function(require, exports, module) {
                     formdata.append('nickname', this.nickname);
                     formdata.append('token', window.localStorage.token);
                     console.log(formdata.get('headImg'))
-                    ajax.open('POST', 'http://blog.feroad.com/admin/modityAdministerInfo', true);
+                    ajax.open('POST', 'http://blogapi.feroad.com/admin/modityAdministerInfo', true);
                     ajax.send(formdata);
                     ajax.onreadystatechange = function(res) {
                         if (ajax.readyState == 4) {
@@ -150,7 +150,7 @@ define('comp/admin/info', function(require, exports, module) {
                     }
                     // 发送原密码和新密码，原密码是否正确，不正确给提示
                     $.ajax({
-                        url: 'http://blog.feroad.com/admin/modifyPassword',
+                        url: 'http://blogapi.feroad.com/admin/modifyPassword',
                         dataType: 'json',
                         type: 'POST',
                         data: {
@@ -198,7 +198,7 @@ define('comp/admin/info', function(require, exports, module) {
                 }
                 // 通知后台注销
                 $.ajax({
-                    url: 'http://blog.feroad.com/admin/loginout',
+                    url: 'http://blogapi.feroad.com/admin/loginout',
                     type: 'GET',
                     dataType: 'json',
                     data: {

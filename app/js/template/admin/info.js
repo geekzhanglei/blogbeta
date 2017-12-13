@@ -8,7 +8,7 @@ define('template/admin/info', function(require, exports, module) {
     /* beautify ignore:start */
     /* eslint-disable */
         var tpl = [
-                '<div class="ad-admin-manage-wrap">',
+                '<div class="admin-admin-manage-wrap">',
                     '<div class="tips">',
                         '<span><i class="glyphicon glyphicon-user"></i> 用户信息-修改管理员信息</span>',
                     '</div>',

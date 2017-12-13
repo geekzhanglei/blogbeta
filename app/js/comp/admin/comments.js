@@ -54,7 +54,7 @@ define('comp/admin/comments', function(require, exports, module) {
                     return;
                 }
                 $.ajax({
-                    url: "http://blog.feroad.com/article/deleteMark/" + cetId,
+                    url: "http://blogapi.feroad.com/article/deleteMark/" + cetId,
                     type: "POST",
                     dataType: "json",
                     data: {
@@ -77,7 +77,7 @@ define('comp/admin/comments', function(require, exports, module) {
             requestArticle: function(e) {
                 var _this = this;
                 $.ajax({
-                    url: "http://blog.feroad.com/article/getArticleListWithMark",
+                    url: "http://blogapi.feroad.com/article/getArticleListWithMark",
                     type: "POST",
                     dataType: "json",
                     data: {

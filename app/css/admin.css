@@ -21,19 +21,19 @@ form {
     background-color: #242f42;
 }
 
-.admin-header .ad-title {
+.admin-header .admin-title {
     float: left;
     text-align: center;
     width: 16%;
     min-width: 181px;
 }
-.admin-header .ad-title a {
+.admin-header .admin-title a {
     color:#fff;
 }
-.admin-header .ad-title a:hover {
+.admin-header .admin-title a:hover {
     text-decoration: none;
 }
-.admin-header .ad-info {
+.admin-header .admin-info {
     float: right;
     margin-right: 4rem;
     padding-right: 1rem;
@@ -42,7 +42,7 @@ form {
     cursor: pointer;
 }
 
-.admin-header .ad-info .admsg {
+.admin-header .admin-info .admsg {
     /* display: none; */
     visibility: hidden;
     opacity: 0;
@@ -108,13 +108,13 @@ form {
     text-decoration: none;
 }
 
-.admin-header .ad-info img {
+.admin-header .admin-info img {
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
 }
 
-.admin-header .ad-info span {
+.admin-header .admin-info span {
     padding-left: 2.5rem;
 }
 
@@ -145,20 +145,20 @@ form {
     white-space: nowrap;
 }
 
-.ad-sidebar-li-a {
+.admin-sidebar-li-a {
     padding: 0 2rem;
     display: inline-block;
     width: 100%;
     height: 100%;
 }
 
-.ad-sidebar-li-a:hover {
+.admin-sidebar-li-a:hover {
     color: #20a0ff;
     background-color: #48576a;
 }
 
-.ad-sidebar-normal,
-.ad-sidebar-collapse {
+.admin-sidebar-normal,
+.admin-sidebar-collapse {
     height: 100%;
     border-radius: 0.2rem;
     list-style: none;
@@ -167,24 +167,24 @@ form {
     padding-left: 0;
 }
 
-.ad-sidebar-normal i {
+.admin-sidebar-normal i {
     padding-right: 4rem;
 }
 
-.ad-sidebar-normal a,
-.ad-sidebar-collapse a {
+.admin-sidebar-normal a,
+.admin-sidebar-collapse a {
     color: #bfcbd9;
     text-decoration: none;
 }
 
-.ad-sidebar-footer {
+.admin-sidebar-footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     border-top: 0.1rem solid #48576a;
 }
 
-.ad-sidebar-footer i {
+.admin-sidebar-footer i {
     position: relative;
     top: 0px;
     float: right;
@@ -196,15 +196,15 @@ form {
     width: 21.6rem;
 }
 
-.ad-editor-wrap .tips span {
+.admin-editor-wrap .tips span {
     font-size: 1.4rem;
 }
 
-.ad-editor-wrap .tips {
+.admin-editor-wrap .tips {
     margin: 1.5rem 0;
 }
 
-.ad-editor-wrap .ad-header {
+.admin-editor-wrap .input-header {
     margin-bottom: 1.5rem;
 }
 
@@ -222,7 +222,7 @@ form {
 
 /*交互部分 */
 
-.ad-info:hover .admsg {
+.admin-info:hover .admsg {
     /* display: block; */
     opacity:1;
      visibility: visible;
@@ -248,10 +248,10 @@ form {
 }
 
 /*删除文章组件  */
-.ad-admin-manage-wrap {
+.admin-admin-manage-wrap {
     font-size: 1.4rem;
 }
-.ad-admin-manage-wrap .tips {
+.admin-admin-manage-wrap .tips {
     margin: 1.5rem 0;
 }
 

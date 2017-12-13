@@ -8,7 +8,7 @@ define('template/admin/comments', function(require, exports, module) {
     /* beautify ignore:start */
         /* eslint-disable */
         var tpl = [
-            '<div class="ad-admin-manage-wrap">',
+            '<div class="admin-admin-manage-wrap">',
                 '<div class="tips">',
                     '<span><i class="glyphicon glyphicon-wrench"></i> 评论管理-删除文章评论</span>',
                 '</div>',

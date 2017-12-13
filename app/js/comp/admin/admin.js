@@ -46,7 +46,7 @@ define('comp/admin/admin', function(require, exports, module) {
                         img: this.imgsrc
                     };
                 $.ajax({
-                    url: 'http://blog.feroad.com/admin/getAdministerInfo',
+                    url: 'http://blogapi.feroad.com/admin/getAdministerInfo',
                     dataType: 'json',
                     success: function(res) {
                         var data = res.result.data;
@@ -71,7 +71,7 @@ define('comp/admin/admin', function(require, exports, module) {
                 }
                 // 通知后台注销
                 $.ajax({
-                    url: 'http://blog.feroad.com/admin/loginout',
+                    url: 'http://blogapi.feroad.com/admin/loginout',
                     type: 'GET',
                     dataType: 'json',
                     data: {

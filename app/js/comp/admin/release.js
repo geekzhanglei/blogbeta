@@ -44,7 +44,7 @@ define('comp/admin/release', function(require, exports, module) {
                 contStr = temp_div.innerHTML;
 
                 $.ajax({
-                    url: 'http://blog.feroad.com/article/add',
+                    url: 'http://blogapi.feroad.com/article/add',
                     type: 'POST',
                     dataType: 'json',
                     data: {

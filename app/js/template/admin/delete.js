@@ -8,7 +8,7 @@ define('template/admin/delete', function(require, exports, module) {
     /* beautify ignore:start */
     /* eslint-disable */
     var tpl = [
-            '<div class="ad-admin-manage-wrap">',
+            '<div class="admin-admin-manage-wrap">',
                 '<div class="tips">',
                     '<span><i class="glyphicon glyphicon-trash"></i> 删除文章-删除不需要的文章</span>',
                 '</div>',
