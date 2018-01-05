@@ -14,7 +14,7 @@ define('conf/index', function(require, exports, module) {
     require('comp/msg');
     // 关于页
     require('comp/about');
-
+    // 公共页脚
     require('comp/common/footer');
 
     // 引入bootstrap插件
