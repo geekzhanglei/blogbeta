@@ -1,4 +1,5 @@
 # blog
+## 已废弃
 ## 前后端合作博客（lithe(NodeJS/CommonJS)+grunt+vue+jquery+bootstrap+php+mysql）
 ### 项目说明
 - 这是一个旨在提高个人前端技能水平的玩具项目，目前架构方面沿用开源lithe模块化开发、grunt工具链、vue+vue-router、jquery提供ajax请求方法、bootstrap提供快速样式组件。由于对前端技能的提升意义渐小，后续迭代将减少
