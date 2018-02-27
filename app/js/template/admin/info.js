@@ -6,7 +6,7 @@
 define('template/admin/info', function(require, exports, module) {
 
     /* beautify ignore:start */
-        /* eslint-disable */
+    /* eslint-disable */
         var tpl = [
                 '<div class="ad-admin-manage-wrap">',
                     '<div class="tips">',
@@ -79,7 +79,7 @@ define('template/admin/info', function(require, exports, module) {
                 '</div>',
                 '</div>'
         ].join('');
-        /* beautify ignore:end */
+    /* beautify ignore:end */
     /* eslint-disable */
 
     module.exports = tpl;

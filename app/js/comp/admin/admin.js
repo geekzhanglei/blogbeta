@@ -17,7 +17,8 @@ define('comp/admin/admin', function(require, exports, module) {
     var data = {
         isCollapse: true,
         nickname: '管理员',
-        imgsrc: '../img/avatar.png',
+        imgDefault: '../img/avatar.png',
+        imgsrc: '',
         articleAdm: false
     };
 
@@ -51,12 +52,11 @@ define('comp/admin/admin', function(require, exports, module) {
                         var data = res.result.data;
                         if (res.result.status == 1) {
                             _this.nickname = data.nickname;
-                            _this.imgsrc = data.head_img;
+                            data.head_img === '' ? _this.imgsrc = _this.imgDefault : _this.imgsrc = data.head_img;
                             _info.name = data.nickname;
                             _info.img = data.head_img;
                             bus.$emit('downloadInfo', _info);
                         }
-                        console.log(res);
                     },
                     error: function(res) {
                         console.log(res);
@@ -91,10 +91,6 @@ define('comp/admin/admin', function(require, exports, module) {
                         console.log('接口请求失败');
                     }
                 });
-            },
-            avatarErrEvent: function(e) {
-                console.log("图片加载失败处理")
-                e.target.src = this.imgsrc;
             },
             init: function() {
                 this.getInfo();

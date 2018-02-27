@@ -434,7 +434,7 @@ form {
     line-height: 18px;
     color: #00b38a;
     font-size: 16px;
-    background: url(./../img/edit.png) no-repeat left center;
+    background: url(./../../img/edit.png) no-repeat left center;
     background-size:16px 16px;
     cursor: pointer;
 }
