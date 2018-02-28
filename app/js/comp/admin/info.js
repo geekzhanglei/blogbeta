@@ -220,7 +220,7 @@ define('comp/admin/info', function(require, exports, module) {
                 });
             }
         },
-        created: function() {
+        mounted: function() {
             var _this = this;
             _this.showModifyPwOK = false;
             _this.visitedNum = 1;
@@ -228,6 +228,7 @@ define('comp/admin/info', function(require, exports, module) {
                 _this.nickname = res.name;
                 _this.imgsrc = res.img;
             })
+            console.log('sdfs')
         }
     });
     return comp;

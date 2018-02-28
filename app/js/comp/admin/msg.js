@@ -49,7 +49,7 @@ define('comp/admin/msg', function(require, exports, module) {
             reqMsgData: function(e) {
                 var _this = this;
                 $.ajax({
-                    url: 'http://blog.feroad.com/page',
+                    url: 'http://blog.feroad.com/pageForAdmin',
                     type: 'GET',
                     dataType: 'json',
                     data: {
