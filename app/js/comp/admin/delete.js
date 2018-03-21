@@ -23,21 +23,33 @@ define('comp/admin/delete', function(require, exports, module) {
         methods: {
             // 请求文章列表
             reqArticleList: function(e) {
-                var _this = this;
-                $.ajax({
-                    url: 'http://blog.feroad.com/article/getArticleList',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(res) {
+                // var _this = this;
+                // $.ajax({
+                //     url: 'http://blog.feroad.com/article/getArticleList',
+                //     type: 'GET',
+                //     dataType: 'json',
+                //     success: function(res) {
+                //         var flag = res.result.status;
+                //         if (flag) {
+                //             _this.items = res.result.data;
+
+                //         } else {
+                //             _this.items = [];
+                //         }
+                //     }
+                // });
+                fetch('http://blog.feroad.com/article/getArticleList')
+                    .then(response => response.json())
+                    .then(res => {
                         var flag = res.result.status;
                         if (flag) {
-                            _this.items = res.result.data;
+                            this.items = res.result.data;
 
                         } else {
-                            _this.items = [];
+                            this.items = [];
                         }
-                    }
-                });
+                    })
+                    .catch(e => console.log("Oops, error", e));
             },
             // 时间戳转换
             transferTime: function(unixTime) {

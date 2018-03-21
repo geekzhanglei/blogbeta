@@ -228,7 +228,6 @@ define('comp/admin/info', function(require, exports, module) {
                 _this.nickname = res.name;
                 _this.imgsrc = res.img;
             })
-            console.log('sdfs')
         }
     });
     return comp;
