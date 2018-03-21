@@ -23,7 +23,7 @@ define('comp/admin/delete', function(require, exports, module) {
         methods: {
             // 请求文章列表
             reqArticleList: function(e) {
-                // var _this = this;
+                var _this = this;
                 // $.ajax({
                 //     url: 'http://blog.feroad.com/article/getArticleList',
                 //     type: 'GET',
@@ -39,17 +39,30 @@ define('comp/admin/delete', function(require, exports, module) {
                 //     }
                 // });
                 fetch('http://blog.feroad.com/article/getArticleList')
-                    .then(response => response.json())
-                    .then(res => {
+                    .then(function(response) {
+                        response.json();
+                    })
+                    // .then(res => {
+                    //     var flag = res.result.status;
+                    //     if (flag) {
+                    //         this.items = res.result.data;
+
+                    //     } else {
+                    //         this.items = [];
+                    //     }
+                    // })
+                    .then(function(res) {
                         var flag = res.result.status;
                         if (flag) {
-                            this.items = res.result.data;
+                            _this.items = res.result.data;
 
                         } else {
-                            this.items = [];
+                            _this.items = [];
                         }
                     })
-                    .catch(e => console.log("Oops, error", e));
+                    .catch(function(e) {
+                        console.log("Oops, error:", e)
+                    });
             },
             // 时间戳转换
             transferTime: function(unixTime) {
