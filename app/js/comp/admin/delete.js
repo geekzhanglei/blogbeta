@@ -40,22 +40,12 @@ define('comp/admin/delete', function(require, exports, module) {
                 // });
                 fetch('http://blog.feroad.com/article/getArticleList')
                     .then(function(response) {
-                        response.json();
+                        return response.json();
                     })
-                    // .then(res => {
-                    //     var flag = res.result.status;
-                    //     if (flag) {
-                    //         this.items = res.result.data;
-
-                    //     } else {
-                    //         this.items = [];
-                    //     }
-                    // })
                     .then(function(res) {
                         var flag = res.result.status;
                         if (flag) {
                             _this.items = res.result.data;
-
                         } else {
                             _this.items = [];
                         }
