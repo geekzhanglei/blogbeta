@@ -7,8 +7,8 @@
 define('comp/admin/comments', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/comments');
-    var router = require('mods/router');
     var atom = require('comp/util/atom');
+    var vars = require('comp/util/vars');
 
     // handlePage计算分页数据传递给pagingData，
     // pagingData给模板template中的子组件数据源datasource
@@ -54,7 +54,7 @@ define('comp/admin/comments', function(require, exports, module) {
                     return;
                 }
                 $.ajax({
-                    url: "http://blogapi.feroad.com/article/deleteMark/" + cetId,
+                    url: vars.url + "/article/deleteMark/" + cetId,
                     type: "POST",
                     dataType: "json",
                     data: {
@@ -77,7 +77,7 @@ define('comp/admin/comments', function(require, exports, module) {
             requestArticle: function(e) {
                 var _this = this;
                 $.ajax({
-                    url: "http://blogapi.feroad.com/article/getArticleListWithMark",
+                    url: vars.url + "/article/getArticleListWithMark",
                     type: "POST",
                     dataType: "json",
                     data: {

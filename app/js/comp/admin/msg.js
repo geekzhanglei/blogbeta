@@ -7,7 +7,7 @@
 define('comp/admin/msg', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/msg');
-    var router = require('mods/router');
+    var vars = require('comp/util/vars');
     var atom = require('comp/util/atom');
     var axios = require('axios');
 
@@ -49,7 +49,7 @@ define('comp/admin/msg', function(require, exports, module) {
             // 请求留言数据接口
             reqMsgData: function(e) {
                 var _this = this;
-                axios.get('http://blogapi.feroad.com/pageForAdmin', {
+                axios.get(vars.url + '/pageForAdmin', {
                     params: {
                         curpage: e,
                         perpage: _this.pagesize
@@ -75,7 +75,7 @@ define('comp/admin/msg', function(require, exports, module) {
                     console.log('接口请求失败，错误码：' + e)
                 })
                 // $.ajax({
-                //     url: 'http://blogapi.feroad.com/pageForAdmin',
+                //     url: vars.url+'/pageForAdmin',
                 //     type: 'GET',
                 //     dataType: 'json',
                 // data: {
@@ -116,7 +116,7 @@ define('comp/admin/msg', function(require, exports, module) {
                 this.items.splice(index, 1);
                 // 再请求删除留言接口
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/delete/' + id,
+                    url: vars.url + '/delete/' + id,
                     type: 'GET',
                     data: {
                         token: window.localStorage.token

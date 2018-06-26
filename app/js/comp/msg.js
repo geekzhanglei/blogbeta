@@ -7,6 +7,7 @@
 define('comp/msg', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/msg');
+    var vars = require('comp/util/vars');
 
     var atom = require('comp/util/atom');
     // handlePage计算分页数据传递给pagingData，
@@ -105,7 +106,7 @@ define('comp/msg', function(require, exports, module) {
             reqMsgData: function(e) {
                 var _this = this;
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/page',
+                    url: vars.url + '/page',
                     type: 'GET',
                     dataType: 'json',
                     data: {
@@ -175,7 +176,7 @@ define('comp/msg', function(require, exports, module) {
                     };
                 }
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/reply/add',
+                    url: vars.url + '/reply/add',
                     type: 'POST',
                     dataType: 'json',
                     data: data,
@@ -209,7 +210,7 @@ define('comp/msg', function(require, exports, module) {
                 }
 
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/add',
+                    url: vars.url + '/add',
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -265,7 +266,7 @@ define('comp/msg', function(require, exports, module) {
                     this.clickFlag = 0;
                     // 请求接口
                     $.ajax({
-                        url: 'http://blogapi.feroad.com/agree/' + id,
+                        url: vars.url + '/agree/' + id,
                         data: {
                             type: typeid,
                             category: category

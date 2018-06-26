@@ -2,6 +2,7 @@
  * @fileoverview 后台管理页
  * @author geekzl<1103307205@qq.com>
  * @date 2017/07/25
+ * @update 2018/06/30
  */
 
 define('comp/admin/delete', function(require, exports, module) {
@@ -9,45 +10,36 @@ define('comp/admin/delete', function(require, exports, module) {
     var tpl = require('template/admin/delete');
     var router = require('mods/router');
     var atom = require('comp/util/atom');
-
-    var data = {
-        deleteId: -1,
-        items: []
-    };
+    var vars = require('comp/util/vars');
 
     var comp = Vue.component('blog-delete', {
         template: tpl,
         data: function() {
-            return data;
+            return {
+                deleteId: -1,
+                items: [],
+                perpage: 6,
+                curpage: 1,
+                endFetch: false,
+                showLoadMore: true
+            }
         },
         methods: {
             // 请求文章列表
-            reqArticleList: function(e) {
+            reqArticleList: function(curpage) {
                 var _this = this;
-                // $.ajax({
-                //     url: 'http://blogapi.feroad.com/article/getArticleList',
-                //     type: 'GET',
-                //     dataType: 'json',
-                //     success: function(res) {
-                //         var flag = res.result.status;
-                //         if (flag) {
-                //             _this.items = res.result.data;
-
-                //         } else {
-                //             _this.items = [];
-                //         }
-                //     }
-                // });
-                fetch('http://blogapi.feroad.com/article/getArticleList')
+                fetch(vars.url + '/admin/getArticleIntroList?curpage=' + curpage + '&perpage=' + this.perpage)
                     .then(function(response) {
                         return response.json();
                     })
                     .then(function(res) {
                         var flag = res.result.status;
                         if (flag) {
-                            _this.items = res.result.data;
-                        } else {
-                            _this.items = [];
+                            _this.items = _this.items.concat(res.result.data);
+                            if (_this.curpage * _this.perpage > res.result.rows) {
+                                _this.endFetch = true;
+                                _this.showLoadMore = false;
+                            }
                         }
                     })
                     .catch(function(e) {
@@ -76,7 +68,7 @@ define('comp/admin/delete', function(require, exports, module) {
                     return;
                 }
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/article/deleteArticleById/' + _this.deleteId,
+                    url: vars.url + '/article/deleteArticleById/' + _this.deleteId,
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -106,10 +98,15 @@ define('comp/admin/delete', function(require, exports, module) {
                     }
                     return inputHTML;
                 }
+            },
+            loadMore: function() {
+                if (!this.endFetch) { // 假如到最后一页了，不再请求
+                    this.reqArticleList(this.curpage++);
+                }
             }
         },
         created: function() {
-            this.reqArticleList();
+            this.reqArticleList(this.curpage++);
         }
     });
     return comp;

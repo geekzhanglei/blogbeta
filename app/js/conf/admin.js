@@ -26,7 +26,7 @@ define('conf/admin', function(require, exports, module) {
     new Vue({
         el: '#admin',
         created: function() {
-            console.log("我的代码很挫\r\n 你居然还要扒开了看\r\n我表示小尴尬\r\n 非要看源码的话：\r\n\r\n\r\n%cfollow me %c https://github.com/geekzhanglei/blogbeta", "color:red", "color:green");
+            console.log("这是初学时期的糟糕代码\r\n 你居然还要扒开了看\r\n这让人感到有点尴尬\r\n 非要看源码的话：\r\n\r\n\r\n%cfollow me %c https://github.com/geekzhanglei/blogbeta", "color:red", "color:green");
             if (router.currentRoute.path === "/") {
                 router.replace({
                     path: '/login'

@@ -8,6 +8,7 @@ define('comp/admin/login', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/login');
     var router = require('mods/router');
+    var vars = require('comp/util/vars');
 
     var data = {
         loginname: '',
@@ -27,7 +28,7 @@ define('comp/admin/login', function(require, exports, module) {
                 if (this.loginname && this.loginpwd) {
                     this.isErr = false;
                     $.ajax({
-                        url: 'http://blogapi.feroad.com/admin/login',
+                        url: vars.url + '/admin/login',
                         type: 'POST',
                         dataType: 'json',
                         data: {
@@ -70,7 +71,7 @@ define('comp/admin/login', function(require, exports, module) {
                 //判断是否登陆,请求后端验证token
                 if (window.localStorage.token) {
                     $.ajax({
-                        url: 'http://blogapi.feroad.com/admin/isLogin',
+                        url: vars.url + '/admin/isLogin',
                         type: 'GET',
                         dataType: 'json',
                         data: {

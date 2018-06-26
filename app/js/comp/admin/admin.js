@@ -9,6 +9,7 @@ define('comp/admin/admin', function(require, exports, module) {
     var tpl = require('template/admin/admin');
     var router = require('mods/router');
     var bus = require('mods/bus');
+    var vars = require('comp/util/vars');
 
     bus.$on("info", function(name, img) {
         data.imgsrc = img;
@@ -46,13 +47,13 @@ define('comp/admin/admin', function(require, exports, module) {
                         img: this.imgsrc
                     };
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/admin/getAdministerInfo',
+                    url: vars.url + '/admin/getAdministerInfo',
                     dataType: 'json',
                     success: function(res) {
                         var data = res.result.data;
                         if (res.result.status == 1) {
                             _this.nickname = data.nickname;
-                            data.head_img === '' ? _this.imgsrc = _this.imgDefault : _this.imgsrc = data.head_img;
+                            data.head_img === '' ? _this.imgsrc = _this.imgDefault : _this.imgsrc = vars.url + data.head_img;
                             _info.name = data.nickname;
                             _info.img = data.head_img;
                             bus.$emit('downloadInfo', _info);
@@ -71,7 +72,7 @@ define('comp/admin/admin', function(require, exports, module) {
                 }
                 // 通知后台注销
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/admin/loginout',
+                    url: vars.url + '/admin/loginout',
                     type: 'GET',
                     dataType: 'json',
                     data: {

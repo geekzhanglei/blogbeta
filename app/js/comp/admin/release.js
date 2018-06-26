@@ -8,6 +8,7 @@ define('comp/admin/release', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/release');
     var router = require('mods/router');
+    var vars = require('comp/util/vars');
     var simplemde;
 
     var data = {
@@ -44,7 +45,7 @@ define('comp/admin/release', function(require, exports, module) {
                 contStr = temp_div.innerHTML;
 
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/article/add',
+                    url: vars.url + '/article/add',
                     type: 'POST',
                     dataType: 'json',
                     data: {

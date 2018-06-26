@@ -7,7 +7,7 @@
 define('comp/admin/option', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/option');
-    var router = require('mods/router');
+    var vars = require('comp/util/vars');
     var data = {
         selectedArtPage: 1,
         selectedMsgPage: 1,
@@ -62,7 +62,7 @@ define('comp/admin/option', function(require, exports, module) {
                 var _this = this;
                 // 更新文章接口数据
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/admin/setDefaultArticlePages',
+                    url: vars.url + '/admin/setDefaultArticlePages',
                     data: {
                         token: window.localStorage.token,
                         type: _this.selectedArtPage,
@@ -98,7 +98,7 @@ define('comp/admin/option', function(require, exports, module) {
                 }
                 // 更新留言板接口数据
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/admin/setDefaultCommentInfos',
+                    url: vars.url + '/admin/setDefaultCommentInfos',
                     type: 'POST',
                     dataType: 'json',
                     data: {

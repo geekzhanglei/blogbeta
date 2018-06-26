@@ -4,9 +4,9 @@ var buildPath = projectConfig.global.buildPath;
 module.exports = {
     default: {
         options: {
-            username: "gruntftp",
-            password: "@zhangleiftp",
-            host: "123.206.72.67",
+            username: "ftpname",
+            password: "*********",
+            host: "0.0.0.0",
             dest: "",
             port: 21,
             debug: true,

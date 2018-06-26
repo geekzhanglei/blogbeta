@@ -8,8 +8,8 @@ define('comp/admin/info', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/admin/info');
     var router = require('mods/router');
-    var atom = require('comp/util/atom');
     var bus = require('mods/bus');
+    var vars = require('comp/util/vars');
 
     var data = {
         visitedNum: 1,
@@ -86,7 +86,7 @@ define('comp/admin/info', function(require, exports, module) {
                     formdata.append('nickname', this.nickname);
                     formdata.append('token', window.localStorage.token);
                     console.log(formdata.get('headImg'))
-                    ajax.open('POST', 'http://blogapi.feroad.com/admin/modityAdministerInfo', true);
+                    ajax.open('POST', vars.url + '/admin/modityAdministerInfo', true);
                     ajax.send(formdata);
                     ajax.onreadystatechange = function(res) {
                         if (ajax.readyState == 4) {
@@ -150,7 +150,7 @@ define('comp/admin/info', function(require, exports, module) {
                     }
                     // 发送原密码和新密码，原密码是否正确，不正确给提示
                     $.ajax({
-                        url: 'http://blogapi.feroad.com/admin/modifyPassword',
+                        url: vars.url + '/admin/modifyPassword',
                         dataType: 'json',
                         type: 'POST',
                         data: {
@@ -198,7 +198,7 @@ define('comp/admin/info', function(require, exports, module) {
                 }
                 // 通知后台注销
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/admin/loginout',
+                    url: vars.url + '/admin/loginout',
                     type: 'GET',
                     dataType: 'json',
                     data: {
@@ -226,7 +226,7 @@ define('comp/admin/info', function(require, exports, module) {
             _this.visitedNum = 1;
             bus.$on("downloadInfo", function(res) {
                 _this.nickname = res.name;
-                _this.imgsrc = res.img;
+                _this.imgsrc = vars.url + res.img;
             })
         }
     });

@@ -8,6 +8,7 @@ define('comp/list', function(require, exports, module) {
     var Vue = require('vue');
     var tpl = require('template/list');
     var atom = require('comp/util/atom');
+    var vars = require('comp/util/vars');
 
     // handlePage计算分页数据传递给pagingData，
     // pagingData给模板template中的子组件数据源datasource
@@ -38,7 +39,7 @@ define('comp/list', function(require, exports, module) {
             reqArticleDataApi: function(e) {
                 var _this = this;
                 $.ajax({
-                    url: 'http://blogapi.feroad.com/article/getArticleList',
+                    url: vars.url + '/article/getArticleList',
                     type: 'GET',
                     dataType: 'json',
                     data: {
