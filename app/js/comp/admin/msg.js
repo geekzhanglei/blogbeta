@@ -5,7 +5,7 @@
  */
 
 define('comp/admin/msg', function(require, exports, module) {
-    var Vue = require('vue');
+    // var Vue = require('vue');
     var tpl = require('template/admin/msg');
     var vars = require('comp/util/vars');
     var atom = require('comp/util/atom');

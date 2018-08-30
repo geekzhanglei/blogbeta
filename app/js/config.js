@@ -10,7 +10,7 @@
             'vue': 'lib/vue/vue',
             'vue-router': 'lib/vue/vue-router',
             'jquery': 'lib/jquery/jquery',
-            'bootstrap': 'lib/bootstrap/bootstrap',
+            // 'bootstrap': 'lib/bootstrap/bootstrap',
             'axios': 'lib/axios/axios'
         }
     };

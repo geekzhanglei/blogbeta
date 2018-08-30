@@ -5,7 +5,7 @@
  */
 
 define('comp/msg', function(require, exports, module) {
-    var Vue = require('vue');
+    // var Vue = require('vue');
     var tpl = require('template/msg');
     var vars = require('comp/util/vars');
 

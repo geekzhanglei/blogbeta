@@ -4,7 +4,7 @@
  * @date 2017/06
  */
 define('comp/common/page', function(require, exports, module) {
-    var Vue = require('vue');
+    // var Vue = require('vue');
     var tpl = require('template/common/page');
 
     var defaultData = {

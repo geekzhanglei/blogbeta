@@ -1,5 +1,6 @@
 define('comp/common/header', function(require, exports, module) {
-    var Vue = require('vue');
+    // var Vue = require('vue');
+    // var Vue = new Vue();
     var tpl = require('template/common/header');
 
     var data = {};

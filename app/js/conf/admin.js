@@ -1,6 +1,5 @@
 define('conf/admin', function(require, exports, module) {
-    var Vue = require('vue');
-    var router = require('mods/router');
+    // var Vue = require('vue');
 
     // 登录组件
     require('comp/admin/login');
@@ -18,9 +17,7 @@ define('conf/admin', function(require, exports, module) {
     require('comp/admin/info');
     // 常用选项组件
     require('comp/admin/option');
-    // 引入bootstrap插件
-    window.$ = require('jquery');
-    require('bootstrap');
+    var router = require('mods/router');
 
     // 初始化根实例
     new Vue({

@@ -1,7 +1,4 @@
 define('conf/index', function(require, exports, module) {
-    var Vue = require('vue');
-    var router = require('mods/router');
-
     require('comp/common/header');
 
     // 布局组件
@@ -16,10 +13,8 @@ define('conf/index', function(require, exports, module) {
     require('comp/about');
     // 公共页脚
     require('comp/common/footer');
+    var router = require('mods/router');
 
-    // 引入bootstrap插件
-    window.$ = require('jquery');
-    require('bootstrap');
 
     // 初始化根实例
     new Vue({

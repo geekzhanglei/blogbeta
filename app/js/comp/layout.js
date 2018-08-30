@@ -5,7 +5,7 @@
  */
 
 define('comp/layout', function(require, exports, module) {
-    var Vue = require('vue');
+    // var Vue = require('vue');
     var tpl = require('template/layout');
     var router = require('mods/router');
 

@@ -6,7 +6,7 @@
  */
 
 define('comp/admin/delete', function(require, exports, module) {
-    var Vue = require('vue');
+    // var Vue = require('vue');
     var tpl = require('template/admin/delete');
     var router = require('mods/router');
     var atom = require('comp/util/atom');

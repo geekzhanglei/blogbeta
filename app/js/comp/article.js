@@ -5,7 +5,7 @@
  */
 
 define('comp/article', function(require, exports, module) {
-    var Vue = require('vue');
+    // var Vue = require('vue');
     var tpl = require('template/article');
     var router = require('mods/router');
     var atom = require('comp/util/atom');

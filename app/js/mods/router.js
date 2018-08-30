@@ -4,12 +4,6 @@
  * @date 2017/07/05
  */
 define('mods/router', function(require, exports, module) {
-    var Vue = require('vue');
-    var VueRouter = require('vue-router');
-
-    // 模块化工程中使用vue-router需要显式安装路由功能
-    Vue.use(VueRouter);
-
     var router = new VueRouter({
         // history模式需要服务端配置来配合
         // mode: 'history',
