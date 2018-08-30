@@ -7,10 +7,6 @@
     var mod = {
         // basepath: basepath,
         alias: {
-            'vue': 'lib/vue/vue',
-            'vue-router': 'lib/vue/vue-router',
-            'jquery': 'lib/jquery/jquery',
-            // 'bootstrap': 'lib/bootstrap/bootstrap',
             'axios': 'lib/axios/axios'
         }
     };

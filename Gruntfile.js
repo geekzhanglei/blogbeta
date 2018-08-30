@@ -26,8 +26,6 @@ module.exports = function(grunt) {
         clean: require('./gruntConfigs/clean'),
         // 实时修改加载livereload服务（监控服务器实现）
         watch: require('./gruntConfigs/watch'),
-        // ftp上传文件到服务器
-        ftp_push: require('./gruntConfigs/ftp')
     });
 
     grunt.registerTask('packjs', [
@@ -42,12 +40,7 @@ module.exports = function(grunt) {
     ]);
     grunt.registerTask('packcss', ['cssmin']);
     grunt.registerTask('packhtml', ['htmlmin']);
-    grunt.registerTask('put', ['ftp_push']);
     grunt.registerTask('build', ['clean', 'packhtml', 'packcss', 'packjs', 'copy:img', 'copy:fonts', 'copy:lib']);
-    grunt.registerTask('release', function() {
-        // release比build多了发布到线上的环节
-        grunt.task.run(['build', 'put']);
-    });
     grunt.registerTask('serve', '', function(target) {
         if (target == 'dist') {
             grunt.log.writeln('server for dist...');
